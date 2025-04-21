@@ -10,11 +10,23 @@
 // Result: nothing is returned, but the new linked list looks like a->b->d->e->f Hints: #72
 // ```
 
-import { LinkedList } from './10_LinkedList';
+import { Node, LinkedList } from '../ds/LinkedList';
 
-export type Node<T> = {
-  value: T;
-  next?: Node<T>;
-};
+export { Node };
 
-export default function deleteMiddleNode<T>(head: Node<T>, position: number): Node<T> | undefined {}
+export default function deleteMiddleNode<T>(head: Node<T>, position: number): Node<T> | undefined {
+  const list = new LinkedList(head); // O(n)
+  const size = list.size();
+
+  if (position == 0 || position === size - 1) {
+    return list.unsafeHead();
+  }
+
+  for (const handler of list) {
+    if (handler.idx() === position) {
+      handler.remove();
+    }
+  }
+
+  return list.unsafeHead();
+}
