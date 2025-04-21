@@ -7,6 +7,7 @@
     "format": "npx prettier --write .",
     "test": "vitest ./**/problems/__tests__/*",
     "test-coding": "vitest ./coding/__tests__/*",
+    "ds": "vitest ./**/ds/__tests__/* --reporter=default --reporter=./silverReporter.ts",
     "strings": "vitest ./**/problems/__tests__/strings/* --reporter=default --reporter=./silverReporter.ts",
     "lists": "vitest ./**/problems/__tests__/lists/* --reporter=default --reporter=./silverReporter.ts",
     "stacks": "vitest ./**/problems/__tests__/stacks/* --reporter=default --reporter=./silverReporter.ts",
