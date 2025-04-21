@@ -2,7 +2,7 @@ import { assert } from '../utils/assert';
 
 export class Node<T> {
   value: T;
-  next: Node<T> | undefined = undefined;
+  next?: Node<T> | undefined = undefined;
 
   constructor(value: T) {
     this.value = value;
@@ -30,6 +30,15 @@ class Handler<T> {
 
   remove(): void {
     this.#removeFn(this.#node, this.#previousNode);
+  }
+
+  /**
+   * WARNING: Only for testing purposes.
+   * It returns the node and it breaks encapsulation.
+   * It allows the linked list invariant to be broken.
+   */
+  unsafeNode(): Node<T> {
+    return this.#node;
   }
 }
 
@@ -179,8 +188,9 @@ export class LinkedList<T> {
   }
 
   /**
-   * Only for testing purposes, it returns the head,
-   * it breaks encapsulation.
+   * WARNING: Only for testing purposes.
+   * It returns the head node and it breaks encapsulation.
+   * It allows the linked list invariant to be broken.
    */
   unsafeHead(): Node<T> | undefined {
     return this.#head;
