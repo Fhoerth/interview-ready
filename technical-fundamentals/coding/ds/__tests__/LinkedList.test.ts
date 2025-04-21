@@ -14,8 +14,8 @@ describe('LinkedList', () => {
 
     list.removeFirst();
 
-    expect(list.head()).toBe(null);
-    expect(list.tail()).toBe(null);
+    expect(list.head()).toBe(undefined);
+    expect(list.tail()).toBe(undefined);
     expect(list.size()).toBe(0);
   });
 

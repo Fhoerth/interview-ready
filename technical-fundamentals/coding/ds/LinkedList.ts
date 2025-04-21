@@ -2,7 +2,7 @@ import { assert } from '../utils/assert';
 
 export class Node<T> {
   value: T;
-  next: Node<T> | null = null;
+  next: Node<T> | undefined = undefined;
 
   constructor(value: T) {
     this.value = value;
@@ -32,10 +32,10 @@ class Handler<T> {
 
 class Iterator<T> {
   #list: LinkedList<T>;
-  #currentNode: Node<T> | null;
-  #previousNode: Node<T> | null = null;
+  #currentNode: Node<T> | undefined;
+  #previousNode: Node<T> | undefined = undefined;
 
-  constructor(head: Node<T> | null, list: LinkedList<T>) {
+  constructor(head: Node<T> | undefined, list: LinkedList<T>) {
     this.#currentNode = head;
     this.#list = list;
   }
@@ -61,12 +61,12 @@ class Iterator<T> {
 }
 
 export class LinkedList<T> {
-  #head: Node<T> | null = null;
-  #tail: Node<T> | null = null;
+  #head: Node<T> | undefined = undefined;
+  #tail: Node<T> | undefined = undefined;
   #size = 0;
 
   constructor(head?: Node<T>) {
-    let node: Node<T> | null = head || null;
+    let node: Node<T> | undefined = head || undefined;
 
     while (node) {
       this.append(node.value);
@@ -140,18 +140,18 @@ export class LinkedList<T> {
     if (this.#tail === node) this.#tail = previousNode;
   }
 
-  head(): T | null {
-    return this.#head?.value || null;
+  head(): T | undefined {
+    return this.#head?.value || undefined;
   }
 
-  tail(): T | null {
-    return this.#tail?.value || null;
+  tail(): T | undefined {
+    return this.#tail?.value || undefined;
   }
 
   removeFirst() {
     if (this.#head === this.#tail) {
-      this.#head = null;
-      this.#tail = null;
+      this.#head = undefined;
+      this.#tail = undefined;
       this.#size = 0;
 
       return;
@@ -183,7 +183,7 @@ export class LinkedList<T> {
    * Only for testing purposes, it returns the head,
    * it breaks encapsulation.
    */
-  unsafeHead(): Node<T> | null {
+  unsafeHead(): Node<T> | undefined {
     return this.#head;
   }
 }
