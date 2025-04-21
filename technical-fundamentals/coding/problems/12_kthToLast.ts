@@ -10,13 +10,11 @@ export default function kthToLast<T>(head: Node<T>, k: number): Node<T> | undefi
   const list = new LinkedList(head); // O(n)
   const size = list.size();
 
-  let j = 0;
-
   for (const handler of list) {
-    if (j === size - k) {
+    if (handler.idx() === size - k) {
       return handler.unsafeNode();
     }
-
-    j += 1;
   }
+
+  return undefined;
 }

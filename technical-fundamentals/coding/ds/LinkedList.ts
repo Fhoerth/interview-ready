@@ -10,15 +10,18 @@ export class Node<T> {
 }
 
 class Handler<T> {
+  #idx: number;
   #node: Node<T>;
   #previousNode?: Node<T>;
   #removeFn: (node: Node<T>, previousNode?: Node<T>) => void;
 
   constructor(
+    idx: number,
     node: Node<T>,
     removeFn: (node: Node<T>, previousNode?: Node<T>) => void,
     previusNode?: Node<T>,
   ) {
+    this.#idx = idx;
     this.#node = node;
     this.#removeFn = removeFn;
     this.#previousNode = previusNode;
@@ -32,6 +35,10 @@ class Handler<T> {
     this.#removeFn(this.#node, this.#previousNode);
   }
 
+  idx(): number {
+    return this.#idx;
+  }
+
   /**
    * WARNING: Only for testing purposes.
    * It returns the node and it breaks encapsulation.
@@ -43,10 +50,12 @@ class Handler<T> {
 }
 
 class Iterator<T> {
+  #idx: number;
   #list: LinkedList<T>;
   #currentNode: Node<T> | undefined;
 
   constructor(head: Node<T> | undefined, list: LinkedList<T>) {
+    this.#idx = 0;
     this.#currentNode = head;
     this.#list = list;
   }
@@ -57,11 +66,13 @@ class Iterator<T> {
     }
   
     const handler = new Handler<T>(
+      this.#idx,
       this.#currentNode,
       (node: Node<T>, previousNode?: Node<T>) => this.#list.remove(node, previousNode)
     );
   
     this.#currentNode = this.#currentNode.next;
+    this.#idx += 1;
       
     return { value: handler, done: false };
   }

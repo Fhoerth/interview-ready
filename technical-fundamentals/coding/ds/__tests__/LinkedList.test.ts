@@ -131,13 +131,10 @@ describe('LinkedList', () => {
       list.append(j);
     }
 
-    let j = 1;
     for (const handler of list) {
-      if (j >= 2 && j <= iterations - 1) {
+      if (handler.idx() + 1 >= 2 && handler.idx() + 1 <= iterations - 1) {
         handler.remove();
       }
-
-      j += 1;
     }
 
     expect(list.head()).toBe(1);
