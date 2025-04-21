@@ -10,30 +10,32 @@ export class Node<T> {
 }
 
 class Handler<T> {
-  #value: T;
-  #removeFn: () => void;
+  #node: Node<T>;
+  #previousNode?: Node<T>;
+  #removeFn: (node: Node<T>, previousNode?: Node<T>) => void;
 
   constructor(
-    value: T,
-    removeFn: () => void
+    node: Node<T>,
+    removeFn: (node: Node<T>, previousNode?: Node<T>) => void,
+    previusNode?: Node<T>,
   ) {
-    this.#value = value;
+    this.#node = node;
     this.#removeFn = removeFn;
+    this.#previousNode = previusNode;
   }
 
-  value() {
-    return this.#value;
+  value(): T {
+    return this.#node.value;
   }
 
-  remove() {
-    this.#removeFn();
+  remove(): void {
+    this.#removeFn(this.#node, this.#previousNode);
   }
 }
 
 class Iterator<T> {
   #list: LinkedList<T>;
   #currentNode: Node<T> | undefined;
-  #previousNode: Node<T> | undefined = undefined;
 
   constructor(head: Node<T> | undefined, list: LinkedList<T>) {
     this.#currentNode = head;
@@ -45,17 +47,13 @@ class Iterator<T> {
       return { value: undefined as any, done: true };
     }
   
-    const node = this.#currentNode;
-    const prev = this.#previousNode;
-  
-    this.#previousNode = this.#currentNode;
-    this.#currentNode = this.#currentNode.next;
-  
     const handler = new Handler<T>(
-      node.value,
-      () => this.#list.remove(node, prev || undefined)
+      this.#currentNode,
+      (node: Node<T>, previousNode?: Node<T>) => this.#list.remove(node, previousNode)
     );
   
+    this.#currentNode = this.#currentNode.next;
+      
     return { value: handler, done: false };
   }
 }
@@ -118,6 +116,7 @@ export class LinkedList<T> {
   remove(node: Node<T>, previousNode?: Node<T>): void {
     assert(this.#head);
     assert(this.#tail);
+
     if (this.#head === node) {
       this.removeFirst();
       return;

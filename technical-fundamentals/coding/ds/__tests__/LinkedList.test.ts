@@ -108,10 +108,10 @@ describe('LinkedList', () => {
 
   test('removes every even element', () => {
     const list = new LinkedList<number>();
-    const max = 10;
+    const iterations = 10;
   
-    for (let i = 1; i <= max; i++) {
-      list.append(i);
+    for (let j = 1; j <= iterations; j++) {
+      list.append(j);
     }
   
     for (const handler of list) {
@@ -122,4 +122,26 @@ describe('LinkedList', () => {
   
     expect([...list].map(h => h.value())).toEqual([1, 3, 5, 7, 9]);
   });
+
+  test('removes consecutive elements', () => {
+    const list = new LinkedList<number>();
+    const iterations = 10;
+  
+    for (let j = 1; j <= iterations; j++) {
+      list.append(j);
+    }
+
+    let j = 1;
+    for (const handler of list) {
+      if (j >= 2 && j <= iterations - 1) {
+        handler.remove();
+      }
+
+      j += 1;
+    }
+
+    expect(list.head()).toBe(1);
+    expect(list.tail()).toBe(iterations);
+    expect(list.size()).toBe(2);
+  })
 });
