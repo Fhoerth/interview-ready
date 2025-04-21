@@ -1,22 +1,13 @@
-import { powerSet } from "../../44_powerSet";
+import { powerSet } from '../../44_powerSet';
 
 function sorted(powerSet: number[][]) {
   return powerSet.map((set) => set.sort()).sort();
 }
 
-describe("powerSet", () => {
-  test("returns correct power set for a given set", () => {
+describe('powerSet', () => {
+  test('returns correct power set for a given set', () => {
     const set1 = [1, 2, 3];
-    const expectedPowerSet1 = [
-      [],
-      [1],
-      [1, 2],
-      [1, 2, 3],
-      [1, 3],
-      [2],
-      [2, 3],
-      [3],
-    ];
+    const expectedPowerSet1 = [[], [1], [1, 2], [1, 2, 3], [1, 3], [2], [2, 3], [3]];
     expect(sorted(powerSet(set1))).toEqual(sorted(expectedPowerSet1));
 
     const set2: number[] = [];
@@ -24,7 +15,7 @@ describe("powerSet", () => {
     expect(sorted(powerSet(set2))).toEqual(sorted(expectedPowerSet2));
   });
 
-  test("returns correct power set for 4", () => {
+  test('returns correct power set for 4', () => {
     const set1 = [1, 2, 3, 4];
     const expectedPowerSet1 = [
       [1],

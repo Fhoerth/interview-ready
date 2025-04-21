@@ -5,11 +5,9 @@
 // such that the heights of the two subtrees of any node never differ by more than one.
 
 export type TreeNode<T> = {
-    value: T;
-    left?: TreeNode<T>;
-    right?: TreeNode<T>;
+  value: T;
+  left?: TreeNode<T>;
+  right?: TreeNode<T>;
 };
 
-export default function checkBalanced<T>(tree?: TreeNode<T> | null): boolean {
-
-}
+export default function checkBalanced<T>(tree?: TreeNode<T> | null): boolean {}

@@ -15,6 +15,4 @@ export type ListNode<T> = {
   next?: ListNode<T>;
 };
 
-export default function listOfDepths<T>(
-  root: TreeNode<T> | null,
-): ListNode<T>[] {}
+export default function listOfDepths<T>(root: TreeNode<T> | null): ListNode<T>[] {}

@@ -33,7 +33,6 @@ Recursion Cheat Sheet
   }
 ```
 
-
 # Dynamic Programming
 
 - All DP problems can be implemented top-down or bottom up.

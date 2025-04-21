@@ -14,10 +14,11 @@ We recommend reading the Abridged Problems version that includes some of the the
 3. Run the Jest test suite:
    ```bash
     npm test
-    ```
+   ```
 
 ### Running Tests
-You can run tests for specific problems by providing the problem name to Vitest. 
+
+You can run tests for specific problems by providing the problem name to Vitest.
 
 For example:
 
@@ -26,11 +27,14 @@ npx vitest -t minimalTree
 ```
 
 ## Contributing
+
 1. Fork the repository.
 2. Create a new branch for your solution:
+
 ```bash
 git checkout -b feature/your-solution
 ```
+
 3. Implement your solution and ensure all tests pass.
 4. Push your changes to your fork.
 5. Open a pull request to the main repository, and mention @conanbatt for review.

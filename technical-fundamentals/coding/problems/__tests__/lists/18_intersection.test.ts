@@ -1,7 +1,7 @@
-import intersection, { Node } from "../../18_intersection";
+import intersection, { Node } from '../../18_intersection';
 
-describe("intersection", () => {
-  test("returns null if the lists do not intersect", () => {
+describe('intersection', () => {
+  test('returns null if the lists do not intersect', () => {
     // List 1: 1 -> 2 -> 3 -> 4
     // List 2: 5 -> 6 -> 7 -> 8
     const list1: Node<number> = {
@@ -16,7 +16,7 @@ describe("intersection", () => {
     expect(result).toBeUndefined();
   });
 
-  test("returns intersection node when lists intersect", () => {
+  test('returns intersection node when lists intersect', () => {
     // Common part: 7 -> 8 -> 9
     // List 1: 1 -> 2 -> 3 -> 4 -> 7 -> 8 -> 9
     // List 2: 5 -> 6 -> 7 -> 8 -> 9
@@ -39,7 +39,7 @@ describe("intersection", () => {
     expect(result).toEqual(commonPart);
   });
 
-  test("returns intersection node when lists intersect at the head", () => {
+  test('returns intersection node when lists intersect at the head', () => {
     // Common part: 1 -> 2 -> 3
     // List 1: 1 -> 2 -> 3
     // List 2: 1 -> 2 -> 3
@@ -51,7 +51,7 @@ describe("intersection", () => {
     expect(result).toEqual(commonPart);
   });
 
-  test("returns intersection node when lists intersect at the end", () => {
+  test('returns intersection node when lists intersect at the end', () => {
     // Common part:  1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
     // List 1: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
     // List 2: 0 -> 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7

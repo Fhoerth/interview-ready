@@ -1,4 +1,4 @@
-import { defineConfig } from "vitest/config";
+import { defineConfig } from 'vitest/config';
 //import SilverReporter from "./silverReporter";
 
 export default defineConfig({

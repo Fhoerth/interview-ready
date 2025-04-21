@@ -1,19 +1,19 @@
-import kthToLast, { Node } from "../../12_kthToLast";
+import kthToLast, { Node } from '../../12_kthToLast';
 
-describe("12 - kthToLast", () => {
-  test("returns undefined if k is less than 1", () => {
+describe('12 - kthToLast', () => {
+  test('returns undefined if k is less than 1', () => {
     const node1: Node<number> = { value: 1 };
     const result = kthToLast(node1, 0);
     expect(result).toBeUndefined();
   });
 
-  test("returns undefined if k is greater than the length of the list", () => {
+  test('returns undefined if k is greater than the length of the list', () => {
     const node1: Node<number> = { value: 1 };
     const result = kthToLast(node1, 2);
     expect(result).toBeUndefined();
   });
 
-  test("returns the kth to last element when k is valid", () => {
+  test('returns the kth to last element when k is valid', () => {
     // Create a linked list: 1 -> 2 -> 3 -> 4 -> 5
     const node1: Node<number> = { value: 1 };
     const node2: Node<number> = { value: 2 };
@@ -30,7 +30,7 @@ describe("12 - kthToLast", () => {
     expect(result).toEqual(node4);
   });
 
-  test("returns the head if k is equal to the length of the list", () => {
+  test('returns the head if k is equal to the length of the list', () => {
     // Create a linked list: 1 -> 2 -> 3 -> 4 -> 5
     const node1: Node<number> = { value: 1 };
     const node2: Node<number> = { value: 2 };

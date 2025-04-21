@@ -10,7 +10,7 @@
 // such as enqueue, dequeueAny, dequeueDog, and dequeueCat.
 // You may use the built-in LinkedList data structure.
 
-export type AnimalType = "dog" | "cat";
+export type AnimalType = 'dog' | 'cat';
 
 export class Animal {
   type: AnimalType;
@@ -20,22 +20,13 @@ export class Animal {
 }
 
 export default class AnimalShelter {
+  constructor() {}
 
-    constructor() {
-    }
+  enqueue(type: AnimalType): void {}
 
-    enqueue(type: AnimalType): void {
+  dequeueAny(): Animal | undefined {}
 
-    }
+  dequeueDog(): Animal | undefined {}
 
-    dequeueAny(): Animal | undefined {
-
-    }
-
-    dequeueDog(): Animal | undefined {
-    }
-
-    dequeueCat(): Animal | undefined {
-    }
+  dequeueCat(): Animal | undefined {}
 }
-

@@ -13,6 +13,7 @@
 // Output: e, f, a, b, d, c
 // ```
 
-export default function buildOrder(projects: string[], dependencies: string[][]): string[] | string {
-
-}
+export default function buildOrder(
+  projects: string[],
+  dependencies: string[][]
+): string[] | string {}

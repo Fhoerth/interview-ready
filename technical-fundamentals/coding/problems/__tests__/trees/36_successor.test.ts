@@ -1,7 +1,7 @@
-import successor, { TreeNode } from "../../36_successor";
+import successor, { TreeNode } from '../../36_successor';
 
-describe("successor", () => {
-  test("returns correct in-order successor", () => {
+describe('successor', () => {
+  test('returns correct in-order successor', () => {
     /*
                     5
                    / \
@@ -36,7 +36,7 @@ describe("successor", () => {
     expect(successor(node8)).toBeUndefined();
   });
 
-  test("returns undefined for node without successor", () => {
+  test('returns undefined for node without successor', () => {
     const node1: TreeNode<number> = { value: 1 };
     expect(successor(node1)).toBeUndefined();
   });

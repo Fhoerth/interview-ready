@@ -9,7 +9,7 @@
 // Output: 2 -> 1 -> 9. That is, 912.
 // ```
 
-import { LinkedList } from "./10_LinkedList";
+import { LinkedList } from './10_LinkedList';
 
 export type Node<T> = {
   value: T;
@@ -18,5 +18,5 @@ export type Node<T> = {
 
 export default function sumLists(
   list1: Node<number> | undefined,
-  list2: Node<number> | undefined,
+  list2: Node<number> | undefined
 ): Node<number> | undefined {}

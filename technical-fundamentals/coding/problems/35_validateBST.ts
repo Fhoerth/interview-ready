@@ -8,6 +8,4 @@ export type TreeNode<T> = {
   right?: TreeNode<T>;
 };
 
-export default function validateBST<T>(
-  node: TreeNode<T> | undefined,
-): boolean {}
+export default function validateBST<T>(node: TreeNode<T> | undefined): boolean {}

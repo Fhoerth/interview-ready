@@ -5,12 +5,10 @@
 // You may assume that each node has a link to its parent.
 
 export type TreeNode<T> = {
-    value: T;
-    left?: TreeNode<T>;
-    right?: TreeNode<T>;
-    parent?: TreeNode<T>; // Link to parent node
+  value: T;
+  left?: TreeNode<T>;
+  right?: TreeNode<T>;
+  parent?: TreeNode<T>; // Link to parent node
 };
 
-export default function successor<T>(node: TreeNode<T>): TreeNode<T> | undefined {
-    
-}
+export default function successor<T>(node: TreeNode<T>): TreeNode<T> | undefined {}

@@ -3,18 +3,13 @@
 // Implement a MyQueue class which implements a queue using two stacks.
 
 export default class MyQueue<T> {
-    constructor() {
-    }
+  constructor() {}
 
-    enqueue(value: T): void {
-    }
+  enqueue(value: T): void {}
 
-    dequeue(): T | undefined {
-    }
+  dequeue(): T | undefined {}
 
-    peek(): T | undefined {
-    }
+  peek(): T | undefined {}
 
-    isEmpty(): boolean {
-    }
+  isEmpty(): boolean {}
 }

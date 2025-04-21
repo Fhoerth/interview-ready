@@ -1,0 +1,96 @@
+/*
+  Regretfully, at Silver we do sometimes break our promises.
+  We wanted to express this in code, but Javascript's native Promises are not easy to modify.
+  We need to implement our own Promises that mimic and extend Javascript's core promises.
+
+  Step 1
+  ------
+  Implement native style promises with the functions then and catch.
+  You can consult the reference at https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+  Notes:
+  - Promise chaining must be supported
+  - Then functions carry over resolution values to future calls of the function
+
+  Step 2
+  ------
+  Implement a "break" method that prevents previous callbacks from being called.
+*/
+
+import { Queue } from './ds/Queue';
+
+function isPromise(p) {
+  return p instanceof Promise || p instanceof SilverPromise;
+}
+export class SilverPromise {
+  #state = 'pending';
+
+  #nextValue;
+  #nextErrorLike;
+
+  constructor(callback) {
+    callback(this.#resolve.bind(this), this.#reject.bind(this));
+  }
+
+  #resolve(callback) {
+    console.log('Ejecute resolve', callback);
+    const value = callback;
+
+    if (isPromise(value))
+      return value.then(this.#resolve.bind(this)).catch(this.#reject.bind(this));
+
+    this.#state = 'fulfilled';
+    this.#nextValue = value;
+  }
+
+  #reject(callback) {
+    const value = callback;
+
+    if (isPromise(value))
+      return value.then(this.#resolve.bind(this)).catch(this.#reject.bind(this));
+
+    this.#state = 'rejected';
+    this.#nextErrorLike = value;
+  }
+
+  static resolve(value) {
+    return new SilverPromise((resolve) => resolve(value));
+  }
+
+  static reject(errorLike) {
+    return new SilverPromise((_, reject) => reject(errorLike));
+  }
+
+  #handleChainCallback(callback, valueOrErrorLike) {
+    return new SilverPromise((resolve, reject) => {
+      try {
+        const value = callback(valueOrErrorLike);
+
+        if (isPromise(value)) {
+          value.then(resolve).catch(reject);
+        } else {
+          resolve(value);
+        }
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+
+  then(callback) {
+    console.log('Estoy ejecutando then', this.#nextValue);
+    if (this.#state === 'fulfilled') {
+      return this.#handleChainCallback(callback, this.#nextValue);
+    }
+
+    return SilverPromise.reject(this.#nextErrorLike);
+  }
+
+  catch(callback) {
+    if (this.#state === 'rejected') {
+      return this.#handleChainCallback(callback, this.#nextErrorLike);
+    }
+
+    return SilverPromise.resolve(this.#nextErrorLike);
+  }
+}

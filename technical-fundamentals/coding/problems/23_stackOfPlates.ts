@@ -11,16 +11,9 @@
 // FOLLOW UP: Implement a function popAt(int index) which performs a pop operation on a specific sub-stack.
 
 export default class StackOfPlates<T> {
-    constructor(capacity: number) {
+  constructor(capacity: number) {}
 
-    }
+  push(value: T): void {}
 
-    push(value: T): void {
-
-    }
-
-    pop(): T | undefined {
-
-    }
+  pop(): T | undefined {}
 }
-

@@ -1,0 +1,111 @@
+/*
+  Regretfully, at Silver we do sometimes break our promises.
+  We wanted to express this in code, but Javascript's native Promises are not easy to modify.
+  We need to implement our own Promises that mimic and extend Javascript's core promises.
+
+  Step 1
+  ------
+  Implement native style promises with the functions then and catch.
+  You can consult the reference at https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+  Notes:
+  - Promise chaining must be supported
+  - Then functions carry over resolution values to future calls of the function
+
+  Step 2
+  ------
+  Implement a "break" method that prevents previous callbacks from being called.
+*/
+
+import { Queue } from './ds/Queue';
+
+function isPromise(maybePromise) {
+  return maybePromise instanceof Promise || maybePromise instanceof SilverPromise;
+}
+
+function promisify(maybePromise) {
+  if (isPromise(maybePromise)) return maybePromise;
+  return Promise.resolve(maybePromise);
+}
+
+export class SilverPromise {
+  #thenPromises = new Queue();
+  #catchPromises = new Queue();
+
+  constructor(callback) {
+    callback?.(this.#handleResolve.bind(this), this.#handleReject.bind(this));
+  }
+
+  static resolve(value) {
+    return new SilverPromise((resolve) => resolve(value));
+  }
+
+  static reject(errorLike) {
+    return new SilverPromise((_, reject) => reject(errorLike));
+  }
+
+  #handleResolve(valueOrPromise) {
+    return this.#resolve(promisify(valueOrPromise));
+  }
+
+  async #resolve(promisifiedValue) {
+    const value = await promisifiedValue;
+
+    while (this.#thenPromises.size()) {
+      const [thenPromise, callback] = this.#thenPromises.dequeue();
+
+      try {
+        const result = callback(value);
+        thenPromise.#handleResolve(result);
+      } catch (errorLike) {
+        thenPromise.#handleReject(errorLike);
+      }
+    }
+  }
+
+  #handleReject(errorLikeOrPromise) {
+    return this.#reject(promisify(errorLikeOrPromise));
+  }
+
+  async #reject(promisifiedErrorLike) {
+    const errorLike = await promisifiedErrorLike;
+
+    if (this.#catchPromises.size()) {
+      while (this.#catchPromises.size()) {
+        const [catchPromise, callback] = this.#catchPromises.dequeue();
+
+        try {
+          const result = callback(errorLike);
+          catchPromise.#handleResolve(result);
+        } catch (errorLike) {
+          catchPromise.#handleReject(errorLike);
+        }
+      }
+
+      return;
+    }
+
+    if (this.#thenPromises.size()) {
+      while (this.#thenPromises.size()) {
+        const [thenPromise] = this.#thenPromises.dequeue();
+        thenPromise.#handleReject(promisifiedErrorLike);
+      }
+
+      return;
+    }
+
+    throw new Error('Unhandled Error Promise');
+  }
+
+  then(callback) {
+    const thenPromise = new SilverPromise();
+    this.#thenPromises.enqueue([thenPromise, callback]);
+    return thenPromise;
+  }
+
+  catch(callback) {
+    const catchPromise = new SilverPromise();
+    this.#catchPromises.enqueue([catchPromise, callback]);
+    return catchPromise;
+  }
+}

@@ -1,0 +1,149 @@
+/*
+  Regretfully, at Silver we do sometimes break our promises.
+  We wanted to express this in code, but Javascript's native Promises are not easy to modify.
+  We need to implement our own Promises that mimic and extend Javascript's core promises.
+
+  Step 1
+  ------
+  Implement native style promises with the functions then and catch.
+  You can consult the reference at https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+  Notes:
+  - Promise chaining must be supported
+  - Then functions carry over resolution values to future calls of the function
+
+  Step 2
+  ------
+  Implement a "break" method that prevents previous callbacks from being called.
+*/
+
+import { Queue } from './ds/Queue';
+
+function isPromise(maybePromise) {
+  return maybePromise instanceof Promise || maybePromise instanceof SilverPromise;
+}
+
+function promisify(maybePromise) {
+  if (isPromise(maybePromise)) return maybePromise;
+  return Promise.resolve(maybePromise);
+}
+
+export class SilverPromise {
+  #state = 'pending';
+  #value = undefined;
+  #errorLike = undefined;
+
+  #unhandledErrorTimeout = undefined;
+
+  #thenPromises = new Queue();
+  #catchPromises = new Queue();
+
+  constructor(callback) {
+    callback?.(this.#fulfill.bind(this), this.#reject.bind(this));
+  }
+
+  static resolve(value) {
+    return new SilverPromise((resolve) => resolve(value));
+  }
+
+  static reject(errorLike) {
+    return new SilverPromise((_, reject) => reject(errorLike));
+  }
+
+  #runThenCallbacks() {
+    const value = this.#value;
+
+    while (this.#thenPromises.size()) {
+      const [thenPromise, callback] = this.#thenPromises.dequeue();
+
+      try {
+        thenPromise.#fulfill(callback(value));
+      } catch (errorLike) {
+        thenPromise.#reject(errorLike);
+      }
+    }
+  }
+
+  #runCatchCallbacks() {
+    const errorLike = this.#errorLike;
+
+    if (this.#catchPromises.size()) {
+      while (this.#catchPromises.size()) {
+        const [catchPromise, callback] = this.#catchPromises.dequeue();
+
+        try {
+          catchPromise.#fulfill(callback(errorLike));
+        } catch (thrownErrorLike) {
+          catchPromise.#reject(thrownErrorLike);
+        }
+      }
+
+      return;
+    }
+
+    if (this.#thenPromises.size()) {
+      while (this.#thenPromises.size()) {
+        const [thenPromise] = this.#thenPromises.dequeue();
+        thenPromise.#reject(errorLike);
+      }
+
+      return;
+    }
+  }
+
+  #maybeRegisterUnhandledPromiseError() {
+    console.log('Maybe registering', this.#thenPromises.size(), this.#catchPromises.size());
+    if (!this.#thenPromises.size() && !this.#catchPromises.size()) {
+      this.#unhandledErrorTimeout = setTimeout(() => {
+        throw new Error('Uhandled Promise Error');
+      });
+    }
+  }
+
+  async #fulfill(valueOrPromise) {
+    this.#state = 'fulfilled';
+    this.#value = await promisify(valueOrPromise);
+    this.#runThenCallbacks();
+  }
+
+  async #reject(errorLikeOrPromise) {
+    console.log('Rejected');
+    this.#state = 'rejected';
+    this.#maybeRegisterUnhandledPromiseError();
+    this.#errorLike = await promisify(errorLikeOrPromise);
+    this.#runCatchCallbacks();
+  }
+
+  then(resolveCallback, rejectCallback) {
+    const promise = new SilverPromise();
+
+    if (this.#state !== 'rejected') {
+      this.#thenPromises.enqueue([promise, resolveCallback]);
+      if (this.#state === 'fulfilled') queueMicrotask(() => this.#runThenCallbacks());
+    }
+
+    if (rejectCallback) {
+      this.#catchPromises.enqueue([promise, rejectCallback]);
+      if (this.#state === 'rejected') queueMicrotask(() => this.#runCatchCallbacks());
+      queueMicrotask(() => {
+        if (this.#unhandledErrorTimeout) clearTimeout(this.#unhandledErrorTimeout);
+      });
+    }
+
+    return promise;
+  }
+
+  catch(callback) {
+    const catchPromise = new SilverPromise();
+
+    console.log('Enqueueng');
+    this.#catchPromises.enqueue([catchPromise, callback]);
+    if (this.#state === 'rejected') queueMicrotask(() => this.#runCatchCallbacks());
+    queueMicrotask(() => {
+      console.log('Catch!', this.#unhandledErrorTimeout);
+      if (this.#unhandledErrorTimeout) clearTimeout(this.#unhandledErrorTimeout);
+    });
+
+    return catchPromise;
+  }
+}

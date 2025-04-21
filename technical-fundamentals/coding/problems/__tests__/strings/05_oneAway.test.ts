@@ -1,44 +1,44 @@
-import oneAway from "../../05_oneAway";
+import oneAway from '../../05_oneAway';
 
-describe("05 - oneAway", () => {
-  test("One Away - Replace", () => {
-    expect(oneAway("pale", "bale")).toEqual(true); // Replacement
-    expect(oneAway("bbaa", "bcca")).toEqual(false); // Replacement
+describe('05 - oneAway', () => {
+  test('One Away - Replace', () => {
+    expect(oneAway('pale', 'bale')).toEqual(true); // Replacement
+    expect(oneAway('bbaa', 'bcca')).toEqual(false); // Replacement
   });
 
-  test("One Away - Replace", () => {
-    expect(oneAway("pale", "bale")).toEqual(true); // Replacement
+  test('One Away - Replace', () => {
+    expect(oneAway('pale', 'bale')).toEqual(true); // Replacement
   });
 
-  test("One Away - Insert", () => {
-    expect(oneAway("pale", "ple")).toEqual(true); // Insertion
+  test('One Away - Insert', () => {
+    expect(oneAway('pale', 'ple')).toEqual(true); // Insertion
   });
 
-  test("One Away - Remove", () => {
-    expect(oneAway("pale", "pales")).toEqual(true); // Removal
+  test('One Away - Remove', () => {
+    expect(oneAway('pale', 'pales')).toEqual(true); // Removal
   });
 
-  test("Same Strings", () => {
-    expect(oneAway("abc", "abc")).toEqual(true); // No edits
+  test('Same Strings', () => {
+    expect(oneAway('abc', 'abc')).toEqual(true); // No edits
   });
 
-  test("More Than One Edit Away", () => {
-    expect(oneAway("abcd", "efgh")).toEqual(false); // More than one edit away
+  test('More Than One Edit Away', () => {
+    expect(oneAway('abcd', 'efgh')).toEqual(false); // More than one edit away
   });
 
-  test("More Than One Edit Away #2", () => {
-    expect(oneAway("palesa", "pale")).toEqual(false); // More than one edit away #2
+  test('More Than One Edit Away #2', () => {
+    expect(oneAway('palesa', 'pale')).toEqual(false); // More than one edit away #2
   });
 
-  test("Empty Strings", () => {
-    expect(oneAway("", "")).toEqual(true); // Empty strings are zero edits away
+  test('Empty Strings', () => {
+    expect(oneAway('', '')).toEqual(true); // Empty strings are zero edits away
   });
 
-  test("One Character Difference", () => {
-    expect(oneAway("a", "ab")).toEqual(true); // One character difference
+  test('One Character Difference', () => {
+    expect(oneAway('a', 'ab')).toEqual(true); // One character difference
   });
 
-  test("Empty and Non-Empty String", () => {
-    expect(oneAway("", "a")).toEqual(true); // Empty string and a non-empty string
+  test('Empty and Non-Empty String', () => {
+    expect(oneAway('', 'a')).toEqual(true); // Empty string and a non-empty string
   });
 });

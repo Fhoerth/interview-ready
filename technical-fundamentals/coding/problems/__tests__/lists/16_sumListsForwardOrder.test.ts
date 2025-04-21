@@ -1,7 +1,7 @@
-import sumListsForwardOrder, { Node } from "../../16_sumListsForwardOrder";
+import sumListsForwardOrder, { Node } from '../../16_sumListsForwardOrder';
 
-describe("16 - sumListsForwardOrder", () => {
-  test("sums two non-empty lists without carryover", () => {
+describe('16 - sumListsForwardOrder', () => {
+  test('sums two non-empty lists without carryover', () => {
     // 123 + 456 = 579
     const list1: Node<number> = {
       value: 1,
@@ -19,7 +19,7 @@ describe("16 - sumListsForwardOrder", () => {
     expect(result).toEqual(expectedResult);
   });
 
-  test("sums two non-empty lists with carryover", () => {
+  test('sums two non-empty lists with carryover', () => {
     // 999 + 1 = 1000
     const list1: Node<number> = {
       value: 9,
@@ -34,7 +34,7 @@ describe("16 - sumListsForwardOrder", () => {
     expect(result).toEqual(expectedResult);
   });
 
-  test("sums two lists with different lengths", () => {
+  test('sums two lists with different lengths', () => {
     // 1234 + 56 = 1290
     const list1: Node<number> = {
       value: 1,
@@ -49,12 +49,12 @@ describe("16 - sumListsForwardOrder", () => {
     expect(result).toEqual(expectedResult);
   });
 
-  test("sums two empty lists", () => {
+  test('sums two empty lists', () => {
     const result = sumListsForwardOrder(undefined, undefined);
     expect(result).toBeUndefined();
   });
 
-  test("sums one empty list and one non-empty list", () => {
+  test('sums one empty list and one non-empty list', () => {
     // 123 + 0 = 123
     const list1: Node<number> = {
       value: 1,

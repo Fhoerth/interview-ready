@@ -6,6 +6,4 @@
 // your method should return the original string.
 // You can assume the string has only uppercase and lowercase letters (a - z).
 
-export default function stringCompression (str: string) : string {
- 
-}
+export default function stringCompression(str: string): string {}

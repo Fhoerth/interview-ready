@@ -1,15 +1,11 @@
-import bstSequences, { TreeNode } from "../../39_bstSequences";
+import bstSequences, { TreeNode } from '../../39_bstSequences';
 
-const createNode = <T>(
-  value: T,
-  left?: TreeNode<T>,
-  right?: TreeNode<T>,
-): TreeNode<T> => {
+const createNode = <T>(value: T, left?: TreeNode<T>, right?: TreeNode<T>): TreeNode<T> => {
   return { value, left, right };
 };
 
-describe("bstSequences", () => {
-  test("returns correct sequences for valid input with 3 nodes", () => {
+describe('bstSequences', () => {
+  test('returns correct sequences for valid input with 3 nodes', () => {
     /*
                     2
                    / \
@@ -20,11 +16,11 @@ describe("bstSequences", () => {
       expect.arrayContaining([
         [2, 1, 3],
         [2, 3, 1],
-      ]),
+      ])
     );
   });
 
-  test("returns correct sequences for valid input", () => {
+  test('returns correct sequences for valid input', () => {
     /*
                     5
                    / \
@@ -36,7 +32,7 @@ describe("bstSequences", () => {
     const root2: TreeNode<number> = createNode(
       5,
       createNode(3, createNode(2), createNode(4)),
-      createNode(7, createNode(6), createNode(8)),
+      createNode(7, createNode(6), createNode(8))
     );
     let sequences = bstSequences(root2);
     expect(sequences.length).toEqual(80);
@@ -50,7 +46,7 @@ describe("bstSequences", () => {
         [5, 7, 3, 2, 6, 4, 8],
         [5, 7, 3, 4, 2, 6, 8],
         [5, 7, 3, 4, 6, 2, 8],
-      ]),
+      ])
     );
   });
 });

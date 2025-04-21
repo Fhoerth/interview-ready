@@ -1,7 +1,7 @@
-import validateBST, { TreeNode } from "../../35_validateBST";
+import validateBST, { TreeNode } from '../../35_validateBST';
 
-describe("validateBST", () => {
-  test("returns true for a valid BST", () => {
+describe('validateBST', () => {
+  test('returns true for a valid BST', () => {
     /*
             Valid BST:
                  2
@@ -16,7 +16,7 @@ describe("validateBST", () => {
     expect(validateBST(validBST)).toBe(true);
   });
 
-  test("returns false for an invalid BST", () => {
+  test('returns false for an invalid BST', () => {
     /*
             Invalid BST:
                  1
@@ -31,7 +31,7 @@ describe("validateBST", () => {
     expect(validateBST(invalidBST)).toBe(false);
   });
 
-  test("returns false for an invalid BST #2", () => {
+  test('returns false for an invalid BST #2', () => {
     /*
             Invalid BST:
                  3
@@ -48,12 +48,12 @@ describe("validateBST", () => {
     expect(validateBST(invalidBST)).toBe(false);
   });
 
-  test("returns true for an empty tree", () => {
+  test('returns true for an empty tree', () => {
     const emptyTree: TreeNode<number> | undefined = undefined;
     expect(validateBST(emptyTree)).toBe(true);
   });
 
-  test("returns true for a single node tree", () => {
+  test('returns true for a single node tree', () => {
     const singleNodeTree: TreeNode<number> = { value: 5 };
     expect(validateBST(singleNodeTree)).toBe(true);
   });

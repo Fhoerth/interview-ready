@@ -1,7 +1,7 @@
-import { Tree, TreeNode } from "../../30_trees";
+import { Tree, TreeNode } from '../../30_trees';
 
-describe("Trees", () => {
-  test("dfs navigates the tree in order", () => {
+describe('Trees', () => {
+  test('dfs navigates the tree in order', () => {
     const root: TreeNode<number> = {
       value: 1,
       left: {
@@ -35,7 +35,7 @@ describe("Trees", () => {
     expect(order.map(({ value }) => value)).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
   });
 
-  test("bfs navigates the tree in order", () => {
+  test('bfs navigates the tree in order', () => {
     const root: TreeNode<number> = {
       value: 1,
       left: {

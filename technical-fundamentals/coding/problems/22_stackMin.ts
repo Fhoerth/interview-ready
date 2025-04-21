@@ -5,19 +5,11 @@
 //
 
 export default class StackMin<T> {
-    constructor() {
+  constructor() {}
 
-    }
+  push(value: T): void {}
 
-    push(value: T): void {
+  pop(): T | undefined {}
 
-    }
-
-    pop(): T | undefined {
-
-    }
-
-    min(): T | undefined {
-
-    }
+  min(): T | undefined {}
 }

@@ -20,6 +20,4 @@ export type TreeNode<T> = {
   right?: TreeNode<T>;
 };
 
-export default function minimalTree<T>(
-  sortedArray: T[],
-): TreeNode<T> | undefined {}
+export default function minimalTree<T>(sortedArray: T[]): TreeNode<T> | undefined {}

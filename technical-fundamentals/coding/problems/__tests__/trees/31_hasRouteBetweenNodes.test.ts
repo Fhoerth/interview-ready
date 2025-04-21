@@ -1,7 +1,7 @@
-import hasRouteBetweenNodes, { GraphNode } from "../../31_hasRouteBetweenNodes";
+import hasRouteBetweenNodes, { GraphNode } from '../../31_hasRouteBetweenNodes';
 
-describe("hasRouteBetweenNodes", () => {
-  test("has route between connected nodes", () => {
+describe('hasRouteBetweenNodes', () => {
+  test('has route between connected nodes', () => {
     /*
             Graph:
             1 -> 2 -> 3 -> 4
@@ -26,7 +26,7 @@ describe("hasRouteBetweenNodes", () => {
     expect(hasRouteBetweenNodes(node1, node6)).toBe(true); // Route via node 3
   });
 
-  test("no route between disconnected nodes", () => {
+  test('no route between disconnected nodes', () => {
     /*
             Graph:
             1   2   3
@@ -41,7 +41,7 @@ describe("hasRouteBetweenNodes", () => {
     expect(hasRouteBetweenNodes(node1, node3)).toBe(false); // Disconnected nodes
   });
 
-  test("no route between non-existing nodes", () => {
+  test('no route between non-existing nodes', () => {
     const node1: GraphNode = { value: 1, neighbors: [] };
     const node2: GraphNode = { value: 2, neighbors: [] };
 

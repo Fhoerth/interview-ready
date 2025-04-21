@@ -13,7 +13,5 @@ export type TreeNode<T> = {
 export default function firstCommonAncestor<T>(
   root: TreeNode<T> | undefined,
   p: TreeNode<T>,
-  q: TreeNode<T>,
-): TreeNode<T> | undefined {
-
-}
+  q: TreeNode<T>
+): TreeNode<T> | undefined {}

@@ -1,7 +1,7 @@
-import { recursiveMultiply } from "../../45_recursiveMultiply";
+import { recursiveMultiply } from '../../45_recursiveMultiply';
 
-describe("recursiveMultiply", () => {
-  test("returns correct product for two positive integers", () => {
+describe('recursiveMultiply', () => {
+  test('returns correct product for two positive integers', () => {
     // Test case with two positive integers
     expect(recursiveMultiply(3, 4)).toBe(12); // 3 * 4 = 12
     expect(recursiveMultiply(5, 7)).toBe(35); // 5 * 7 = 35

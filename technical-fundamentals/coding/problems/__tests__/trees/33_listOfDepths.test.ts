@@ -1,7 +1,7 @@
-import listOfDepths, { TreeNode, ListNode } from "../../33_listOfDepths";
+import listOfDepths, { TreeNode, ListNode } from '../../33_listOfDepths';
 
-describe("listOfDepths", () => {
-  test("creates linked lists of nodes at each depth", () => {
+describe('listOfDepths', () => {
+  test('creates linked lists of nodes at each depth', () => {
     /*
                     1
                    / \
@@ -37,7 +37,7 @@ describe("listOfDepths", () => {
     expect(listOfDepths(root)).toEqual(expectedLists);
   });
 
-  test("creates linked lists for single node tree", () => {
+  test('creates linked lists for single node tree', () => {
     const root: TreeNode<number> = { value: 1 };
     const expectedList: Array<ListNode<number>> = [{ value: 1 }];
     expect(listOfDepths(root)).toEqual(expectedList);

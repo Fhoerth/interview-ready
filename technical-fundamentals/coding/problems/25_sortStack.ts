@@ -6,18 +6,13 @@
 // The stack supports the following operations: push, pop, peek, and isEmpty.
 
 export default class SortStack<T> {
-    constructor() {
-    }
+  constructor() {}
 
-    push(value: T): void {
-    }
+  push(value: T): void {}
 
-    pop(): T | undefined {
-    }
+  pop(): T | undefined {}
 
-    peek(): T | undefined {
-    }
+  peek(): T | undefined {}
 
-    isEmpty(): boolean {
-    }
+  isEmpty(): boolean {}
 }

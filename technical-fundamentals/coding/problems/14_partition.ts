@@ -12,14 +12,11 @@
 // Output: 3 -> 1 -> 2 -> 10 -> 5 -> 5 -> 8
 // ```
 
-import { LinkedList } from "./10_LinkedList";
+import { LinkedList } from './10_LinkedList';
 
 export type Node<T> = {
   value: T;
   next?: Node<T>;
 };
 
-export default function partition<T>(
-  head: Node<T> | undefined,
-  x: T,
-): Node<T> | undefined {}
+export default function partition<T>(head: Node<T> | undefined, x: T): Node<T> | undefined {}

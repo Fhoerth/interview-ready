@@ -51,10 +51,10 @@ class LiveCodingInterview extends BaseInterview {
   }
 }
 
-const cand = new Candidate("Gabriel");
+const cand = new Candidate('Gabriel');
 const interview = new LiveCodingInterview(cand);
 cand.interviews.push(interview);
-interview.processSubmission("submission");
+interview.processSubmission('submission');
 console.assert(candidate.passedInterview);
 
 // Alternative implementation
@@ -73,9 +73,7 @@ class Candidate {
 
   startInterview() {
     if (this.currentInterview()) {
-      throw new Error(
-        "Candidate has an active Interview. Do not start a new one",
-      );
+      throw new Error('Candidate has an active Interview. Do not start a new one');
     }
     const interview = new LiveCodingInterview();
     this.#interviews.push(interview);
@@ -90,13 +88,13 @@ class Candidate {
   }
 
   currentInterview() {
-    return this.#interviews.filter((int) => int.status === "pending")[0];
+    return this.#interviews.filter((int) => int.status === 'pending')[0];
   }
 }
 
 class InterviewStatus {
   #expectation;
-  #status = "pending";
+  #status = 'pending';
 
   constructor(expectation) {
     this.#expectation = expectation;
@@ -104,7 +102,7 @@ class InterviewStatus {
 
   processResults(results) {
     const passed = results === this.#expectation;
-    this.#status = passed ? "passed" : "failed";
+    this.#status = passed ? 'passed' : 'failed';
     return this.#status;
   }
 }
@@ -112,7 +110,7 @@ class InterviewStatus {
 class LiveCodingInterview {
   #interviewStatus;
   constructor() {
-    this.#interviewStatus = new InterviewStatus("passed");
+    this.#interviewStatus = new InterviewStatus('passed');
   }
 
   processSubmission(submission) {
@@ -129,7 +127,7 @@ class LiveCodingInterview {
   }
 }
 
-const candidate = new Candidate("Gabriel");
+const candidate = new Candidate('Gabriel');
 candidate.startLiveCodingInterview();
-candidate.submit("code");
+candidate.submit('code');
 candidate.getInterviewStatus();

@@ -1,7 +1,7 @@
-import sumLists, { Node } from "../../15_sumLists";
+import sumLists, { Node } from '../../15_sumLists';
 
-describe("sumLists", () => {
-  test("sums two non-empty lists without carryover", () => {
+describe('sumLists', () => {
+  test('sums two non-empty lists without carryover', () => {
     // 321 + 654 = 975
     const list1: Node<number> = {
       value: 1,
@@ -19,7 +19,7 @@ describe("sumLists", () => {
     expect(result).toEqual(expectedResult);
   });
 
-  test("sums two non-empty lists with carryover", () => {
+  test('sums two non-empty lists with carryover', () => {
     // 999 + 1 = 1000
     const list1: Node<number> = {
       value: 9,
@@ -34,7 +34,7 @@ describe("sumLists", () => {
     expect(result).toEqual(expectedResult);
   });
 
-  test("sums two lists with different lengths", () => {
+  test('sums two lists with different lengths', () => {
     // 4321 + 65 = 4386
     const list1: Node<number> = {
       value: 1,

@@ -1,15 +1,15 @@
-import { describe, it, expect, vi } from "vitest";
-import { SilverPromise } from "../promise.mjs";
+import { describe, it, expect, vi } from 'vitest';
+import { SilverPromise } from '../promise.mjs';
 
 function sleep(time) {
   return new Promise((r) => setTimeout(r, time));
 }
 
-describe("SilverPromises - then and catch methods", () => {
-  it("should resolve and call then function", async () => {
+describe('SilverPromises - then and catch methods', () => {
+  it('should resolve and call then function', async () => {
     let fulfillment;
     const promise = new SilverPromise((resolve) => {
-      setTimeout(() => resolve("Success"), 100);
+      setTimeout(() => resolve('Success'), 100);
     });
 
     promise.then((result) => {
@@ -18,20 +18,20 @@ describe("SilverPromises - then and catch methods", () => {
 
     //for testing purposes
     await sleep(200);
-    expect(fulfillment).toBe("Success");
+    expect(fulfillment).toBe('Success');
   });
 
-  it("should catch errors using catch method", async () => {
+  it('should catch errors using catch method', async () => {
     const promise = new SilverPromise((_, reject) => {
-      setTimeout(() => reject(new Error("Failure")), 100);
+      setTimeout(() => reject(new Error('Failure')), 100);
     });
 
     promise.catch((error) => {
-      expect(error.message).toBe("Failure");
+      expect(error.message).toBe('Failure');
     });
   });
 
-  it("should handle then chaining with unresolved promise", async () => {
+  it('should handle then chaining with unresolved promise', async () => {
     const promise = new SilverPromise((resolve) => {
       setTimeout(() => resolve(0), 100);
     });
@@ -49,7 +49,7 @@ describe("SilverPromises - then and catch methods", () => {
     expect(then2).toHaveBeenCalledWith(2);
   });
 
-  it("should handle then chaining with resolved promise", async () => {
+  it('should handle then chaining with resolved promise', async () => {
     const promise = new SilverPromise((resolve, reject) => {
       resolve(0);
     });
@@ -65,15 +65,15 @@ describe("SilverPromises - then and catch methods", () => {
     expect(then2).toHaveBeenCalledWith(2);
   });
 
-  it("should handle breaking promises", async () => {
+  it('should handle breaking promises', async () => {
     const promise = new SilverPromise((resolve) => {
-      setTimeout(() => resolve("Success"), 100);
+      setTimeout(() => resolve('Success'), 100);
     });
 
     let error;
 
     promise.then((result) => {
-      error = new Error("Should never be called");
+      error = new Error('Should never be called');
     });
     promise.break();
     await sleep(200);

@@ -15,13 +15,11 @@
 // Hints: #50, #69, #83, #90
 // ```
 
-import { LinkedList } from "./10_LinkedList";
+import { LinkedList } from './10_LinkedList';
 
 export type Node<T> = {
   value: T;
   next?: Node<T>;
 };
 
-export default function detectLoop<T>(
-  head: Node<T> | undefined,
-): Node<T> | null {}
+export default function detectLoop<T>(head: Node<T> | undefined): Node<T> | null {}

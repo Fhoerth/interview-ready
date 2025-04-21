@@ -5,7 +5,7 @@
 //
 // 1 -> 2 -> 2-> 2 -> 4
 
-import { LinkedList } from "./10_LinkedList";
+import { LinkedList } from './10_LinkedList';
 
 export type Node<T> = {
   value: T;
