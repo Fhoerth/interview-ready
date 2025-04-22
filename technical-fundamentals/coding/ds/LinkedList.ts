@@ -19,7 +19,7 @@ class Handler<T> {
     idx: number,
     node: Node<T>,
     removeFn: (node: Node<T>, previousNode?: Node<T>) => void,
-    previusNode?: Node<T>,
+    previusNode?: Node<T>
   ) {
     this.#idx = idx;
     this.#node = node;
@@ -64,16 +64,16 @@ class Iterator<T> {
     if (!this.#currentNode) {
       return { value: undefined as any, done: true };
     }
-  
+
     const handler = new Handler<T>(
       this.#idx,
       this.#currentNode,
       (node: Node<T>, previousNode?: Node<T>) => this.#list.remove(node, previousNode)
     );
-  
+
     this.#currentNode = this.#currentNode.next;
     this.#idx += 1;
-      
+
     return { value: handler, done: false };
   }
 }

@@ -13,8 +13,10 @@ export default function removeDups<T>(head?: Node<T>): Node<T> | undefined {
   const seen = new Set<T>(); // O(1)
   const list = new LinkedList(head); // O(n)
 
-  for (const handler of list) { // O(n)
-    if (seen.has(handler.value())) { // O(1)
+  for (const handler of list) {
+    // O(n)
+    if (seen.has(handler.value())) {
+      // O(1)
       handler.remove(); // O(1)
       continue;
     }

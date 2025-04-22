@@ -109,24 +109,24 @@ describe('LinkedList', () => {
   test('removes every even element', () => {
     const list = new LinkedList<number>();
     const iterations = 10;
-  
+
     for (let j = 1; j <= iterations; j++) {
       list.append(j);
     }
-  
+
     for (const handler of list) {
       if (handler.value() % 2 === 0) {
         handler.remove();
       }
     }
-  
-    expect([...list].map(h => h.value())).toEqual([1, 3, 5, 7, 9]);
+
+    expect([...list].map((h) => h.value())).toEqual([1, 3, 5, 7, 9]);
   });
 
   test('removes consecutive elements', () => {
     const list = new LinkedList<number>();
     const iterations = 10;
-  
+
     for (let j = 1; j <= iterations; j++) {
       list.append(j);
     }
@@ -158,15 +158,13 @@ describe('LinkedList', () => {
     list1.concat(list2);
 
     expect(list1.size()).toBe(iterations);
-    
+
     for (const handler of list1) {
       expect(handler.idx() + 1).toEqual(handler.value());
     }
 
-    for (const handler of list1)
-      handler.remove();
-    for (const handler of list2)
-      handler.remove();
+    for (const handler of list1) handler.remove();
+    for (const handler of list2) handler.remove();
 
     expect(list1.size()).toBe(0);
     expect(list2.size()).toBe(0);
