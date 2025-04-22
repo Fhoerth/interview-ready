@@ -63,4 +63,25 @@ describe('StackMin', () => {
     expect(stack.pop()).toBe(3);
     expect(stack.min()).toBeUndefined();
   });
+
+  test('push and pop infinity', () => {
+    const stack = new StackMin<number>();
+
+    expect(stack.min()).toBeUndefined();
+
+    stack.push(Infinity);
+    stack.push(Infinity);
+    stack.push(Infinity);
+
+    expect(stack.min()).toBe(Infinity);
+    stack.pop();
+
+    expect(stack.min()).toBe(Infinity);
+    stack.pop();
+
+    expect(stack.min()).toBe(Infinity);
+    stack.pop();
+
+    expect(stack.min()).toBeUndefined();
+  });
 });
