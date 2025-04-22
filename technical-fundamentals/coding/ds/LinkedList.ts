@@ -9,9 +9,10 @@ export class Node<T> {
   }
 }
 
-class Handler<T> {
+export class Handler<T> {
   #idx: number;
   #node: Node<T>;
+  #previousHandler?: Handler<T>;
   #previousNode?: Node<T>;
   #removeFn: (node: Node<T>, previousNode?: Node<T>) => void;
 
@@ -19,11 +20,13 @@ class Handler<T> {
     idx: number,
     node: Node<T>,
     removeFn: (node: Node<T>, previousNode?: Node<T>) => void,
+    previousHandler?: Handler<T>,
     previusNode?: Node<T>
   ) {
     this.#idx = idx;
     this.#node = node;
     this.#removeFn = removeFn;
+    this.#previousHandler = previousHandler;
     this.#previousNode = previusNode;
   }
 
@@ -39,8 +42,16 @@ class Handler<T> {
     return this.#idx;
   }
 
+  previous(): Handler<T> | undefined {
+    return this.#previousHandler;
+  }
+
+  hasPrevious(): boolean {
+    return !!this.#previousHandler;
+  }
+
   /**
-   * WARNING: Only for testing purposes.
+   * WARNING
    * It returns the node and it breaks encapsulation.
    * It allows the linked list invariant to be broken.
    */
@@ -52,25 +63,29 @@ class Handler<T> {
 class Iterator<T> {
   #idx: number;
   #list: LinkedList<T>;
+  #currentHandler: Handler<T> | undefined;
   #currentNode: Node<T> | undefined;
 
   constructor(head: Node<T> | undefined, list: LinkedList<T>) {
     this.#idx = 0;
+    this.#currentHandler = undefined;
     this.#currentNode = head;
     this.#list = list;
   }
 
   next(): IteratorResult<Handler<T>> {
     if (!this.#currentNode) {
-      return { value: undefined as any, done: true };
+      return { value: undefined, done: true };
     }
 
     const handler = new Handler<T>(
       this.#idx,
       this.#currentNode,
-      (node: Node<T>, previousNode?: Node<T>) => this.#list.remove(node, previousNode)
+      (node: Node<T>, previousNode?: Node<T>) => this.#list.remove(node, previousNode),
+      this.#currentHandler
     );
 
+    this.#currentHandler = handler;
     this.#currentNode = this.#currentNode.next;
     this.#idx += 1;
 
@@ -94,7 +109,6 @@ export class LinkedList<T> {
 
   prepend(value: T): Node<T> {
     const node = new Node(value);
-
     if (!this.#head && !this.#tail) {
       this.#head = node;
       this.#tail = node;
@@ -102,7 +116,6 @@ export class LinkedList<T> {
 
       return node;
     }
-
     assert(this.#head);
 
     node.next = this.#head;
@@ -110,7 +123,7 @@ export class LinkedList<T> {
     this.#head = node;
     this.#size += 1;
 
-    return node;
+    return this.#head;
   }
 
   append(value: T): Node<T> {

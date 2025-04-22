@@ -1,5 +1,6 @@
 import { describe, it, test, expect } from 'vitest';
-import { LinkedList, Node } from '../LinkedList';
+import { LinkedList, Node, Handler } from '../LinkedList';
+import { assert } from '../../utils/assert';
 
 describe('LinkedList', () => {
   it('assings head and tail correctly when list is empty', () => {
@@ -178,5 +179,25 @@ describe('LinkedList', () => {
 
     expect(list1.size()).toBe(1);
     expect(list1.head()?.value).toBe(1);
+  });
+
+  test('reverse iteration', () => {
+    const list = new LinkedList<number>();
+    const iterations = 20;
+
+    for (let j = 1; j <= iterations; j++) {
+      list.append(j);
+    }
+
+    let handler: Handler<number> | undefined = undefined;
+
+    for (const h of list) handler = h;
+
+    while (handler !== undefined) {
+      assert(handler);
+      expect(handler.value()).toEqual(handler.idx() + 1);
+
+      handler = handler.previous();
+    }
   });
 });
