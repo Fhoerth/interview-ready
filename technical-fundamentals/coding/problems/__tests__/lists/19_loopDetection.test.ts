@@ -71,7 +71,6 @@ describe('loopDetection', () => {
         },
       },
     };
-
     const result = loopDetection(list);
     expect(result).toEqual(loopNode);
   });
