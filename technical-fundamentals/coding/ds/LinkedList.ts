@@ -191,6 +191,23 @@ export class LinkedList<T> {
     }
   }
 
+  reverse(): void {
+    let previousNode: Node<T> | undefined = undefined;
+    let currentNode: Node<T> | undefined = this.#head;
+
+    this.#tail = this.#head;
+
+    while (currentNode) {
+      const next = currentNode.next;
+
+      currentNode.next = previousNode;
+      previousNode = currentNode;
+      currentNode = next;
+    }
+
+    this.#head = previousNode;
+  }
+
   concat(anotherList: LinkedList<T>): void {
     if (this.#size === 0) {
       this.#size = anotherList.size();

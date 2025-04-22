@@ -1,6 +1,7 @@
 import { describe, it, test, expect } from 'vitest';
 import { LinkedList, Node, Handler } from '../LinkedList';
 import { assert } from '../../utils/assert';
+import { L } from 'vitest/dist/chunks/reporters.C_zwCd4j.js';
 
 describe('LinkedList', () => {
   it('assings head and tail correctly when list is empty', () => {
@@ -199,5 +200,24 @@ describe('LinkedList', () => {
 
       handler = handler.previous();
     }
+  });
+
+  test('a list being reversed', () => {
+    const list = new LinkedList<number>();
+    const iterations = 20;
+
+    for (let j = 1; j <= iterations; j++) {
+      list.append(j);
+    }
+
+    expect(list.size()).toBe(iterations);
+    list.reverse();
+    expect(list.size()).toBe(iterations);
+
+    for (const handler of list) {
+      expect(handler.value()).toBe(iterations - handler.idx());
+    }
+
+    expect(list.size()).toBe(iterations);
   });
 });
