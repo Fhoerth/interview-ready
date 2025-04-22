@@ -42,7 +42,5 @@ export default function sumListsForwardOrder(
 
   if (hasCarryOver) result.prepend(1);
 
-  console.log(result);
-
   return result.head();
 }
