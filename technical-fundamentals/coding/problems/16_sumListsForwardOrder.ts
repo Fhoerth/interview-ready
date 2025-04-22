@@ -7,7 +7,6 @@
 // ```
 
 import { Node, LinkedList, Handler } from '../ds/LinkedList';
-import { assert } from '../utils/assert';
 
 export { Node };
 
