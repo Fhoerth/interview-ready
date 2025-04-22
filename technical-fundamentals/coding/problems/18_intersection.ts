@@ -4,14 +4,32 @@
 // Return the first intersecting node. Note that the intersection is defined
 // based on reference, not value.
 
-import { LinkedList } from './10_LinkedList';
+import { Node } from '../ds/LinkedList';
 
-export type Node<T> = {
-  value: T;
-  next?: Node<T>;
-};
+export { Node };
 
 export default function intersection<T>(
-  list1: Node<T> | undefined,
-  list2: Node<T> | undefined
-): Node<T> | undefined {}
+  head1: Node<T> | undefined,
+  head2: Node<T> | undefined
+): Node<T> | undefined {
+  const elements = new Set<Node<T>>();
+
+  let node: Node<T> | undefined;
+
+  node = head1;
+  while (node) {
+    elements.add(node);
+    node = node.next;
+  }
+
+  node = head2;
+  while (node) {
+    if (elements.has(node)) {
+      return node;
+    }
+
+    node = node.next;
+  }
+
+  return;
+}
