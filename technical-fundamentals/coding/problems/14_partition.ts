@@ -12,11 +12,24 @@
 // Output: 3 -> 1 -> 2 -> 10 -> 5 -> 5 -> 8
 // ```
 
-import { LinkedList } from './10_LinkedList';
+import { Node, LinkedList } from '../ds/LinkedList';
 
-export type Node<T> = {
-  value: T;
-  next?: Node<T>;
-};
+export { Node };
 
-export default function partition<T>(head: Node<T> | undefined, x: T): Node<T> | undefined {}
+export default function partition<T>(head: Node<T> | undefined, x: T): Node<T> | undefined {
+  const list = new LinkedList(head); // O(n)
+  const lessThanX = new LinkedList<T>(); // O(1)
+  const greaterOrEqualThanX = new LinkedList<T>(); // O(1)
+
+  for (const handler of list) {
+    if (handler.value() < x) {
+      lessThanX.append(handler.value());
+    } else {
+      greaterOrEqualThanX.append(handler.value());
+    }
+  }
+
+  lessThanX.concat(greaterOrEqualThanX);
+
+  return lessThanX.unsafeHead();
+}

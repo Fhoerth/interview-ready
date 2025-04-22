@@ -186,6 +186,23 @@ export class LinkedList<T> {
     }
   }
 
+  concat(anotherList: LinkedList<T>): void {
+    if (this.#size === 0) {
+      this.#size = anotherList.size();
+      this.#head = anotherList.unsafeHead();
+      this.#tail = anotherList.unsafeTail();
+      return;
+    }
+
+    assert(this.#tail);
+
+    this.#tail.next = anotherList.unsafeHead();
+    this.#tail = anotherList.unsafeTail();
+    this.#size += anotherList.size();
+
+    return;
+  }
+
   size(): number {
     return this.#size;
   }
@@ -205,5 +222,8 @@ export class LinkedList<T> {
    */
   unsafeHead(): Node<T> | undefined {
     return this.#head;
+  }
+  unsafeTail(): Node<T> | undefined {
+    return this.#tail;
   }
 }

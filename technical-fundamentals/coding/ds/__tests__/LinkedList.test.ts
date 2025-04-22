@@ -140,5 +140,45 @@ describe('LinkedList', () => {
     expect(list.head()).toBe(1);
     expect(list.tail()).toBe(iterations);
     expect(list.size()).toBe(2);
-  })
+  });
+
+  test('lists concatenation', () => {
+    const iterations = 20;
+    const list1 = new LinkedList<number>();
+    const list2 = new LinkedList<number>();
+
+    for (let j = 1; j <= iterations; j += 1) {
+      if (j <= iterations / 2) {
+        list1.append(j);
+      } else {
+        list2.append(j);
+      }
+    }
+
+    list1.concat(list2);
+
+    expect(list1.size()).toBe(iterations);
+    
+    for (const handler of list1) {
+      expect(handler.idx() + 1).toEqual(handler.value());
+    }
+
+    for (const handler of list1)
+      handler.remove();
+    for (const handler of list2)
+      handler.remove();
+
+    expect(list1.size()).toBe(0);
+    expect(list2.size()).toBe(0);
+
+    list1.concat(list2);
+
+    expect(list1.size()).toBe(0);
+
+    list2.append(1);
+    list1.concat(list2);
+
+    expect(list1.size()).toBe(1);
+    expect(list1.head()).toBe(1);
+  });
 });
