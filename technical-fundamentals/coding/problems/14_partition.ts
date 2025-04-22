@@ -18,8 +18,8 @@ export { Node };
 
 export default function partition<T>(head: Node<T> | undefined, x: T): Node<T> | undefined {
   const list = new LinkedList(head); // O(n)
-  const lessThanX = new LinkedList<T>(); // O(1)
-  const greaterOrEqualThanX = new LinkedList<T>(); // O(1)
+  const lessThanX = new LinkedList<T>();
+  const greaterOrEqualThanX = new LinkedList<T>();
 
   for (const handler of list) {
     if (handler.value() < x) {
@@ -29,7 +29,7 @@ export default function partition<T>(head: Node<T> | undefined, x: T): Node<T> |
     }
   }
 
-  lessThanX.concat(greaterOrEqualThanX);
+  lessThanX.concat(greaterOrEqualThanX); // O(1)
 
   return lessThanX.head();
 }

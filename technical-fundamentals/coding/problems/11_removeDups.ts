@@ -10,18 +10,16 @@ import { Node, LinkedList } from '../ds/LinkedList';
 export { Node };
 
 export default function removeDups<T>(head?: Node<T>): Node<T> | undefined {
-  const seen = new Set<T>(); // O(1)
   const list = new LinkedList(head); // O(n)
+  const seen = new Set<T>();
 
   for (const handler of list) {
-    // O(n)
     if (seen.has(handler.value())) {
-      // O(1)
-      handler.remove(); // O(1)
+      handler.remove();
       continue;
     }
 
-    seen.add(handler.value()); // O(1)
+    seen.add(handler.value());
   }
 
   return list.head();
