@@ -31,5 +31,5 @@ export default function partition<T>(head: Node<T> | undefined, x: T): Node<T> |
 
   lessThanX.concat(greaterOrEqualThanX);
 
-  return lessThanX.unsafeHead();
+  return lessThanX.head();
 }

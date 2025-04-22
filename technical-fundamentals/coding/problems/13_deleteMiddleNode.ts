@@ -19,7 +19,7 @@ export default function deleteMiddleNode<T>(head: Node<T>, position: number): No
   const size = list.size();
 
   if (position == 0 || position === size - 1) {
-    return list.unsafeHead();
+    return list.head();
   }
 
   for (const handler of list) {
@@ -28,5 +28,5 @@ export default function deleteMiddleNode<T>(head: Node<T>, position: number): No
     }
   }
 
-  return list.unsafeHead();
+  return list.head();
 }

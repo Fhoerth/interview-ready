@@ -44,7 +44,7 @@ class Handler<T> {
    * It returns the node and it breaks encapsulation.
    * It allows the linked list invariant to be broken.
    */
-  unsafeNode(): Node<T> {
+  node(): Node<T> {
     return this.#node;
   }
 }
@@ -159,14 +159,6 @@ export class LinkedList<T> {
     if (this.#tail === node) this.#tail = previousNode;
   }
 
-  head(): T | undefined {
-    return this.#head?.value || undefined;
-  }
-
-  tail(): T | undefined {
-    return this.#tail?.value || undefined;
-  }
-
   removeFirst() {
     if (this.#head === this.#tail) {
       this.#head = undefined;
@@ -189,15 +181,15 @@ export class LinkedList<T> {
   concat(anotherList: LinkedList<T>): void {
     if (this.#size === 0) {
       this.#size = anotherList.size();
-      this.#head = anotherList.unsafeHead();
-      this.#tail = anotherList.unsafeTail();
+      this.#head = anotherList.head();
+      this.#tail = anotherList.tail();
       return;
     }
 
     assert(this.#tail);
 
-    this.#tail.next = anotherList.unsafeHead();
-    this.#tail = anotherList.unsafeTail();
+    this.#tail.next = anotherList.head();
+    this.#tail = anotherList.tail();
     this.#size += anotherList.size();
 
     return;
@@ -216,14 +208,20 @@ export class LinkedList<T> {
   }
 
   /**
-   * WARNING: Only for testing purposes.
+   * WARNING
    * It returns the head node and it breaks encapsulation.
    * It allows the linked list invariant to be broken.
    */
-  unsafeHead(): Node<T> | undefined {
+  head(): Node<T> | undefined {
     return this.#head;
   }
-  unsafeTail(): Node<T> | undefined {
+
+  /**
+   * WARNING
+   * It returns the tail node and it breaks encapsulation.
+   * It allows the linked list invariant to be broken.
+   */
+  tail(): Node<T> | undefined {
     return this.#tail;
   }
 }

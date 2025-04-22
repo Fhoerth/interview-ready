@@ -9,13 +9,13 @@ describe('LinkedList', () => {
     list.prepend(1);
     expect(list.size()).toBe(1);
 
-    expect(list.head()).toBe(1);
-    expect(list.tail()).toBe(1);
+    expect(list.head()?.value).toBe(1);
+    expect(list.tail()?.value).toBe(1);
 
     list.removeFirst();
 
-    expect(list.head()).toBe(undefined);
-    expect(list.tail()).toBe(undefined);
+    expect(list.head()?.value).toBe(undefined);
+    expect(list.tail()?.value).toBe(undefined);
     expect(list.size()).toBe(0);
   });
 
@@ -29,7 +29,7 @@ describe('LinkedList', () => {
     }
 
     for (let j = 1; j <= iterations; j += 1) {
-      expect(list.head()).toBe(iterations - j + 1);
+      expect(list.head()?.value).toBe(iterations - j + 1);
       list.removeFirst();
       expect(list.size()).toBe(iterations - j);
     }
@@ -45,7 +45,7 @@ describe('LinkedList', () => {
     }
 
     for (let j = 1; j <= iterations; j += 1) {
-      expect(list.head()).toBe(j);
+      expect(list.head()?.value).toBe(j);
       list.removeFirst();
       expect(list.size()).toBe(iterations - j);
     }
@@ -70,7 +70,7 @@ describe('LinkedList', () => {
     }
 
     for (let j = 0; j < iterations; j += 1) {
-      expect(list.head()).toBe(expected[j]);
+      expect(list.head()?.value).toBe(expected[j]);
       list.removeFirst();
       expect(list.size()).toBe(iterations - j - 1);
     }
@@ -93,16 +93,16 @@ describe('LinkedList', () => {
       expect(list.size()).toEqual(iterations - j + 1);
     }
 
-    expect(list.head() === 1);
-    expect(list.tail() === iterations);
+    expect(list.head()?.value === 1);
+    expect(list.tail()?.value === iterations);
     expect(list.size()).toBe(2);
 
     list.removeFirst();
-    expect(list.head() === list.tail());
+    expect(list.head()?.value === list.tail());
     expect(list.size()).toBe(1);
 
     list.removeFirst();
-    expect(list.head() === list.tail());
+    expect(list.head()?.value === list.tail());
     expect(list.size()).toBe(0);
   });
 
@@ -137,8 +137,8 @@ describe('LinkedList', () => {
       }
     }
 
-    expect(list.head()).toBe(1);
-    expect(list.tail()).toBe(iterations);
+    expect(list.head()?.value).toBe(1);
+    expect(list.tail()?.value).toBe(iterations);
     expect(list.size()).toBe(2);
   });
 
@@ -179,6 +179,6 @@ describe('LinkedList', () => {
     list1.concat(list2);
 
     expect(list1.size()).toBe(1);
-    expect(list1.head()).toBe(1);
+    expect(list1.head()?.value).toBe(1);
   });
 });

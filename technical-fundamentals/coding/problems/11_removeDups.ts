@@ -22,5 +22,5 @@ export default function removeDups<T>(head?: Node<T>): Node<T> | undefined {
     seen.add(handler.value()); // O(1)
   }
 
-  return list.unsafeHead();
+  return list.head();
 }

@@ -12,7 +12,7 @@ export default function kthToLast<T>(head: Node<T>, k: number): Node<T> | undefi
 
   for (const handler of list) {
     if (handler.idx() === size - k) {
-      return handler.unsafeNode();
+      return handler.node();
     }
   }
 
