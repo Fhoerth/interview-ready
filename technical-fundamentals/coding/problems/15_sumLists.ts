@@ -8,15 +8,21 @@
 // Input: (7-> 1 -> 6) + (5 -> 9 -> 2).That is,617 + 295.
 // Output: 2 -> 1 -> 9. That is, 912.
 // ```
+import { sumTwoLists } from './16_sumListsForwardOrder';
 
-import { LinkedList } from './10_LinkedList';
+import { Node, LinkedList } from '../ds/LinkedList';
 
-export type Node<T> = {
-  value: T;
-  next?: Node<T>;
-};
+export { Node };
 
 export default function sumLists(
-  list1: Node<number> | undefined,
-  list2: Node<number> | undefined
-): Node<number> | undefined {}
+  head1: Node<number> | undefined,
+  head2: Node<number> | undefined
+): Node<number> | undefined {
+  const list1 = new LinkedList<number>(head1);
+  const list2 = new LinkedList<number>(head2);
+
+  list1.reverse();
+  list2.reverse();
+
+  return sumTwoLists(list1.head(), list2.head(), false);
+}
