@@ -4,7 +4,6 @@
 // Push, pop, and min should all operate in O(1) time.
 //
 
-
 export default class StackMin<T extends number> {
   constructor() {}
   #minStack: number[] = [Infinity];
@@ -23,9 +22,8 @@ export default class StackMin<T extends number> {
   }
 
   pop(): number | undefined {
-    if (!this.#stack.length)
-      return undefined;
-    
+    if (!this.#stack.length) return undefined;
+
     const item = this.#stack.pop();
 
     if (item === this.#currentMin()) {
@@ -36,8 +34,7 @@ export default class StackMin<T extends number> {
   }
 
   min(): number | undefined {
-    if (!this.#stack.length)
-      return undefined;
+    if (!this.#stack.length) return undefined;
 
     return this.#currentMin();
   }

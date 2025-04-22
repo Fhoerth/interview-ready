@@ -1,10 +1,10 @@
 // 1. *Three in One*: Describe how you could use a single array to implement three stacks.
-import { assert } from "../utils/assert";
+import { assert } from '../utils/assert';
 export default class ThreeStacks<T> {
   private array: (T | null)[] = [];
   private nextIndexes = new Map<number, number>();
   private numStacks = 3;
-  
+
   constructor(arrayLength: number) {
     for (let j = 0; j < arrayLength; j += 1) {
       this.array.push(null);
