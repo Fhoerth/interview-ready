@@ -60,4 +60,44 @@ describe('StackOfPlates', () => {
     expect(stack.pop()).toBe(4); // Pop from last stack
     expect(stack.pop()).toBe(3); // Pop from last stack
   });
+
+  test('popAt idx', () => {
+    const stack = new StackOfPlates<number>(2); // Capacity: 2
+
+    stack.push(1);
+    stack.push(2);
+
+    stack.push(3); // New stack
+    stack.push(4);
+
+    stack.push(5); // New stack
+
+    expect(stack.popAt(1)).toBe(4); // Now 5 is moved to stack 1
+
+    stack.push(6); // Pushes to stack 3
+    stack.push(7); // Pushes to stack 3
+
+    expect(stack.pop()).toBe(7);
+    expect(stack.pop()).toBe(6);
+    expect(stack.pop()).toBe(5);
+    expect(stack.pop()).toBe(3);
+    expect(stack.pop()).toBe(2);
+    expect(stack.pop()).toBe(1);
+
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+    stack.push(4);
+    stack.push(5);
+    stack.push(6);
+    stack.push(7);
+
+    expect(stack.pop()).toBe(7);
+    expect(stack.pop()).toBe(6);
+    expect(stack.pop()).toBe(5);
+    expect(stack.pop()).toBe(4);
+    expect(stack.pop()).toBe(3);
+    expect(stack.pop()).toBe(2);
+    expect(stack.pop()).toBe(1);
+  });
 });

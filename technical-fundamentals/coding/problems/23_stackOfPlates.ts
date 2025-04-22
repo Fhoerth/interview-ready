@@ -11,9 +11,60 @@
 // FOLLOW UP: Implement a function popAt(int index) which performs a pop operation on a specific sub-stack.
 
 export default class StackOfPlates<T> {
-  constructor(capacity: number) {}
+  #capacity: number;
 
-  push(value: T): void {}
+  #stacks: T[][] = [[]];
+  #startingIdxs: number[] = [0];
+  #currentStack = 0;
 
-  pop(): T | undefined {}
+  constructor(capacity: number) {
+    this.#capacity = capacity;
+  }
+
+  push(value: T): void {
+    if (this.#stacks[this.#currentStack].length < this.#capacity) {
+      this.#stacks[this.#currentStack].push(value);
+      return;
+    }
+
+    this.#stacks.push([]);
+    this.#startingIdxs.push(0);
+    this.#currentStack += 1;
+
+    this.push(value);
+  }
+
+  pop(): T | undefined {
+    const idx = (): number => this.#stacks[this.#currentStack].length;
+    const isCurrentStackEmpty = (): boolean =>
+      !idx() || idx() === this.#startingIdxs[this.#currentStack];
+
+    if (isCurrentStackEmpty()) return undefined;
+
+    const item = this.#stacks[this.#currentStack].pop();
+
+    if (isCurrentStackEmpty() && this.#currentStack > 0) {
+      this.#stacks.pop();
+      this.#startingIdxs.pop();
+      this.#currentStack -= 1;
+    }
+
+    return item;
+  }
+
+  popAt(stackNum: number): T | undefined {
+    if (stackNum > this.#currentStack) {
+      return undefined;
+    }
+
+    const item = this.#stacks[stackNum].pop();
+
+    for (let j = stackNum + 1; j < this.#stacks.length; j += 1) {
+      this.#startingIdxs[j] += 1;
+      // Shift bottom element to left
+      this.#stacks[j - 1].push(this.#stacks[j][0]);
+    }
+
+    return item;
+  }
 }
