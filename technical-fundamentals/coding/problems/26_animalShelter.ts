@@ -10,23 +10,61 @@
 // such as enqueue, dequeueAny, dequeueDog, and dequeueCat.
 // You may use the built-in LinkedList data structure.
 
+import { Queue } from '../ds/Queue';
+
 export type AnimalType = 'dog' | 'cat';
 
 export class Animal {
   type: AnimalType;
+
   constructor(type: AnimalType) {
     this.type = type;
   }
 }
 
+type AnimalWithId = {
+  animal: Animal;
+  id: number;
+};
+
 export default class AnimalShelter {
-  constructor() {}
+  #currentId = 0;
 
-  enqueue(type: AnimalType): void {}
+  #dogsQueue = new Queue<AnimalWithId>();
+  #catsQueue = new Queue<AnimalWithId>();
 
-  dequeueAny(): Animal | undefined {}
+  enqueue(type: AnimalType): void {
+    const animal = new Animal(type);
+    const id = this.#currentId++;
+    const animalWithId = { animal, id };
 
-  dequeueDog(): Animal | undefined {}
+    if (type === 'dog') {
+      this.#dogsQueue.enqueue(animalWithId);
+    } else {
+      this.#catsQueue.enqueue(animalWithId);
+    }
+  }
 
-  dequeueCat(): Animal | undefined {}
+  dequeueAny(): Animal | undefined {
+    const dog = this.#dogsQueue.peek();
+    const cat = this.#catsQueue.peek();
+
+    if (dog && cat) {
+      return dog.id < cat.id ? this.dequeueDog() : this.dequeueCat();
+    } else if (dog) {
+      return this.dequeueDog();
+    }
+
+    return this.dequeueCat();
+  }
+
+  dequeueDog(): Animal | undefined {
+    if (this.#dogsQueue.isEmpty()) return undefined;
+    return this.#dogsQueue.dequeue()?.animal;
+  }
+
+  dequeueCat(): Animal | undefined {
+    if (this.#catsQueue.isEmpty()) return undefined;
+    return this.#catsQueue.dequeue()?.animal;
+  }
 }

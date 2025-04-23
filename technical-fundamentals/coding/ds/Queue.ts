@@ -10,4 +10,12 @@ export class Queue<T> {
   dequeue(): T | undefined {
     return this.#list.popLeft()?.value;
   }
+
+  isEmpty(): boolean {
+    return !this.#list.size();
+  }
+
+  peek(): T | undefined {
+    return this.#list.head()?.value;
+  }
 }
