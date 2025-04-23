@@ -32,8 +32,7 @@ export default class MyQueue<T> {
   dequeue(): T | undefined {
     const currentStack = this.#stacks[this.#currentIdx()];
 
-    if (!currentStack.size())
-      return undefined;
+    if (!currentStack.size()) return undefined;
 
     const element = currentStack.pop();
 

@@ -94,13 +94,13 @@ describe('MiniLinkedList', () => {
   test('prepend into empty list', () => {
     const list1 = new MiniLinkedList<number>();
     const list2 = new MiniLinkedList<number>();
-  
+
     list1.pushRight(1);
     list1.pushRight(2);
     list1.pushRight(3);
     list2.prepend(list1);
     list2.pushRight(4);
-  
+
     const node = list2.popLeft();
 
     expect(node?.value).toBe(1);

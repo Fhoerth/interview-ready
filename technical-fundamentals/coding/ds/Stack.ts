@@ -16,7 +16,7 @@ export class Stack<T> {
   }
 
   peek(): T | undefined {
-    return this.#list.head()?.value
+    return this.#list.head()?.value;
   }
 
   prepend(otherStack: Stack<T>): void {
