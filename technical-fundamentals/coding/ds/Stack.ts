@@ -11,8 +11,8 @@ export class Stack<T> {
     return this.#list.popLeft()?.value;
   }
 
-  size(): number {
-    return this.#list.size();
+  isEmpty(): boolean {
+    return !this.#list.size();
   }
 
   peek(): T | undefined {

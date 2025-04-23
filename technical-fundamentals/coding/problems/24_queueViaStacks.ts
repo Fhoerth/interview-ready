@@ -32,7 +32,7 @@ export default class MyQueue<T> {
   dequeue(): T | undefined {
     const currentStack = this.#stacks[this.#currentIdx()];
 
-    if (!currentStack.size()) return undefined;
+    if (currentStack.isEmpty()) return undefined;
 
     const element = currentStack.pop();
 
@@ -46,6 +46,6 @@ export default class MyQueue<T> {
 
   isEmpty(): boolean {
     const currentStack = this.#stacks[this.#currentIdx()];
-    return !currentStack.size();
+    return currentStack.isEmpty();
   }
 }
