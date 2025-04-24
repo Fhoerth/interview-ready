@@ -13,7 +13,7 @@ export type TreeNode<T> = {
 type Result = {
   balanced: boolean;
   height: number;
-}
+};
 
 function recursivelyCheckBalanced<T>(tree?: TreeNode<T> | null): Result {
   if (!tree) return { balanced: true, height: -1 };
@@ -21,10 +21,7 @@ function recursivelyCheckBalanced<T>(tree?: TreeNode<T> | null): Result {
   const left = recursivelyCheckBalanced(tree.left);
   const right = recursivelyCheckBalanced(tree.right);
 
-  const balanced =
-    left.balanced &&
-    right.balanced &&
-    Math.abs(left.height - right.height) <= 1;
+  const balanced = left.balanced && right.balanced && Math.abs(left.height - right.height) <= 1;
   const height = 1 + Math.max(left.height, right.height);
 
   return { balanced, height };
