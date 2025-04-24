@@ -8,4 +8,25 @@
 type Grid = boolean[][];
 type Path = Array<[number, number]>;
 
-export default function robotInAGrid(grid: Grid): [number, number][] | false {}
+export default function robotInAGrid(grid: Grid): Path | false {
+  const m = grid.length;
+  const n = grid[0].length;
+
+  function backtrack(currentPath: Path, i: number, j: number): boolean {
+    if (i === m - 1 && j === n - 1) {
+      currentPath[i + j] = [j, i];
+      return true;
+    }
+    if (i >= m || j >= n) return false;
+    if (!grid[i][j]) return false;
+
+    currentPath[i + j] = [j, i];
+
+    return backtrack(currentPath, i + 1, j) || backtrack(currentPath, i, j + 1);
+  }
+
+  const path: Path = Array.from({ length: m + n - 1 }, () => [0, 0]);
+  const found = backtrack(path, 0, 0);
+
+  return found ? path : false;
+}
