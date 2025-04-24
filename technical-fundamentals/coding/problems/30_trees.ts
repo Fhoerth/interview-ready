@@ -1,5 +1,6 @@
 // Write the basic tree algorithms of Depth-first-search and Breadth-first search.
 import { Queue } from '../ds/Queue';
+import { Stack } from '../ds/Stack';
 
 export type TreeNode<T> = {
   value: T;
@@ -14,31 +15,41 @@ export class Tree<T> {
     queue.enqueue(node);
 
     while (!queue.isEmpty()) {
-      let size = queue.size();
+      const node = queue.dequeue();
 
-      while (size > 0) {
-        const node = queue.dequeue();
+      if (!node) continue;
 
-        if (!node) {
-          size -= 1;
-          continue;
-        }
+      visit(node);
 
-        visit(node);
-
-        queue.enqueue(node.left);
-        queue.enqueue(node.right);
-
-        size -= 1;
-      }
+      queue.enqueue(node.left);
+      queue.enqueue(node.right);
     }
   }
 
-  dfs(node: TreeNode<T> | undefined, visit: (node: TreeNode<T>) => void) {
+  dfs_recursive(node: TreeNode<T> | undefined, visit: (node: TreeNode<T>) => void) {
     if (!node) return;
 
     visit(node);
     this.dfs(node.left, visit);
     this.dfs(node.right, visit);
+  }
+
+  dfs(node: TreeNode<T> | undefined, visit: (node: TreeNode<T>) => void) {
+    if (!node) return;
+  
+    const stack = new Stack<TreeNode<T> | undefined>();
+
+    stack.push(node);
+
+    while (!stack.isEmpty()) {
+      const node = stack.pop();
+
+      if (!node) continue;
+
+      visit(node);
+  
+      stack.push(node.right);
+      stack.push(node.left);
+    }
   }
 }
