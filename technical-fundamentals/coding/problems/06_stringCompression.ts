@@ -14,7 +14,7 @@ export default function stringCompression(str: string): string {
 
   const freq = new Set<[string, number]>();
 
-  j= 1;
+  j = 1;
   while (j < str.length) {
     if (str[j] === str[j - 1]) {
       k = j;
@@ -24,7 +24,7 @@ export default function stringCompression(str: string): string {
       j = k + 1;
       continue;
     }
-    
+
     freq.add([str[j - 1], 1]);
     j += 1;
   }
