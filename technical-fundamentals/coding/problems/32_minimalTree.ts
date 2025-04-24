@@ -20,4 +20,22 @@ export type TreeNode<T> = {
   right?: TreeNode<T>;
 };
 
-export default function minimalTree<T>(sortedArray: T[]): TreeNode<T> | undefined {}
+function recursiveMinimalTree<T>(
+  sortedArray: T[],
+  start: number,
+  end: number
+): TreeNode<T> | undefined {
+  if (start > end) return undefined;
+
+  const middle = Math.ceil((start + end) / 2);
+
+  return {
+    value: sortedArray[middle],
+    left: recursiveMinimalTree(sortedArray, start, middle - 1),
+    right: recursiveMinimalTree(sortedArray, middle + 1, end),
+  };
+}
+
+export default function minimalTree<T>(sortedArray: T[]): TreeNode<T> | undefined {
+  return recursiveMinimalTree(sortedArray, 0, sortedArray.length - 1);
+}
