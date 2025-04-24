@@ -36,4 +36,41 @@ describe('buildOrder', () => {
     const dependencies: [string, string][] = [];
     expect(buildOrder(projects, dependencies)).toEqual([]);
   });
+
+  test('edge case #1', () => {
+    const projects: string[] = ['a', 'b'];
+    const dependencies: [string, string][] = [['a', 'b']];
+
+    expect(buildOrder(projects, dependencies)).toEqual(['a', 'b']);
+  });
+
+  test('edge case #2', () => {
+    const projects: string[] = ['a', 'b', 'c'];
+    const dependencies: [string, string][] = [
+      ['a', 'b'],
+      ['b', 'c'],
+    ];
+
+    expect(buildOrder(projects, dependencies)).toEqual(['a', 'b', 'c']);
+  });
+
+  test('edge case #3', () => {
+    const projects: string[] = ['a', 'b', 'c'];
+    const dependencies: [string, string][] = [
+      ['b', 'c'],
+      ['a', 'b'],
+    ];
+
+    expect(buildOrder(projects, dependencies)).toEqual(['a', 'b', 'c']);
+  });
+
+  test('edge case #4 - disconnected graph', () => {
+    const projects: string[] = ['a', 'b', 'c', 'd'];
+    const dependencies: [string, string][] = [
+      ['a', 'b'],
+      ['b', 'c'],
+    ];
+
+    expect(buildOrder(projects, dependencies)).toEqual(['a', 'b', 'c', 'd']);
+  });
 });
