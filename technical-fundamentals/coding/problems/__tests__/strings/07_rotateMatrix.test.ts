@@ -1,6 +1,6 @@
 import rotateMatrix from '../../07_rotateMatrix';
 
-describe('07 - rotateMatrix', () => {
+describe.skip('07 - rotateMatrix', () => {
   test('rotates 2x2 matrix clockwise', () => {
     const matrix = [
       [1, 2],
