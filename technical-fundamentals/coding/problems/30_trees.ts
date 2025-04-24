@@ -36,7 +36,7 @@ export class Tree<T> {
 
   dfs(node: TreeNode<T> | undefined, visit: (node: TreeNode<T>) => void) {
     if (!node) return;
-  
+
     const stack = new Stack<TreeNode<T> | undefined>();
 
     stack.push(node);
@@ -47,7 +47,7 @@ export class Tree<T> {
       if (!node) continue;
 
       visit(node);
-  
+
       stack.push(node.right);
       stack.push(node.left);
     }
