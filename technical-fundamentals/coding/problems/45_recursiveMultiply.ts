@@ -13,7 +13,7 @@ export function recursiveMultiply(a: number, b: number): number {
   function multiply(n: number, m: number, powOf2: number): number {
     if (n === 0) return n;
     if (m === 1) {
-      if (b - powOf2 > 0) return n + Math.abs(recursiveMultiply(a, b - powOf2))
+      if (b - powOf2 > 0) return n + Math.abs(recursiveMultiply(a, b - powOf2));
       else return n;
     }
 

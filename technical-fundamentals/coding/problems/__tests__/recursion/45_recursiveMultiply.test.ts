@@ -32,5 +32,4 @@ describe('recursiveMultiply', () => {
     expect(recursiveMultiply(-2, 3)).toBe(-6);
     expect(recursiveMultiply(-23, -5)).toBe(92);
   });
-
 });
