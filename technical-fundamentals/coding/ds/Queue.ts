@@ -8,11 +8,15 @@ export class Queue<T> {
   }
 
   dequeue(): T | undefined {
-    return this.#list.popLeft()?.value;
+    return this.#list.popLeft().value;
   }
 
   isEmpty(): boolean {
     return !this.#list.size();
+  }
+
+  size(): number {
+    return this.#list.size();
   }
 
   peek(): T | undefined {

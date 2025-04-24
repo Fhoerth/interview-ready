@@ -15,6 +15,10 @@ export class Stack<T> {
     return !this.#list.size();
   }
 
+  size(): number {
+    return this.#list.size();
+  }
+
   peek(): T | undefined {
     return this.#list.head()?.value;
   }
