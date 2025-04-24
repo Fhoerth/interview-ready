@@ -8,4 +8,26 @@ export type TreeNode<T> = {
   right?: TreeNode<T>;
 };
 
-export default function validateBST<T>(node: TreeNode<T> | undefined): boolean {}
+function isSorted(values: number[]): boolean {
+  for (let j = 1; j < values.length; j += 1) {
+    if (values[j] < values[j - 1]) return false;
+  }
+
+  return true;
+}
+
+function traverseInOrder<T extends number>(node: TreeNode<T> | undefined, values: number[]): void {
+  if (!node) return;
+
+  traverseInOrder(node.left, values);
+  values.push(node.value);
+  traverseInOrder(node.right, values);
+}
+
+export default function validateBST<T extends number>(node: TreeNode<T> | undefined): boolean {
+  const values: number[] = [];
+
+  traverseInOrder(node, values);
+
+  return isSorted(values);
+}
