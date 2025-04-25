@@ -1,21 +1,27 @@
 import oneAway from '../../05_oneAway';
 
+function testBoth(s1: string, s2: string, expectedResult: boolean): void {
+  expect(oneAway(s1, s2)).toEqual(expectedResult);
+  expect(oneAway(s2, s1)).toEqual(expectedResult);
+}
+
 describe('05 - oneAway', () => {
   test('One Away - Replace', () => {
-    expect(oneAway('pale', 'bale')).toEqual(true); // Replacement
-    expect(oneAway('bbaa', 'bcca')).toEqual(false); // Replacement
+    testBoth('pale', 'bale', true); // Replacement
+    testBoth('bbaa', 'bcca', false); // Replacement
   });
 
   test('One Away - Replace', () => {
-    expect(oneAway('pale', 'bale')).toEqual(true); // Replacement
+    testBoth('pale', 'bale', true); // Replacement
   });
 
   test('One Away - Insert', () => {
-    expect(oneAway('pale', 'ple')).toEqual(true); // Insertion
+    testBoth('pale', 'ple', true); // Insertion
   });
 
   test('One Away - Remove', () => {
-    expect(oneAway('pale', 'pales')).toEqual(true); // Removal
+    testBoth('pale', 'pales', true); // Removal
+    testBoth('paes', 'pales', true); // Removal
   });
 
   test('Same Strings', () => {
@@ -23,11 +29,11 @@ describe('05 - oneAway', () => {
   });
 
   test('More Than One Edit Away', () => {
-    expect(oneAway('abcd', 'efgh')).toEqual(false); // More than one edit away
+    testBoth('abcd', 'efgh', false); // More than one edit away
   });
 
   test('More Than One Edit Away #2', () => {
-    expect(oneAway('palesa', 'pale')).toEqual(false); // More than one edit away #2
+    testBoth('palesa', 'pale', false); // More than one edit away #2
   });
 
   test('Empty Strings', () => {
@@ -35,10 +41,10 @@ describe('05 - oneAway', () => {
   });
 
   test('One Character Difference', () => {
-    expect(oneAway('a', 'ab')).toEqual(true); // One character difference
+    testBoth('a', 'ab', true); // One character difference
   });
 
   test('Empty and Non-Empty String', () => {
-    expect(oneAway('', 'a')).toEqual(true); // Empty string and a non-empty string
+    testBoth('', 'a', true); // Empty string and a non-empty string
   });
 });

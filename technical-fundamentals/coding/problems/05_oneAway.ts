@@ -14,7 +14,8 @@ export default function isOneAway(str1: string, str2: string): boolean {
 
   while (numberOfEdits <= 1 && i < str1.length && j < str2.length) {
     if (str1[i] !== str2[j]) {
-      if (str2.length < str1.length) i += 1;
+      if (str1.length < str2.length) i += 1;
+      else if (str2.length < str1.length) j += 1;
       numberOfEdits += 1;
     }
 
