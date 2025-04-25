@@ -10,8 +10,34 @@ export type TreeNode<T> = {
   right?: TreeNode<T>;
 };
 
+function belongs<T>(root: TreeNode<T> | undefined, node: TreeNode<T>): boolean {
+  if (!root) return false;
+  return root === node || belongs(root.left, node) || belongs(root.right, node);
+}
+
+function findFirstCommonAncestor<T>(
+  root: TreeNode<T> | undefined,
+  p: TreeNode<T>,
+  q: TreeNode<T>
+): TreeNode<T> | undefined {
+  if (!root) return undefined;
+
+  const onRoot = belongs(root, p) && belongs(root, q);
+
+  if (onRoot) {
+    if (belongs(root.left, p) && belongs(root.left, q)) return root.left;
+    if (belongs(root.right, p) && belongs(root.right, q)) return root.right;
+
+    return root;
+  }
+
+  return undefined;
+}
+
 export default function firstCommonAncestor<T>(
   root: TreeNode<T> | undefined,
   p: TreeNode<T>,
   q: TreeNode<T>
-): TreeNode<T> | undefined {}
+): TreeNode<T> | undefined {
+  return findFirstCommonAncestor(root, p, q);
+}
