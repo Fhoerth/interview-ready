@@ -17,12 +17,12 @@ export default function isOneAway(str1: string, str2: string): boolean {
       if (str2.length < str1.length) i += 1;
       numberOfEdits += 1;
     }
-    
+
     i += 1;
     j += 1;
-  };
+  }
 
-  console.log(str1, str2, j, numberOfEdits)
+  console.log(str1, str2, j, numberOfEdits);
 
   return numberOfEdits <= 1;
 }
