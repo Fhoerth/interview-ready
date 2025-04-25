@@ -22,7 +22,5 @@ export default function isOneAway(str1: string, str2: string): boolean {
     j += 1;
   }
 
-  console.log(str1, str2, j, numberOfEdits);
-
   return numberOfEdits <= 1;
 }
