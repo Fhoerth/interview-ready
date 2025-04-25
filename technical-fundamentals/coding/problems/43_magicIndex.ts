@@ -6,6 +6,39 @@
 
 // FOLLOW UP: What if the values are not distinct?
 
-export function findMagicIndexDistinct(arr: number[]): number | null {}
+export function findMagicIndexDistinct(arr: number[]): number | null {
+  let left = 0;
+  let right = arr.length;
 
-export function findMagicIndexNonDistinct(arr: number[]): number | null {}
+  while (left <= right) {
+    const middle = Math.floor((left + right) / 2);
+
+    if (arr[middle] > middle) right = middle - 1;
+    else left = middle + 1;
+  }
+
+  if (arr[right] === right) return right;
+  return null;
+}
+
+export function findMagicIndexNonDistinct(arr: number[]): number | null {
+  let left = 0;
+  let right = arr.length;
+
+  let lowerBound: number = arr[arr.length - 1];
+
+  while (left <= right) {
+    const middle = Math.floor((left + right) / 2);
+
+    if (arr[middle] <= middle) {
+      if (arr[middle] === middle) lowerBound = Math.min(lowerBound, middle);
+      right = middle - 1;
+    } else {
+      left = middle + 1;
+    }
+  }
+
+  if (arr[lowerBound] === lowerBound) return lowerBound;
+
+  return null;
+}
