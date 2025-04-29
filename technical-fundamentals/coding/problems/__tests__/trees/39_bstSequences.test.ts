@@ -6,7 +6,7 @@ const createNode = <T>(value: T, left?: TreeNode<T>, right?: TreeNode<T>): TreeN
 };
 
 describe('bstSequences', () => {
-  test.only('returns correct sequences for valid input with 3 nodes', () => {
+  test('returns correct sequences for valid input with 3 nodes', () => {
     /*
                     2
                    / \
@@ -21,7 +21,7 @@ describe('bstSequences', () => {
     );
   });
 
-  test.only('returns correct sequences for valid input', () => {
+  test('returns correct sequences for valid input', () => {
     /*
                     5
                    / \
@@ -51,20 +51,19 @@ describe('bstSequences', () => {
     );
   });
 
-  test.only('Simple BST', () => {
+  test('Simple BST', () => {
     const nodes = [3, 1, 5, 4];
-    const originalTree = new BST<number>();
+    const tree1 = new BST<number>();
 
-    for (const node of nodes) originalTree.insert(node);
-    const sequences = bstSequences(originalTree.root!);
-    console.log(sequences);
+    for (const node of nodes) tree1.insert(node);
+    const sequences = bstSequences(tree1.root!);
+
     for (const sequence of sequences) {
-      const tree = new BST<number>();
+      const tree2 = new BST<number>();
+      for (const node of sequence) tree2.insert(node);
 
-      for (const node of sequence) tree.insert(node);
-
-      expect(isIncluded(originalTree.root, tree.root));
-      expect(isIncluded(tree.root, originalTree.root));
+      expect(isIncluded(tree1.root, tree2.root));
+      expect(isIncluded(tree2.root, tree1.root));
     }
   });
 });
