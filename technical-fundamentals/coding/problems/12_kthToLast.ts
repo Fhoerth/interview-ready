@@ -2,19 +2,27 @@
 
 // Implement an algorithm to find the kth to last element of a singly linked list.
 
-import { Node, LinkedList } from '../ds/LinkedList';
-
-export { Node };
+export type Node<T> = {
+  value: T;
+  next?: Node<T>;
+};
 
 export default function kthToLast<T>(head: Node<T>, k: number): Node<T> | undefined {
-  const list = new LinkedList(head); // O(n)
-  const size = list.size();
+  let j = 0;
+  let pointer1: Node<T> | undefined = head;
+  let pointer2: Node<T> | undefined = head;
 
-  for (const handler of list) {
-    if (handler.idx() === size - k) {
-      return handler.node();
-    }
+  while (pointer2 && j < k) {
+    pointer2 = pointer2.next;
+    j += 1;
   }
 
-  return undefined;
+  if (k > j) return undefined;
+
+  while (pointer2) {
+    pointer1 = pointer1?.next;
+    pointer2 = pointer2?.next;
+  }
+
+  return pointer1;
 }
