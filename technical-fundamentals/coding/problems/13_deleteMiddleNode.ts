@@ -10,9 +10,10 @@
 // Result: nothing is returned, but the new linked list looks like a->b->d->e->f Hints: #72
 // ```
 
-import { Node, LinkedList } from '../ds/LinkedList';
-
-export { Node };
+export type Node<T> = {
+  value: T;
+  next?: Node<T>;
+};
 
 export default function deleteMiddleNode<T>(head: Node<T>, position: number): Node<T> | undefined {
   let previousNode: Node<T> | undefined = undefined;
