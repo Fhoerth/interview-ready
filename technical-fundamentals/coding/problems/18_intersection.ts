@@ -4,9 +4,10 @@
 // Return the first intersecting node. Note that the intersection is defined
 // based on reference, not value.
 
-import { Node } from '../ds/LinkedList';
-
-export { Node };
+export type Node<T> = {
+  value: T;
+  next?: Node<T>;
+};
 
 export default function intersection<T>(
   head1: Node<T> | undefined,
