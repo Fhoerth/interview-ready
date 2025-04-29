@@ -12,24 +12,46 @@
 // Output: 3 -> 1 -> 2 -> 10 -> 5 -> 5 -> 8
 // ```
 
-import { Node, LinkedList } from '../ds/LinkedList';
-
-export { Node };
+export type Node<T> = {
+  value: T;
+  next?: Node<T>;
+};
 
 export default function partition<T>(head: Node<T> | undefined, x: T): Node<T> | undefined {
-  const list = new LinkedList(head); // O(n)
-  const lessThanX = new LinkedList<T>();
-  const greaterOrEqualThanX = new LinkedList<T>();
+  let lessThanXHead: Node<T> | undefined = undefined;
+  let lessThanXCurr: Node<T> | undefined = undefined;
+  let greaterOrEqualThanXHead: Node<T> | undefined = undefined;
+  let greaterOrEqualThanXCurr: Node<T> | undefined = undefined;
+  let curr: Node<T> | undefined = head;
 
-  for (const handler of list) {
-    if (handler.value() < x) {
-      lessThanX.append(handler.value());
+  while (curr) {
+    const node = { value: curr.value };
+
+    if (curr.value < x) {
+      if (!lessThanXCurr) {
+        lessThanXHead = node;
+        lessThanXCurr = node;
+      } else {
+        lessThanXCurr.next = node;
+        lessThanXCurr = node;
+      }
     } else {
-      greaterOrEqualThanX.append(handler.value());
+      if (!greaterOrEqualThanXCurr) {
+        greaterOrEqualThanXHead = node;
+        greaterOrEqualThanXCurr = node;
+      } else {
+        greaterOrEqualThanXCurr.next = node;
+        greaterOrEqualThanXCurr = node;
+      }
     }
+
+    curr = curr.next;
   }
 
-  lessThanX.concat(greaterOrEqualThanX); // O(1)
+  if (lessThanXHead && lessThanXCurr) {
+    lessThanXCurr.next = greaterOrEqualThanXHead;
+    return lessThanXHead;
+  }
 
-  return lessThanX.head();
+  return greaterOrEqualThanXHead;
 }
