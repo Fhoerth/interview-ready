@@ -15,18 +15,16 @@ import { Node, LinkedList } from '../ds/LinkedList';
 export { Node };
 
 export default function deleteMiddleNode<T>(head: Node<T>, position: number): Node<T> | undefined {
-  const list = new LinkedList(head); // O(n)
-  const size = list.size();
+  let previousNode: Node<T> | undefined = undefined;
+  let currNode: Node<T> | undefined = head;
 
-  if (position == 0 || position === size - 1) {
-    return list.head();
+  while (position > 0) {
+    previousNode = currNode;
+    currNode = currNode?.next;
+    position -= 1;
   }
 
-  for (const handler of list) {
-    if (handler.idx() === position) {
-      handler.remove();
-    }
-  }
+  if (previousNode) previousNode.next = previousNode.next?.next;
 
-  return list.head();
+  return head;
 }
