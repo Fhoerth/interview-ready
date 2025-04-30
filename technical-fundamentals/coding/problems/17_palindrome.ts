@@ -2,19 +2,31 @@
 
 // Implement a function to check if a linked list is a palindrome.
 
-import { Node, LinkedList, Handler } from '../ds/LinkedList';
-export { Node };
+import { reverseList } from '../utils/reverseList';
+
+export type Node<T> = {
+  value: T;
+  next?: Node<T>;
+};
 
 export default function isPalindrome<T>(head: Node<T> | undefined): boolean {
-  const list = new LinkedList<T>(head);
+  let curr: Node<T> | undefined = head;
+  let slowPointer: Node<T> | undefined = head;
+  let fastPointer: Node<T> | undefined = head;
 
-  let handler1: Handler<T> | undefined;
-
-  for (const handler of list) handler1 = handler;
-  for (const handler2 of list) {
-    if (handler1?.value() != handler2.value()) return false;
-    handler1 = handler1.previous();
+  while (fastPointer) {
+    slowPointer = slowPointer?.next;
+    fastPointer = fastPointer?.next?.next;
   }
 
-  return true;
+  slowPointer = reverseList(slowPointer);
+
+  while (slowPointer && curr) {
+    if (slowPointer.value !== curr.value) return false;
+
+    curr = curr?.next;
+    slowPointer = slowPointer.next;
+  }
+
+  return !slowPointer;
 }
