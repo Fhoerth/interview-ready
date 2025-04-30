@@ -5,54 +5,55 @@
 // Input: (6 -> 1 -> 7) + (2 -> 9 -> 5).Thatis,617 + 295
 // Output:9 -> 1 -> 2,Thatis,912.
 // ```
+import { reverseList } from '../utils/reverseList';
+import sumLists from './15_sumLists';
 
-import { Node, LinkedList, Handler } from '../ds/LinkedList';
-
-export { Node };
-
-export function sumTwoLists(
-  head1: Node<number> | undefined,
-  head2: Node<number> | undefined,
-  prepend: boolean
-): Node<number> | undefined {
-  const list1 = new LinkedList<number>(head1);
-  const list2 = new LinkedList<number>(head2);
-
-  const result = new LinkedList<number>();
-
-  let handler1: Handler<number> | undefined;
-  let handler2: Handler<number> | undefined;
-
-  for (const h of list1) handler1 = h;
-  for (const h of list2) handler2 = h;
-
-  let hasCarryOver: boolean = false;
-  let sum: number = 0;
-
-  const pushLeftOrRight = (value: number): void => {
-    if (prepend) result.prepend(value);
-    else result.append(value);
-  };
-
-  while (handler1 !== undefined || handler2 !== undefined) {
-    sum = (handler1?.value() || 0) + (handler2?.value() || 0) + (hasCarryOver ? 1 : 0);
-    hasCarryOver = sum % 10 < sum;
-
-    if (hasCarryOver) pushLeftOrRight(sum % 10);
-    else pushLeftOrRight(sum);
-
-    handler1 = handler1?.previous();
-    handler2 = handler2?.previous();
-  }
-
-  if (hasCarryOver) pushLeftOrRight(1);
-
-  return result.head();
-}
+export type Node<T> = {
+  value: T;
+  next?: Node<T>;
+};
 
 export default function sumListsForwardOrder(
   head1: Node<number> | undefined,
   head2: Node<number> | undefined
 ): Node<number> | undefined {
-  return sumTwoLists(head1, head2, true);
+  const stack1: (Node<number> | undefined)[] = [];
+  const stack2: (Node<number> | undefined)[] = [];
+
+  let head: Node<number> | undefined;
+
+  let curr1: Node<number> | undefined = head1;
+  let curr2: Node<number> | undefined = head2;
+
+  while (curr1 || curr2) {
+    if (curr1) stack1.push(curr1);
+    if (curr2) stack2.push(curr2);
+
+    curr1 = curr1?.next;
+    curr2 = curr2?.next;
+  }
+
+  let hasCarryOver: boolean = false;
+
+  while (stack1.length || stack2.length) {
+    let val1: number = stack1.pop()?.value || 0;
+    let val2: number = stack2.pop()?.value || 0;
+
+    const sum: number = val1 + val2 + (hasCarryOver ? 1 : 0);
+    const node: Node<number> = { value: sum % 10 };
+
+    hasCarryOver = sum > 9;
+
+    node.next = head;
+    head = node;
+  }
+
+  if (hasCarryOver && head) {
+    const node: Node<number> = { value: 1 };
+
+    node.next = head;
+    head = node;
+  }
+
+  return head;
 }

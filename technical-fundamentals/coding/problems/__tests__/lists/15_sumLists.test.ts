@@ -48,4 +48,14 @@ describe('sumLists', () => {
     const result = sumLists(list1, list2);
     expect(result).toEqual(expectedResult);
   });
+
+  test('sums one empty list and one non-empty list', () => {
+    // 123 + 0 = 123
+    const list1: Node<number> = {
+      value: 3,
+      next: { value: 2, next: { value: 1 } },
+    };
+    const result = sumLists(list1, undefined);
+    expect(result).toEqual(list1);
+  });
 });
