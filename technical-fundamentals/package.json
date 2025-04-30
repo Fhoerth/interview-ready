@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "format": "npx prettier --write .",
-    "test": "vitest ./**/problems/__tests__/*",
+    "test": "vitest ./**/problems/__tests__/* ./coding/__tests__/*",
     "test-coding": "vitest ./coding/__tests__/*",
     "ds": "vitest ./**/ds/__tests__/* --reporter=default --reporter=./silverReporter.ts",
     "utils": "vitest ./**/utils/__tests__/* --reporter=default --reporter=./silverReporter.ts",
