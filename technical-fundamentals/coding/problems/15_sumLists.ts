@@ -8,21 +8,42 @@
 // Input: (7-> 1 -> 6) + (5 -> 9 -> 2).That is,617 + 295.
 // Output: 2 -> 1 -> 9. That is, 912.
 // ```
-import { sumTwoLists } from './16_sumListsForwardOrder';
-
-import { Node, LinkedList } from '../ds/LinkedList';
-
-export { Node };
+export type Node<T> = {
+  value: T;
+  next?: Node<T>;
+};
 
 export default function sumLists(
   head1: Node<number> | undefined,
   head2: Node<number> | undefined
 ): Node<number> | undefined {
-  const list1 = new LinkedList<number>(head1);
-  const list2 = new LinkedList<number>(head2);
+  let head: Node<number> | undefined;
+  let tail: Node<number> | undefined;
 
-  list1.reverse();
-  list2.reverse();
+  let curr1: Node<number> | undefined = head1;
+  let curr2: Node<number> | undefined = head2;
 
-  return sumTwoLists(list1.head(), list2.head(), false);
+  let hasCarryOver: boolean = false;
+
+  while (curr1 || curr2) {
+    const sum: number = (curr1?.value || 0) + (curr2?.value || 0) + (hasCarryOver ? 1 : 0);
+    const node: Node<number> = { value: sum % 10 };
+
+    hasCarryOver = sum > 9;
+
+    if (!head) {
+      head = node;
+      tail = node;
+    } else {
+      tail!.next = node;
+      tail = node;
+    }
+
+    curr1 = curr1?.next;
+    curr2 = curr2?.next;
+  }
+
+  if (hasCarryOver && tail) tail.next = { value: 1 };
+
+  return head;
 }
