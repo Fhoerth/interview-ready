@@ -12,7 +12,7 @@ Explanation: there are four ways to make up the amount:
 5=1+1+1+1+1
 */
 
-export function coinChange(amount: number, coins: Array<number>): number {
+export function coinChange_2D(amount: number, coins: Array<number>): number {
   const dp: number[][] = Array.from({ length: amount + 1 }, () => Array(coins.length).fill(0));
 
   dp[0].fill(1);
@@ -28,3 +28,18 @@ export function coinChange(amount: number, coins: Array<number>): number {
 
   return dp[amount][coins.length - 1] || 0;
 }
+
+export function coinChange(amount: number, coins: Array<number>): number {
+  const dp: number[] = Array(amount + 1).fill(0);
+
+  dp[0] = 1;
+
+  for (const coin of coins) {
+    for (let j = coin; j <= amount; j += 1) {
+      dp[j] += dp[j - coin];
+    }
+  }
+
+  return dp[amount];
+}
+
