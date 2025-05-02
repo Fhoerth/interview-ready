@@ -5,9 +5,6 @@
 // Input: (6 -> 1 -> 7) + (2 -> 9 -> 5).Thatis,617 + 295
 // Output:9 -> 1 -> 2,Thatis,912.
 // ```
-import { reverseList } from '../utils/reverseList';
-import sumLists from './15_sumLists';
-
 export type Node<T> = {
   value: T;
   next?: Node<T>;
