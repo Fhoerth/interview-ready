@@ -1,5 +1,5 @@
-import { expect, it, describe, beforeAll, afterAll, afterEach, act, vi } from 'vitest';
-import { renderHook } from '@testing-library/react';
+import { expect, it, describe, beforeAll, afterAll, afterEach, vi } from 'vitest';
+import { renderHook, act } from '@testing-library/react';
 
 import { useDebounce } from './useDebounce';
 
@@ -52,6 +52,7 @@ describe('useDebounce', () => {
     expect(isReady()).toBe(false);
 
     cancel();
+
     vi.advanceTimersByTime(5);
 
     expect(spy).not.toHaveBeenCalled();
@@ -65,6 +66,19 @@ describe('useDebounce', () => {
     hook.rerender({ delay: 5, deps: [] });
 
     vi.advanceTimersByTime(5);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should reset timeout on delay change #2', () => {
+    const [spy, hook] = getHook(5);
+
+    expect(spy).not.toHaveBeenCalled();
+    hook.rerender({ delay: 50, deps: [] });
+
+    vi.advanceTimersByTime(5);
+    expect(spy).toHaveBeenCalledTimes(0);
+
+    vi.advanceTimersByTime(45);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
