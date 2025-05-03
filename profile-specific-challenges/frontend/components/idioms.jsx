@@ -7,10 +7,10 @@
   Some references used:
   https://claritydev.net/blog/the-most-common-mistakes-when-using-react
 */
-import { useCallback, useEffect, useRef, useState } from "react";
-import { API } from "../api";
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { API } from '../api';
 
-export function FunctionsAsComponents({ buttonText = "Start Now" }) {
+export function FunctionsAsComponents({ buttonText = 'Start Now' }) {
   const showButton = () => {
     <button>{buttonText}</button>;
   };
@@ -88,10 +88,10 @@ export function DirtyUnmount() {
 }
 
 export function AvoidingUseState() {
-  const ref = useRef("Unmounted");
+  const ref = useRef('Unmounted');
 
   useEffect(() => {
-    ref.current = "Mounted";
+    ref.current = 'Mounted';
   }, []);
 
   return <div>{ref.current}</div>;
@@ -122,8 +122,8 @@ export function UnrenderableState() {
 
 export function CrudeDeclarations() {
   const calendarDays = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-    22, 23, 24, 25, 26, 27, 28, 29, 30,
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+    27, 28, 29, 30,
   ];
   return (
     <ol>
@@ -135,13 +135,11 @@ export function CrudeDeclarations() {
 }
 
 export function AvoidMagicNumbers(age) {
-  return (
-    <ol>{age >= 18 ? <div>Spicy</div> : <div>You are not old enough</div>}</ol>
-  );
+  return <ol>{age >= 18 ? <div>Spicy</div> : <div>You are not old enough</div>}</ol>;
 }
 
 export function UnidiomaticHTMLStructure() {
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
   const handleSubmit = (e) => {};
   const handleChange = (e) => setName(e.target.value);
 
@@ -156,11 +154,11 @@ export function UnidiomaticHTMLStructure() {
 }
 
 export function CrudeStateManagement() {
-  const [name, setName] = useState("");
-  const [age, setAge] = useState("");
-  const [location, setLocation] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [name, setName] = useState('');
+  const [age, setAge] = useState('');
+  const [location, setLocation] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {};
 
@@ -168,19 +166,9 @@ export function CrudeStateManagement() {
     <form onSubmit={handleSubmit}>
       <input value={name} name="name" type="text" onChange={setName} />
       <input value={age} name="age" type="number" onChange={setAge} />
-      <input
-        value={location}
-        name="location"
-        type="text"
-        onChange={setLocation}
-      />
+      <input value={location} name="location" type="text" onChange={setLocation} />
       <input value={email} name="email" type="email" onChange={setEmail} />
-      <input
-        value={password}
-        name="password"
-        type="password"
-        onChange={setPassword}
-      />
+      <input value={password} name="password" type="password" onChange={setPassword} />
       <button type="submit">Submit</button>
     </form>
   );
@@ -196,20 +184,20 @@ export function UnidiomaticHTMLHierarchy() {
         <li key={i}>{bid}</li>
       ))}
       {asks.map((ask, j) => (
-        <li key={j + "asks"}>{ask}</li>
+        <li key={j + 'asks'}>{ask}</li>
       ))}
     </li>
   );
 }
 
 export function SubstandardDataStructure() {
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   return (
     <div>
-      <button onClick={() => setError("Error A")}>Throw Error A</button>
-      <button onClick={() => setError("Error B")}>Throw Error B</button>
-      <button onClick={() => setError("")}>Clear Errors</button>
+      <button onClick={() => setError('Error A')}>Throw Error A</button>
+      <button onClick={() => setError('Error B')}>Throw Error B</button>
+      <button onClick={() => setError('')}>Clear Errors</button>
       <div>{error}</div>
     </div>
   );
@@ -257,13 +245,13 @@ export function IncorrectDependencies({ records }) {
 }
 
 export function UnnecessaryFunctionRedefinitions(emails) {
-  const validateEmail = (email) => email.includes("@");
+  const validateEmail = (email) => email.includes('@');
 
   return (
     <div>
       {emails.map((email) => (
         <div key={email}>
-          {email} is {validateEmail(email) ? "Valid" : "Invalid"}
+          {email} is {validateEmail(email) ? 'Valid' : 'Invalid'}
         </div>
       ))}
     </div>

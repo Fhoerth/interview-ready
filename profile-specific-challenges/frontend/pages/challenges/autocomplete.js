@@ -10,17 +10,14 @@ export default function Autocomplete() {
         <br />
         <ol>
           <li>It should allow multiple selection with checkboxes.</li>
-          <li>
-            Selected elements should show as tags with a button to delete the
-            selection.
-          </li>
+          <li>Selected elements should show as tags with a button to delete the selection.</li>
           <li>Filtering by search text.</li>
           <li>Toggle button for expand/collapse list.</li>
         </ol>
         <br />
         <p>
-          In a real interview situation you should be able to have the main
-          functionalities (without styles) in 60 minutes.
+          In a real interview situation you should be able to have the main functionalities (without
+          styles) in 60 minutes.
         </p>
       </div>
     </>

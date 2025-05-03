@@ -6,7 +6,6 @@ Once you run it, you can see the challenge list on the home page and you may res
 
 You may use a PR or fork to solve them and give access to @conanbatt for review.
 
-
 ## Getting Started
 
 ```bash
@@ -19,8 +18,8 @@ open http://localhost:3000
 
 The most comprehensive course of React is [Epic React](https://epicreact.dev/) by Kent Dodds.
 
-The video course has a 200U$S cost for Argentina. 
-The exercises and some level of explanation are freely available on the repositories listed below. The content is encouraged for all levels of Frontend Engineering. 
+The video course has a 200U$S cost for Argentina.
+The exercises and some level of explanation are freely available on the repositories listed below. The content is encouraged for all levels of Frontend Engineering.
 
 ```
 Exercises are trivial if you know them, and the knowledge gap closes when they are not.
