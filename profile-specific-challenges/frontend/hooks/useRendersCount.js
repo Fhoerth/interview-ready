@@ -1,5 +1,11 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 export function useRendersCount() {
-  return;
+  const counter = useRef(1);
+
+  useEffect(() => {
+    counter.current += 1;
+  });
+
+  return counter.current;
 }
