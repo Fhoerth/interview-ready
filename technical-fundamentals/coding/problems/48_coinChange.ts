@@ -42,4 +42,3 @@ export function coinChange(amount: number, coins: Array<number>): number {
 
   return dp[amount];
 }
-
