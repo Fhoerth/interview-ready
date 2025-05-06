@@ -7,10 +7,10 @@
   Some references used:
   https://claritydev.net/blog/the-most-common-mistakes-when-using-react
 */
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { API } from '../api';
+import { useCallback, useEffect, useRef, useState } from "react";
+import { API } from "../api";
 
-export function FunctionsAsComponents({ buttonText = 'Start Now' }) {
+export function FunctionsAsComponents({ buttonText = "Start Now" }) {
   const showButton = () => {
     <button>{buttonText}</button>;
   };
@@ -88,10 +88,10 @@ export function DirtyUnmount() {
 }
 
 export function AvoidingUseState() {
-  const ref = useRef('Unmounted');
+  const ref = useRef("Unmounted");
 
   useEffect(() => {
-    ref.current = 'Mounted';
+    ref.current = "Mounted";
   }, []);
 
   return <div>{ref.current}</div>;
@@ -139,7 +139,7 @@ export function AvoidMagicNumbers(age) {
 }
 
 export function UnidiomaticHTMLStructure() {
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
   const handleSubmit = (e) => {};
   const handleChange = (e) => setName(e.target.value);
 
@@ -154,11 +154,11 @@ export function UnidiomaticHTMLStructure() {
 }
 
 export function CrudeStateManagement() {
-  const [name, setName] = useState('');
-  const [age, setAge] = useState('');
-  const [location, setLocation] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const [location, setLocation] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {};
 
@@ -184,20 +184,20 @@ export function UnidiomaticHTMLHierarchy() {
         <li key={i}>{bid}</li>
       ))}
       {asks.map((ask, j) => (
-        <li key={j + 'asks'}>{ask}</li>
+        <li key={j + "asks"}>{ask}</li>
       ))}
     </li>
   );
 }
 
 export function SubstandardDataStructure() {
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   return (
     <div>
-      <button onClick={() => setError('Error A')}>Throw Error A</button>
-      <button onClick={() => setError('Error B')}>Throw Error B</button>
-      <button onClick={() => setError('')}>Clear Errors</button>
+      <button onClick={() => setError("Error A")}>Throw Error A</button>
+      <button onClick={() => setError("Error B")}>Throw Error B</button>
+      <button onClick={() => setError("")}>Clear Errors</button>
       <div>{error}</div>
     </div>
   );
@@ -245,13 +245,13 @@ export function IncorrectDependencies({ records }) {
 }
 
 export function UnnecessaryFunctionRedefinitions(emails) {
-  const validateEmail = (email) => email.includes('@');
+  const validateEmail = (email) => email.includes("@");
 
   return (
     <div>
       {emails.map((email) => (
         <div key={email}>
-          {email} is {validateEmail(email) ? 'Valid' : 'Invalid'}
+          {email} is {validateEmail(email) ? "Valid" : "Invalid"}
         </div>
       ))}
     </div>

@@ -1,5 +1,5 @@
-import { forwardRef, useImperativeHandle, useState, useCallback, useMemo } from 'react';
-import { useInterval } from '../../hooks/useInterval';
+import { forwardRef, useImperativeHandle, useState, useCallback, useMemo } from "react";
+import { useInterval } from "../../hooks/useInterval";
 
 const Watch = forwardRef((_, ref) => {
   const timer = useMemo(() => 100, []);
@@ -35,12 +35,12 @@ const Watch = forwardRef((_, ref) => {
   );
 
   const normalizedValue = (value / 1000).toFixed(2);
-  const watchClassName = ['stop-watch__watch', active ? 'stop-watch__watch-active' : null]
+  const watchClassName = ["stop-watch__watch", active ? "stop-watch__watch-active" : null]
     .filter(Boolean)
-    .join(' ');
-  const tickClassName = ['stop-watch__tick', active ? 'stop-watch__tick-active' : null]
+    .join(" ");
+  const tickClassName = ["stop-watch__tick", active ? "stop-watch__tick-active" : null]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   return (
     <div className="stop-watch__watch-layout">

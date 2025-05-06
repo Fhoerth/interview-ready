@@ -9,10 +9,10 @@ export default function Market() {
         <div>
           <div
             style={{
-              border: '1px solid black',
-              margin: '10px',
-              padding: '10px',
-              display: 'inline-block',
+              border: "1px solid black",
+              margin: "10px",
+              padding: "10px",
+              display: "inline-block",
             }}
           >
             price: number

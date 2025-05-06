@@ -3,14 +3,14 @@ export default function Stopwatch() {
     <>
       <h1>Weather Component</h1>
       <div>
-        Use{' '}
+        Use{" "}
         <a
           href={
-            'https://developer.accuweather.com/accuweather-current-conditions-api/apis/get/currentconditions/v1/%7BlocationKey%7D'
+            "https://developer.accuweather.com/accuweather-current-conditions-api/apis/get/currentconditions/v1/%7BlocationKey%7D"
           }
         >
           Locations API
-        </a>{' '}
+        </a>{" "}
         from Accuweather to replicate this component:
         <br />
         <img

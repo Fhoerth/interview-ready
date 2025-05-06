@@ -3,8 +3,8 @@ function API(data) {
     setTimeout(
       () =>
         res({
-          success: 'Your Account has been successfully created!',
-          error: 'Username is taken',
+          success: "Your Account has been successfully created!",
+          error: "Username is taken",
         }),
       1000
     );

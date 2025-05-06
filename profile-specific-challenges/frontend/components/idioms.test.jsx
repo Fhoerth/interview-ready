@@ -1,5 +1,5 @@
-import { expect, test, describe, beforeEach, vi, afterEach } from 'vitest';
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { expect, test, describe, beforeEach, vi, afterEach } from "vitest";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import {
   FunctionsAsComponents,
   UseEffectDerivedCalculation,
@@ -21,12 +21,12 @@ import {
   ExcessivePropDrilling,
   deepCopyObject,
   deepCopyArray,
-} from './idioms';
-import * as React from 'react';
-import { API } from '../api';
+} from "./idioms";
+import * as React from "react";
+import { API } from "../api";
 
-vi.mock('react', async () => {
-  const actual = await vi.importActual('react');
+vi.mock("react", async () => {
+  const actual = await vi.importActual("react");
 
   return {
     ...actual,
@@ -57,18 +57,18 @@ global.AbortController = vi.fn(() => ({
   signal: {},
 }));
 
-describe('FunctionsAsComponents', () => {
-  test('Renders with default prop', () => {
+describe("FunctionsAsComponents", () => {
+  test("Renders with default prop", () => {
     const serialized = FunctionsAsComponents.toString();
     render(<FunctionsAsComponents />);
-    expect(screen.getByText('Start Now')).toBeInTheDocument();
+    expect(screen.getByText("Start Now")).toBeInTheDocument();
 
     expect(serialized).not.toMatch(/\{ children: .*\(\) \}/);
   });
 });
 
-describe('Object Deep Copying', () => {
-  test('Does shallow copying', () => {
+describe("Object Deep Copying", () => {
+  test("Does shallow copying", () => {
     const obj = {
       a: { b: 5 },
     };
@@ -78,20 +78,20 @@ describe('Object Deep Copying', () => {
     expect(newObj.a.b).toEqual(5);
   });
 
-  test('Copies unserializable objects', () => {
+  test("Copies unserializable objects", () => {
     const map = new Map();
-    map.set('c', 10);
+    map.set("c", 10);
     const obj = {
       a: { b: map },
     };
     const newObj = deepCopyObject(obj);
-    map.set('c', 15);
-    expect(newObj.a.b.get('c')).toEqual(10);
+    map.set("c", 15);
+    expect(newObj.a.b.get("c")).toEqual(10);
   });
 });
 
-describe('Array Deep Copying', () => {
-  test('Does shallow copying', () => {
+describe("Array Deep Copying", () => {
+  test("Does shallow copying", () => {
     const array = [{ a: 1 }, { b: 2 }];
     const newArr = deepCopyArray(array);
     array[0].a = 10;
@@ -99,24 +99,24 @@ describe('Array Deep Copying', () => {
     expect(newArr[0].a).toEqual(1);
   });
 
-  test('Copies unserializable objects', () => {
+  test("Copies unserializable objects", () => {
     const map = new Map();
-    map.set('c', 10);
+    map.set("c", 10);
 
     const array = [map];
     const newArr = deepCopyArray(array);
-    map.set('c', 0);
+    map.set("c", 0);
 
-    expect(newArr[0].get('c')).toEqual(10);
+    expect(newArr[0].get("c")).toEqual(10);
   });
 });
 
-describe('UseEffectThrashing', () => {
+describe("UseEffectThrashing", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  test('abort signal is used to prevent trashy fetching', async () => {
+  test("abort signal is used to prevent trashy fetching", async () => {
     const { rerender } = render(
       <UseEffectThrashing frequentlyChangedURL="/api?ts=1" label="Fetch Data" />
     );
@@ -129,98 +129,98 @@ describe('UseEffectThrashing', () => {
   });
 });
 
-describe('UseEffectDerivedCalculation', () => {
+describe("UseEffectDerivedCalculation", () => {
   afterEach(() => {
     vi.restoreAllMocks();
   });
 
-  test('It renders with 0 as default count state', () => {
+  test("It renders with 0 as default count state", () => {
     render(<UseEffectDerivedCalculation />);
 
-    expect(screen.getByText('Sum: 0')).toBeInTheDocument();
-    expect(screen.getByText('Remainder: 0')).toBeInTheDocument();
+    expect(screen.getByText("Sum: 0")).toBeInTheDocument();
+    expect(screen.getByText("Remainder: 0")).toBeInTheDocument();
   });
 
-  test('uses only one useState and no useEffect', () => {
+  test("uses only one useState and no useEffect", () => {
     render(<UseEffectDerivedCalculation />);
 
     expect(React.useState).toHaveBeenCalledTimes(2); // called twice even with one useState
     expect(React.useEffect).not.toHaveBeenCalled();
   });
 
-  test('remainder is updated correctly when button is clicked', () => {
+  test("remainder is updated correctly when button is clicked", () => {
     render(<UseEffectDerivedCalculation />);
 
-    const button = screen.getByText('Add Click Count');
+    const button = screen.getByText("Add Click Count");
 
     fireEvent.click(button);
-    expect(screen.getByText('Sum: 1')).toBeInTheDocument();
-    expect(screen.getByText('Remainder: 1')).toBeInTheDocument();
+    expect(screen.getByText("Sum: 1")).toBeInTheDocument();
+    expect(screen.getByText("Remainder: 1")).toBeInTheDocument();
 
     fireEvent.click(button);
-    expect(screen.getByText('Sum: 2')).toBeInTheDocument();
-    expect(screen.getByText('Remainder: 2')).toBeInTheDocument();
+    expect(screen.getByText("Sum: 2")).toBeInTheDocument();
+    expect(screen.getByText("Remainder: 2")).toBeInTheDocument();
 
     fireEvent.click(button);
-    expect(screen.getByText('Sum: 3')).toBeInTheDocument();
-    expect(screen.getByText('Remainder: 3')).toBeInTheDocument();
+    expect(screen.getByText("Sum: 3")).toBeInTheDocument();
+    expect(screen.getByText("Remainder: 3")).toBeInTheDocument();
 
     fireEvent.click(button);
-    expect(screen.getByText('Sum: 4')).toBeInTheDocument();
-    expect(screen.getByText('Remainder: 4')).toBeInTheDocument();
+    expect(screen.getByText("Sum: 4")).toBeInTheDocument();
+    expect(screen.getByText("Remainder: 4")).toBeInTheDocument();
 
     fireEvent.click(button);
-    expect(screen.getByText('Sum: 5')).toBeInTheDocument();
-    expect(screen.getByText('Remainder: 0')).toBeInTheDocument();
+    expect(screen.getByText("Sum: 5")).toBeInTheDocument();
+    expect(screen.getByText("Remainder: 0")).toBeInTheDocument();
   });
 });
 
-describe('UseStateDerivedCalculation', () => {
+describe("UseStateDerivedCalculation", () => {
   afterEach(() => {
     vi.restoreAllMocks();
   });
 
-  test('renders with 0 as default count state', () => {
+  test("renders with 0 as default count state", () => {
     render(<UseStateDerivedCalculation />);
 
-    expect(screen.getByText('Sum: 0')).toBeInTheDocument();
-    expect(screen.getByText('Remainder: 0')).toBeInTheDocument();
+    expect(screen.getByText("Sum: 0")).toBeInTheDocument();
+    expect(screen.getByText("Remainder: 0")).toBeInTheDocument();
   });
 
-  test('uses only one useState and no useEffect', () => {
+  test("uses only one useState and no useEffect", () => {
     render(<UseStateDerivedCalculation />);
 
     expect(React.useState).toHaveBeenCalledTimes(1);
   });
 
-  test('remainder is updated correctly when button is clicked', () => {
+  test("remainder is updated correctly when button is clicked", () => {
     render(<UseStateDerivedCalculation />);
 
-    const button = screen.getByText('Add Click Count');
+    const button = screen.getByText("Add Click Count");
 
     fireEvent.click(button);
-    expect(screen.getByText('Sum: 1')).toBeInTheDocument();
-    expect(screen.getByText('Remainder: 1')).toBeInTheDocument();
+    expect(screen.getByText("Sum: 1")).toBeInTheDocument();
+    expect(screen.getByText("Remainder: 1")).toBeInTheDocument();
 
     fireEvent.click(button);
-    expect(screen.getByText('Sum: 2')).toBeInTheDocument();
-    expect(screen.getByText('Remainder: 2')).toBeInTheDocument();
+    expect(screen.getByText("Sum: 2")).toBeInTheDocument();
+    expect(screen.getByText("Remainder: 2")).toBeInTheDocument();
 
     fireEvent.click(button);
-    expect(screen.getByText('Sum: 3')).toBeInTheDocument();
-    expect(screen.getByText('Remainder: 3')).toBeInTheDocument();
+    expect(screen.getByText("Sum: 3")).toBeInTheDocument();
+    expect(screen.getByText("Remainder: 3")).toBeInTheDocument();
 
     fireEvent.click(button);
-    expect(screen.getByText('Sum: 4')).toBeInTheDocument();
-    expect(screen.getByText('Remainder: 4')).toBeInTheDocument();
+    expect(screen.getByText("Sum: 4")).toBeInTheDocument();
+    expect(screen.getByText("Remainder: 4")).toBeInTheDocument();
 
     fireEvent.click(button);
-    expect(screen.getByText('Sum: 5')).toBeInTheDocument();
-    expect(screen.getByText('Remainder: 0')).toBeInTheDocument();
+    expect(screen.getByText("Sum: 5")).toBeInTheDocument();
+    expect(screen.getByText("Remainder: 0")).toBeInTheDocument();
   });
 });
 
-describe('DirtyUnmount', () => {
+describe("DirtyUnmount", () => {
   beforeEach(() => {
     vi.useFakeTimers();
   });
@@ -229,18 +229,18 @@ describe('DirtyUnmount', () => {
     vi.restoreAllMocks();
   });
 
-  test('updates the text every second and clears interval on unmount', () => {
+  test("updates the text every second and clears interval on unmount", () => {
     const { unmount } = render(<DirtyUnmount />);
-    const clearIntervalSpy = vi.spyOn(global, 'clearInterval');
+    const clearIntervalSpy = vi.spyOn(global, "clearInterval");
 
     act(() => {
       vi.advanceTimersToNextTimer();
     });
-    expect(screen.getByText('Clock in seconds: 1')).toBeInTheDocument();
+    expect(screen.getByText("Clock in seconds: 1")).toBeInTheDocument();
     act(() => {
       vi.advanceTimersByTime(3000);
     });
-    expect(screen.getByText('Clock in seconds: 4')).toBeInTheDocument();
+    expect(screen.getByText("Clock in seconds: 4")).toBeInTheDocument();
 
     unmount();
 
@@ -248,15 +248,15 @@ describe('DirtyUnmount', () => {
   });
 });
 
-describe('AvoidingUseState', () => {
-  test('renders the mounted state in text', () => {
+describe("AvoidingUseState", () => {
+  test("renders the mounted state in text", () => {
     render(<AvoidingUseState />);
 
-    expect(screen.getByText('Mounted')).toBeInTheDocument();
+    expect(screen.getByText("Mounted")).toBeInTheDocument();
   });
 });
 
-describe('UnrenderableState', () => {
+describe("UnrenderableState", () => {
   beforeEach(() => {
     vi.useFakeTimers();
   });
@@ -265,128 +265,128 @@ describe('UnrenderableState', () => {
     vi.restoreAllMocks();
   });
 
-  test('updates loading and data from state', async () => {
+  test("updates loading and data from state", async () => {
     render(<UnrenderableState />);
 
-    expect(screen.getByText('Loading: Pending')).toBeInTheDocument();
+    expect(screen.getByText("Loading: Pending")).toBeInTheDocument();
 
     await act(async () => {
       vi.advanceTimersToNextTimer();
     });
 
-    expect(screen.getByText('Loading: Done')).toBeInTheDocument();
-    expect(screen.getByText('Result: Fetched Successfully')).toBeInTheDocument();
+    expect(screen.getByText("Loading: Done")).toBeInTheDocument();
+    expect(screen.getByText("Result: Fetched Successfully")).toBeInTheDocument();
   });
 });
 
 // how to test that calendar days are not defined within component?
-describe('CrudeDeclarations', () => {
-  test('does not use straight literals for numbers', () => {
+describe("CrudeDeclarations", () => {
+  test("does not use straight literals for numbers", () => {
     const fn = CrudeDeclarations.toString();
     // Do not want repeated code over and over!
     expect(fn.match(/(\d{1,2},)/g).length).toBeLessThan(5);
     render(<CrudeDeclarations />);
 
     // month with least days is Feb with 28
-    expect(screen.getAllByRole('listitem').length).toBeGreaterThan(27);
+    expect(screen.getAllByRole("listitem").length).toBeGreaterThan(27);
   });
 });
 
 // also hard to test
-describe('AvoidMagicNumbers', () => {
-  test('does not have magic numbers in the render block', () => {
+describe("AvoidMagicNumbers", () => {
+  test("does not have magic numbers in the render block", () => {
     const fn = AvoidMagicNumbers.toString();
     expect(fn).not.toMatch(/children: age >= \d\d/);
     render(<AvoidMagicNumbers />);
   });
 });
 
-describe('UnidiomaticHTMLStructure', () => {
-  test('it has an idiomatic html structure', () => {
+describe("UnidiomaticHTMLStructure", () => {
+  test("it has an idiomatic html structure", () => {
     render(<UnidiomaticHTMLStructure />);
 
-    const input = screen.getByRole('textbox');
+    const input = screen.getByRole("textbox");
 
-    expect(input.parentElement.tagName).toBe('FORM');
+    expect(input.parentElement.tagName).toBe("FORM");
     expect(input.labels.length).toBe(1);
   });
 });
 
-describe('CrudeStateManagement', () => {
+describe("CrudeStateManagement", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  test('uses a single useState call for form state', () => {
+  test("uses a single useState call for form state", () => {
     render(<CrudeStateManagement />);
     expect(React.useState).toHaveBeenCalledTimes(1);
   });
 });
 
-describe('UnidiomaticHTMLHierarchy', () => {
-  test('uses idiomatic HTML', () => {
+describe("UnidiomaticHTMLHierarchy", () => {
+  test("uses idiomatic HTML", () => {
     render(<UnidiomaticHTMLHierarchy />);
-    expect(screen.getAllByRole('list').length).toBe(2);
+    expect(screen.getAllByRole("list").length).toBe(2);
   });
 });
 
-describe('SubstandardDataStructure', () => {
-  test('renders as many errors as thrown', async () => {
+describe("SubstandardDataStructure", () => {
+  test("renders as many errors as thrown", async () => {
     render(<SubstandardDataStructure />);
-    const btnA = screen.getByText('Throw Error A');
-    const btnB = screen.getByText('Throw Error B');
+    const btnA = screen.getByText("Throw Error A");
+    const btnB = screen.getByText("Throw Error B");
 
     expect(btnA).toBeInTheDocument();
     expect(btnB).toBeInTheDocument();
 
     fireEvent.click(btnA);
-    expect(screen.getAllByRole('listitem').length).toBe(1);
+    expect(screen.getAllByRole("listitem").length).toBe(1);
     fireEvent.click(btnB);
-    expect(screen.getAllByRole('listitem').length).toBe(2);
+    expect(screen.getAllByRole("listitem").length).toBe(2);
     fireEvent.click(btnB);
-    expect(screen.getAllByRole('listitem').length).toBe(3);
+    expect(screen.getAllByRole("listitem").length).toBe(3);
 
-    expect(screen.getAllByText('Error A').length).toBe(1);
-    expect(screen.getAllByText('Error B').length).toBe(2);
+    expect(screen.getAllByText("Error A").length).toBe(1);
+    expect(screen.getAllByText("Error B").length).toBe(2);
 
-    fireEvent.click(screen.getByText('Clear Errors'));
-    expect(screen.queryAllByRole('listitem').length).toBe(0);
+    fireEvent.click(screen.getByText("Clear Errors"));
+    expect(screen.queryAllByRole("listitem").length).toBe(0);
   });
 });
 
-describe('DangerousIdentifier', () => {
-  test('adds people when submitting form and uses unique id for keys', () => {
-    const consoleSpy = vi.spyOn(console, 'error');
+describe("DangerousIdentifier", () => {
+  test("adds people when submitting form and uses unique id for keys", () => {
+    const consoleSpy = vi.spyOn(console, "error");
     render(<DangerousIdentifier />);
 
-    const addCta = screen.getByText('Add Person');
-    const input = screen.getByRole('textbox');
+    const addCta = screen.getByText("Add Person");
+    const input = screen.getByRole("textbox");
 
-    input.value = 'Silver';
+    input.value = "Silver";
     fireEvent.click(addCta);
 
-    expect(screen.getAllByRole('listitem').length).toBe(1);
-    expect(screen.getByText('Silver')).toBeInTheDocument();
+    expect(screen.getAllByRole("listitem").length).toBe(1);
+    expect(screen.getByText("Silver")).toBeInTheDocument();
 
-    input.value = 'Dev';
+    input.value = "Dev";
     fireEvent.click(addCta);
 
-    expect(screen.getAllByRole('listitem').length).toBe(2);
-    expect(screen.getByText('Dev')).toBeInTheDocument();
+    expect(screen.getAllByRole("listitem").length).toBe(2);
+    expect(screen.getByText("Dev")).toBeInTheDocument();
 
-    input.value = 'Dev';
+    input.value = "Dev";
     fireEvent.click(addCta);
 
-    expect(screen.getAllByRole('listitem').length).toBe(3);
+    expect(screen.getAllByRole("listitem").length).toBe(3);
 
     expect(consoleSpy).not.toHaveBeenCalled();
   });
 });
 
-describe('IncorrectDependencies', () => {
-  test('calls the track records view function once', () => {
-    const spy = vi.spyOn(API, 'trackView');
-    const records = [{ id: 1, name: 'Messi' }];
+describe("IncorrectDependencies", () => {
+  test("calls the track records view function once", () => {
+    const spy = vi.spyOn(API, "trackView");
+    const records = [{ id: 1, name: "Messi" }];
     const { rerender } = render(<IncorrectDependencies records={records} />);
 
     const copyRecords = structuredClone(records);
@@ -397,15 +397,15 @@ describe('IncorrectDependencies', () => {
   });
 });
 
-describe('UnnecessaryFunctionRedefinitions', () => {
-  test('functions with no dependencies should not be in component definitions', () => {
+describe("UnnecessaryFunctionRedefinitions", () => {
+  test("functions with no dependencies should not be in component definitions", () => {
     const fn = UnnecessaryFunctionRedefinitions.toString();
 
     expect(fn).not.toMatch(/const validateEmail = /);
   });
 });
 
-describe('UnoptimizableRenderingStructure', () => {
+describe("UnoptimizableRenderingStructure", () => {
   beforeEach(() => {
     vi.useFakeTimers();
   });
@@ -414,8 +414,8 @@ describe('UnoptimizableRenderingStructure', () => {
     vi.restoreAllMocks();
   });
 
-  test('fetches records every 5 seconds and clears interval on unmount', async () => {
-    const recordsSpy = vi.spyOn(API, 'fetchRecords');
+  test("fetches records every 5 seconds and clears interval on unmount", async () => {
+    const recordsSpy = vi.spyOn(API, "fetchRecords");
     const { unmount } = render(<UnoptimizableRenderingStructure altRecords={[]} />);
     expect(recordsSpy).toHaveBeenCalledTimes(0);
 
@@ -428,23 +428,23 @@ describe('UnoptimizableRenderingStructure', () => {
       vi.advanceTimersToNextTimerAsync();
     });
     expect(recordsSpy).toHaveBeenCalledTimes(2);
-    expect(screen.getByText('Renders: 1')).toBeInTheDocument();
+    expect(screen.getByText("Renders: 1")).toBeInTheDocument();
   });
 });
 
-describe('ExcessivePropDrilling', () => {
-  test('it adds one at a time, divides and multiplies by 5', () => {
+describe("ExcessivePropDrilling", () => {
+  test("it adds one at a time, divides and multiplies by 5", () => {
     render(<ExcessivePropDrilling />);
 
-    expect(screen.getByText('Count: 0')).toBeInTheDocument();
+    expect(screen.getByText("Count: 0")).toBeInTheDocument();
 
-    fireEvent.click(screen.getByText('Increment'));
-    expect(screen.getByText('Count: 1')).toBeInTheDocument();
+    fireEvent.click(screen.getByText("Increment"));
+    expect(screen.getByText("Count: 1")).toBeInTheDocument();
 
-    fireEvent.click(screen.getByText('Multiply by 5'));
-    expect(screen.getByText('Count: 5')).toBeInTheDocument();
+    fireEvent.click(screen.getByText("Multiply by 5"));
+    expect(screen.getByText("Count: 5")).toBeInTheDocument();
 
-    fireEvent.click(screen.getByText('Divide by 5'));
-    expect(screen.getByText('Count: 1')).toBeInTheDocument();
+    fireEvent.click(screen.getByText("Divide by 5"));
+    expect(screen.getByText("Count: 1")).toBeInTheDocument();
   });
 });

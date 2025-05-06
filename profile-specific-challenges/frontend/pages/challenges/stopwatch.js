@@ -1,4 +1,4 @@
-import { StopWatch } from '../../components/StopWatch';
+import { StopWatch } from "../../components/StopWatch";
 
 export default function Stopwatch() {
   return (
@@ -19,15 +19,15 @@ export default function Stopwatch() {
           styles) in 60 minutes.
         </p>
         <p>
-          Hint: To successfully complete this challenge you should first complete the{' '}
+          Hint: To successfully complete this challenge you should first complete the{" "}
           <a
             href={
-              'https://github.com/conanbatt/interview-ready/tree/main/profile-specific-challenges/frontend/pages/challenges'
+              "https://github.com/conanbatt/interview-ready/tree/main/profile-specific-challenges/frontend/pages/challenges"
             }
             target="_blank"
           >
             hooks
-          </a>{' '}
+          </a>{" "}
           module in this repo.
         </p>
       </div>

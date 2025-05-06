@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { useRendersCount } from './useRendersCount';
+import { useEffect } from "react";
+import { useRendersCount } from "./useRendersCount";
 
 export function useUpdateEffect(hook, deps) {
   const count = useRendersCount();

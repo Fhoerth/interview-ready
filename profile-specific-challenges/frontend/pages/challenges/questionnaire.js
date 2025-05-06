@@ -16,7 +16,7 @@ export default function Questionnaire() {
         actual answer for grading.
         <br />A multiple answer question is correct if <strong>
           all of the selected answers
-        </strong>{' '}
+        </strong>{" "}
         are correct
       </p>
     </>

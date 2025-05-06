@@ -1,7 +1,7 @@
-import { useRef, useState } from 'react';
+import { useRef, useState } from "react";
 
-import { Buttons } from './Buttons';
-import { Watch } from './Watch';
+import { Buttons } from "./Buttons";
+import { Watch } from "./Watch";
 
 const StopWatch = () => {
   const [showPlayButton, setShowPlayButton] = useState(true);
@@ -27,7 +27,7 @@ const StopWatch = () => {
       <div className="stop-watch__layout">
         <Watch ref={watchRef} />
         <Buttons
-          showPlayButton={showPlayButton }
+          showPlayButton={showPlayButton}
           onStart={handleOnStart}
           onPause={handleOnPause}
           onReset={handleOnReset}
