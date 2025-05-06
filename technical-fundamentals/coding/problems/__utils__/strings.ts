@@ -1,4 +1,4 @@
-const createIsSubstring = () => {
+export const createIsSubstring = () => {
   let called = false;
 
   return (s1: string, s2: string) => {
