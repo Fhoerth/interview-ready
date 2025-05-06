@@ -1,12 +1,12 @@
 const createIsSubstring = () => {
-  let called = false
+  let called = false;
 
   return (s1: string, s2: string) => {
-    if (called) throw new Error("isSubstring() can be used only once.")
-    called = true
-    return s1.includes(s2)
-  }
-}
+    if (called) throw new Error('isSubstring() can be used only once.');
+    called = true;
+    return s1.includes(s2);
+  };
+};
 
 /**
  * Checks if a string is included in another string.
@@ -17,4 +17,4 @@ const createIsSubstring = () => {
  * @param {string} s2 - Substring.
  * @return {boolean} If s1 contains s2.
  */
-export const isSubstring = createIsSubstring()
+export const isSubstring = createIsSubstring();
