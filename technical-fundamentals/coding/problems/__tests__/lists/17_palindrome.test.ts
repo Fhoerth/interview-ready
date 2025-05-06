@@ -1,13 +1,13 @@
-import isPalindrome, { Node } from '../../17_palindrome';
+import isPalindrome, { Node } from "../../17_palindrome";
 
-describe('isPalindrome', () => {
-  test('single node list is palindrome', () => {
+describe("isPalindrome", () => {
+  test("single node list is palindrome", () => {
     const node: Node<number> = { value: 1 };
     const result = isPalindrome(node);
     expect(result).toBe(true);
   });
 
-  test('palindrome list with even number of nodes', () => {
+  test("palindrome list with even number of nodes", () => {
     // 1 -> 2 -> 3 -> 2 -> 1
     const node1: Node<number> = { value: 1 };
     const node2: Node<number> = { value: 2 };
@@ -22,7 +22,7 @@ describe('isPalindrome', () => {
     expect(result).toBe(true);
   });
 
-  test('palindrome list with odd number of nodes', () => {
+  test("palindrome list with odd number of nodes", () => {
     // 1 -> 2 -> 3 -> 2 -> 1
     const node1: Node<number> = { value: 1 };
     const node2: Node<number> = { value: 2 };
@@ -38,7 +38,7 @@ describe('isPalindrome', () => {
     expect(result).toBe(true);
   });
 
-  test('non-palindrome list', () => {
+  test("non-palindrome list", () => {
     // 1 -> 2 -> 3 -> 4 -> 5
     const node1: Node<number> = { value: 1 };
     const node2: Node<number> = { value: 2 };
@@ -54,7 +54,7 @@ describe('isPalindrome', () => {
     expect(result).toBe(false);
   });
 
-  test('palindrome list with even number of nodes', () => {
+  test("palindrome list with even number of nodes", () => {
     // 1 -> 2 -> 2 -> 1
     const node1: Node<number> = { value: 1 };
     const node2: Node<number> = { value: 2 };

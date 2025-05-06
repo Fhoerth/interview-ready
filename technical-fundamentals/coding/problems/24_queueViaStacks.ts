@@ -1,8 +1,8 @@
 // 4. *Queue via Stacks*:
 
 // Implement a MyQueue class which implements a queue using two stacks.
-import { L } from 'vitest/dist/chunks/reporters.C_zwCd4j.js';
-import { Stack } from '../ds/Stack';
+import { L } from "vitest/dist/chunks/reporters.C_zwCd4j.js";
+import { Stack } from "../ds/Stack";
 
 export default class MyQueue<T> {
   constructor() {}

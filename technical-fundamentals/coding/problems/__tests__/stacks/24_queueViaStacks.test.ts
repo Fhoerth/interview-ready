@@ -1,7 +1,7 @@
-import MyQueue from '../../24_queueViaStacks';
+import MyQueue from "../../24_queueViaStacks";
 
-describe('MyQueue', () => {
-  test('enqueue and dequeue elements from queue', () => {
+describe("MyQueue", () => {
+  test("enqueue and dequeue elements from queue", () => {
     const queue = new MyQueue<number>();
 
     queue.enqueue(1);
@@ -14,7 +14,7 @@ describe('MyQueue', () => {
     expect(queue.dequeue()).toBeUndefined(); // Queue is empty
   });
 
-  test('enqueue and dequeue mixed with peek operations', () => {
+  test("enqueue and dequeue mixed with peek operations", () => {
     const queue = new MyQueue<number>();
 
     queue.enqueue(1);
@@ -36,19 +36,19 @@ describe('MyQueue', () => {
     expect(queue.peek()).toBeUndefined(); // Queue is empty
   });
 
-  test('peek from empty queue returns undefined', () => {
+  test("peek from empty queue returns undefined", () => {
     const queue = new MyQueue<number>();
 
     expect(queue.peek()).toBeUndefined();
   });
 
-  test('isEmpty returns true for empty queue', () => {
+  test("isEmpty returns true for empty queue", () => {
     const queue = new MyQueue<number>();
 
     expect(queue.isEmpty()).toBe(true);
   });
 
-  test('isEmpty returns false for non-empty queue', () => {
+  test("isEmpty returns false for non-empty queue", () => {
     const queue = new MyQueue<number>();
 
     queue.enqueue(1);

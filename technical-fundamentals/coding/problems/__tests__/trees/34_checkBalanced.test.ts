@@ -1,7 +1,7 @@
-import checkBalanced, { TreeNode } from '../../34_checkBalanced';
+import checkBalanced, { TreeNode } from "../../34_checkBalanced";
 
-describe('checkBalanced', () => {
-  test('returns true for a balanced tree', () => {
+describe("checkBalanced", () => {
+  test("returns true for a balanced tree", () => {
     /*
             Balanced tree:
                  1
@@ -26,7 +26,7 @@ describe('checkBalanced', () => {
     expect(checkBalanced(root)).toBe(true);
   });
 
-  test('returns false for an unbalanced tree', () => {
+  test("returns false for an unbalanced tree", () => {
     /*
             Unbalanced tree:
                  1
@@ -50,7 +50,7 @@ describe('checkBalanced', () => {
     expect(checkBalanced(root)).toBe(false);
   });
 
-  test('returns true for an empty tree', () => {
+  test("returns true for an empty tree", () => {
     const root: TreeNode<number> | null = null;
     expect(checkBalanced(root)).toBe(true);
   });

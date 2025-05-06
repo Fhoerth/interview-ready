@@ -1,4 +1,4 @@
-import { MiniLinkedList } from './MiniLinkedList';
+import { MiniLinkedList } from "./MiniLinkedList";
 
 export class Stack<T> {
   #list = new MiniLinkedList<T>();

@@ -1,9 +1,9 @@
-import { describe, it, test, expect } from 'vitest';
-import { MiniLinkedList, Node } from '../MiniLinkedList';
-import { assert } from '../../utils/assert';
+import { describe, it, test, expect } from "vitest";
+import { MiniLinkedList, Node } from "../MiniLinkedList";
+import { assert } from "../../utils/assert";
 
-describe('MiniLinkedList', () => {
-  it('assings head and tail correctly when list is empty', () => {
+describe("MiniLinkedList", () => {
+  it("assings head and tail correctly when list is empty", () => {
     const list = new MiniLinkedList<number>();
 
     expect(list.size()).toBe(0);
@@ -20,7 +20,7 @@ describe('MiniLinkedList', () => {
     expect(list.size()).toBe(0);
   });
 
-  test('stress test (pushLeft / popLeft)', () => {
+  test("stress test (pushLeft / popLeft)", () => {
     const list = new MiniLinkedList<number>();
     const iterations = 100_000;
 
@@ -37,7 +37,7 @@ describe('MiniLinkedList', () => {
     }
   });
 
-  test('stress test (pushRight / popLeft)', () => {
+  test("stress test (pushRight / popLeft)", () => {
     const list = new MiniLinkedList<number>();
     const iterations = 100_000;
 
@@ -54,7 +54,7 @@ describe('MiniLinkedList', () => {
     }
   });
 
-  test('prepend lists', () => {
+  test("prepend lists", () => {
     const iterations = 20;
     const list1 = new MiniLinkedList<number>();
     const list2 = new MiniLinkedList<number>();
@@ -91,7 +91,7 @@ describe('MiniLinkedList', () => {
     }
   });
 
-  test('prepend into empty list', () => {
+  test("prepend into empty list", () => {
     const list1 = new MiniLinkedList<number>();
     const list2 = new MiniLinkedList<number>();
 

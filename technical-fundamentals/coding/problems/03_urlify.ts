@@ -17,5 +17,5 @@
  * return a new string with spaces replaced.
  */
 export default function URLify(s1: string): string {
-  return s1.replace(/ /g, '%20');
+  return s1.replace(/ /g, "%20");
 }

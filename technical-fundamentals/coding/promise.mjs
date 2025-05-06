@@ -17,7 +17,7 @@
   Implement a "break" method that prevents previous callbacks from being called.
 */
 
-import { Queue } from './ds/Queue';
+import { Queue } from "./ds/Queue";
 
 function isPromise(maybePromise) {
   return maybePromise instanceof Promise || maybePromise instanceof SilverPromise;
@@ -38,7 +38,7 @@ function promisifyCallback(callback, argument) {
 }
 
 export class SilverPromise {
-  #state = 'pending';
+  #state = "pending";
   #value = undefined;
   #errorLike = undefined;
   #broken = false;
@@ -94,13 +94,13 @@ export class SilverPromise {
   }
 
   async #fulfill(valueOrPromise) {
-    this.#state = 'fulfilled';
+    this.#state = "fulfilled";
     this.#value = await promisify(valueOrPromise);
     this.#runThenCallbacks();
   }
 
   async #reject(errorLikeOrPromise) {
-    this.#state = 'rejected';
+    this.#state = "rejected";
     this.#errorLike = await promisify(errorLikeOrPromise);
     this.#runCatchCallbacks();
   }
@@ -109,11 +109,11 @@ export class SilverPromise {
     const promise = new SilverPromise();
 
     this.#thenPromises.enqueue([promise, resolveCallback]);
-    if (this.#state === 'fulfilled') queueMicrotask(() => this.#runThenCallbacks());
+    if (this.#state === "fulfilled") queueMicrotask(() => this.#runThenCallbacks());
 
     if (rejectCallback) {
       this.#catchPromises.enqueue([promise, rejectCallback]);
-      if (this.#state === 'rejected') queueMicrotask(() => this.#runCatchCallbacks());
+      if (this.#state === "rejected") queueMicrotask(() => this.#runCatchCallbacks());
     }
 
     return promise;
@@ -123,7 +123,7 @@ export class SilverPromise {
     const catchPromise = new SilverPromise();
 
     this.#catchPromises.enqueue([catchPromise, callback]);
-    if (this.#state === 'rejected') queueMicrotask(() => this.#runCatchCallbacks());
+    if (this.#state === "rejected") queueMicrotask(() => this.#runCatchCallbacks());
 
     return catchPromise;
   }

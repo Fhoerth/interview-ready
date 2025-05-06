@@ -2,7 +2,7 @@
 
 // Given a directed graph, design an algorithm to find out whether there is a route
 // between two nodes.
-import { Queue } from '../ds/Queue';
+import { Queue } from "../ds/Queue";
 
 export type GraphNode = {
   value: number;

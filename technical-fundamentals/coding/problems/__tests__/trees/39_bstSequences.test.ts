@@ -1,12 +1,12 @@
-import bstSequences from '../../39_bstSequences';
-import { BST, isIncluded, TreeNode } from '../../../utils/bst';
+import bstSequences from "../../39_bstSequences";
+import { BST, isIncluded, TreeNode } from "../../../utils/bst";
 
 const createNode = <T>(value: T, left?: TreeNode<T>, right?: TreeNode<T>): TreeNode<T> => {
   return { value, left, right };
 };
 
-describe('bstSequences', () => {
-  test('returns correct sequences for valid input with 3 nodes', () => {
+describe("bstSequences", () => {
+  test("returns correct sequences for valid input with 3 nodes", () => {
     /*
                     2
                    / \
@@ -21,7 +21,7 @@ describe('bstSequences', () => {
     );
   });
 
-  test('returns correct sequences for valid input', () => {
+  test("returns correct sequences for valid input", () => {
     /*
                     5
                    / \
@@ -51,7 +51,7 @@ describe('bstSequences', () => {
     );
   });
 
-  test('Simple BST', () => {
+  test("Simple BST", () => {
     const nodes = [3, 1, 5, 4];
     const tree1 = new BST<number>();
 

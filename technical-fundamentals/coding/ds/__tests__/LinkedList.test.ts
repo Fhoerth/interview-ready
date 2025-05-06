@@ -1,10 +1,10 @@
-import { describe, it, test, expect } from 'vitest';
-import { LinkedList, Node, Handler } from '../LinkedList';
-import { assert } from '../../utils/assert';
-import { L } from 'vitest/dist/chunks/reporters.C_zwCd4j.js';
+import { describe, it, test, expect } from "vitest";
+import { LinkedList, Node, Handler } from "../LinkedList";
+import { assert } from "../../utils/assert";
+import { L } from "vitest/dist/chunks/reporters.C_zwCd4j.js";
 
-describe('LinkedList', () => {
-  it('assings head and tail correctly when list is empty', () => {
+describe("LinkedList", () => {
+  it("assings head and tail correctly when list is empty", () => {
     const list = new LinkedList<number>();
 
     expect(list.size()).toBe(0);
@@ -21,7 +21,7 @@ describe('LinkedList', () => {
     expect(list.size()).toBe(0);
   });
 
-  test('stress test (prepend)', () => {
+  test("stress test (prepend)", () => {
     const list = new LinkedList<number>();
     const iterations = 100_000;
 
@@ -37,7 +37,7 @@ describe('LinkedList', () => {
     }
   });
 
-  test('stress test (append)', () => {
+  test("stress test (append)", () => {
     const list = new LinkedList<number>();
     const iterations = 100_000;
 
@@ -53,7 +53,7 @@ describe('LinkedList', () => {
     }
   });
 
-  test('stress test (append/prepend)', () => {
+  test("stress test (append/prepend)", () => {
     const list = new LinkedList<number>();
     const iterations = 100_000;
 
@@ -80,7 +80,7 @@ describe('LinkedList', () => {
     expect(list.size()).toBe(0);
   });
 
-  test('stress test (removeNode)', () => {
+  test("stress test (removeNode)", () => {
     const nodes: Node<number>[] = [];
     const list = new LinkedList<number>();
 
@@ -108,7 +108,7 @@ describe('LinkedList', () => {
     expect(list.size()).toBe(0);
   });
 
-  test('removes every even element', () => {
+  test("removes every even element", () => {
     const list = new LinkedList<number>();
     const iterations = 10;
 
@@ -125,7 +125,7 @@ describe('LinkedList', () => {
     expect([...list].map((h) => h.value())).toEqual([1, 3, 5, 7, 9]);
   });
 
-  test('removes consecutive elements', () => {
+  test("removes consecutive elements", () => {
     const list = new LinkedList<number>();
     const iterations = 10;
 
@@ -144,7 +144,7 @@ describe('LinkedList', () => {
     expect(list.size()).toBe(2);
   });
 
-  test('lists concatenation', () => {
+  test("lists concatenation", () => {
     const iterations = 20;
     const list1 = new LinkedList<number>();
     const list2 = new LinkedList<number>();
@@ -182,7 +182,7 @@ describe('LinkedList', () => {
     expect(list1.head()?.value).toBe(1);
   });
 
-  test('reverse iteration', () => {
+  test("reverse iteration", () => {
     const list = new LinkedList<number>();
     const iterations = 20;
 
@@ -202,7 +202,7 @@ describe('LinkedList', () => {
     }
   });
 
-  test('a list being reversed', () => {
+  test("a list being reversed", () => {
     const list = new LinkedList<number>();
     const iterations = 20;
 

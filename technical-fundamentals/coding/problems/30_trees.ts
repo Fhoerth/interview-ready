@@ -1,6 +1,6 @@
 // Write the basic tree algorithms of Depth-first-search and Breadth-first search.
-import { Queue } from '../ds/Queue';
-import { Stack } from '../ds/Stack';
+import { Queue } from "../ds/Queue";
+import { Stack } from "../ds/Stack";
 
 export type TreeNode<T> = {
   value: T;

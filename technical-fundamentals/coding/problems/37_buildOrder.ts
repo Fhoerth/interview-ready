@@ -13,7 +13,7 @@
 // Output: e, f, a, b, d, c
 // ```
 
-import { Queue } from '../ds/Queue';
+import { Queue } from "../ds/Queue";
 
 type Project = string;
 type Node = {
@@ -80,7 +80,7 @@ export default function buildOrder(
       nodes[map[dependent]].din += 1;
       nodes[map[dependency]].dependents.push(nodes[map[dependent]]);
     } catch {
-      throw new Error('No valid build order exists');
+      throw new Error("No valid build order exists");
     }
   }
 

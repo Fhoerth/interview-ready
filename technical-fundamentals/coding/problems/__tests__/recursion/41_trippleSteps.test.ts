@@ -1,7 +1,7 @@
-import tripleStep from '../../41_tripleSteps';
+import tripleStep from "../../41_tripleSteps";
 
-describe('tripleStep', () => {
-  test('returns correct count for valid input', () => {
+describe("tripleStep", () => {
+  test("returns correct count for valid input", () => {
     // Test cases with expected counts
     expect(tripleStep(0)).toBe(0); // No steps
     expect(tripleStep(1)).toBe(1); // 1 step: (1)
@@ -12,7 +12,7 @@ describe('tripleStep', () => {
     // Add more test cases as needed
   });
 
-  test('returns 0 for negative input', () => {
+  test("returns 0 for negative input", () => {
     expect(tripleStep(-1)).toBe(0); // Negative input
     expect(tripleStep(-10)).toBe(0); // Negative input
   });

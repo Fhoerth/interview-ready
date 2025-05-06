@@ -2,7 +2,7 @@ export const createIsSubstring = () => {
   let called = false;
 
   return (s1: string, s2: string) => {
-    if (called) throw new Error('isSubstring() can be used only once.');
+    if (called) throw new Error("isSubstring() can be used only once.");
     called = true;
     return s1.includes(s2);
   };

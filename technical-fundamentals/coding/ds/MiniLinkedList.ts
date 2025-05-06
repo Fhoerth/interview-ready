@@ -53,7 +53,7 @@ export class MiniLinkedList<T> {
   }
 
   popLeft(): Node<T> {
-    if (!this.#size) throw new Error('Empty List');
+    if (!this.#size) throw new Error("Empty List");
 
     const node = this.#head!;
 

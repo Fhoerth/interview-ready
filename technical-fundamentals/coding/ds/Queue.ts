@@ -1,4 +1,4 @@
-import { MiniLinkedList } from './MiniLinkedList';
+import { MiniLinkedList } from "./MiniLinkedList";
 
 export class Queue<T> {
   #list = new MiniLinkedList<T>();

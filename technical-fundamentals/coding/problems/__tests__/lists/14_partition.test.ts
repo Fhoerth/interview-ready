@@ -1,7 +1,7 @@
-import partition, { Node } from '../../14_partition';
+import partition, { Node } from "../../14_partition";
 
-describe('partition', () => {
-  test('partitions the list correctly', () => {
+describe("partition", () => {
+  test("partitions the list correctly", () => {
     // Create a linked list: 3 -> 5 -> 8 -> 5 -> 10 -> 2 -> 1
     const node1: Node<number> = { value: 3 };
     const node2: Node<number> = { value: 5 };
@@ -29,7 +29,7 @@ describe('partition', () => {
     expect(result!.next!.next!.next!.next!.next!.next!.value).toEqual(10);
   });
 
-  test('handles single node list correctly', () => {
+  test("handles single node list correctly", () => {
     // Single node list: 5
     const node1: Node<number> = { value: 5 };
 
@@ -40,7 +40,7 @@ describe('partition', () => {
     expect(result!.next).toBeUndefined();
   });
 
-  test('handles all nodes less than x', () => {
+  test("handles all nodes less than x", () => {
     // Create a linked list: 3 -> 2 -> 1 -> 4 -> 5
     const node1: Node<number> = { value: 3 };
     const node2: Node<number> = { value: 2 };
@@ -62,7 +62,7 @@ describe('partition', () => {
     expect(result!.next!.next!.next!.next!.value).toEqual(5);
   });
 
-  test('handles all nodes greater than or equal to x', () => {
+  test("handles all nodes greater than or equal to x", () => {
     // Create a linked list: 3 -> 2 -> 1 -> 4 -> 5
     const node1: Node<number> = { value: 3 };
     const node2: Node<number> = { value: 2 };

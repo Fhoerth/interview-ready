@@ -1,7 +1,7 @@
-import SortStack from '../../25_sortStack';
+import SortStack from "../../25_sortStack";
 
-describe.skip('SortStack', () => {
-  test('push elements in sorted order', () => {
+describe.skip("SortStack", () => {
+  test("push elements in sorted order", () => {
     const stack = new SortStack<number>();
 
     stack.push(3);
@@ -20,7 +20,7 @@ describe.skip('SortStack', () => {
     expect(stack.peek()).toBe(1);
   });
 
-  test('pop elements in sorted order', () => {
+  test("pop elements in sorted order", () => {
     const stack = new SortStack<number>();
 
     stack.push(3);
@@ -37,7 +37,7 @@ describe.skip('SortStack', () => {
     expect(stack.pop()).toBeUndefined(); // Stack is empty
   });
 
-  test('peek returns the top element without removing it', () => {
+  test("peek returns the top element without removing it", () => {
     const stack = new SortStack<number>();
 
     stack.push(3);
@@ -48,13 +48,13 @@ describe.skip('SortStack', () => {
     expect(stack.peek()).toBe(1); // Peek again, the top element remains unchanged
   });
 
-  test('isEmpty returns true for empty stack', () => {
+  test("isEmpty returns true for empty stack", () => {
     const stack = new SortStack<number>();
 
     expect(stack.isEmpty()).toBe(true);
   });
 
-  test('isEmpty returns false for non-empty stack', () => {
+  test("isEmpty returns false for non-empty stack", () => {
     const stack = new SortStack<number>();
 
     stack.push(1);

@@ -1,7 +1,7 @@
-import StackOfPlates from '../../23_stackOfPlates';
+import StackOfPlates from "../../23_stackOfPlates";
 
-describe('StackOfPlates', () => {
-  test('push and pop elements from stack', () => {
+describe("StackOfPlates", () => {
+  test("push and pop elements from stack", () => {
     const stack = new StackOfPlates<number>(3); // Capacity: 3
 
     stack.push(1);
@@ -23,7 +23,7 @@ describe('StackOfPlates', () => {
     expect(stack.pop()).toBeUndefined(); // Stack is empty
   });
 
-  test('push and pop elements from multiple stacks', () => {
+  test("push and pop elements from multiple stacks", () => {
     const stack = new StackOfPlates<number>(2); // Capacity: 2
 
     stack.push(1);
@@ -42,13 +42,13 @@ describe('StackOfPlates', () => {
     expect(stack.pop()).toBeUndefined(); // Stack is empty
   });
 
-  test('pop from empty stack returns undefined', () => {
+  test("pop from empty stack returns undefined", () => {
     const stack = new StackOfPlates<number>(2); // Capacity: 2
 
     expect(stack.pop()).toBeUndefined();
   });
 
-  test('push beyond capacity creates new stack', () => {
+  test("push beyond capacity creates new stack", () => {
     const stack = new StackOfPlates<number>(2); // Capacity: 2
 
     stack.push(1);
@@ -61,7 +61,7 @@ describe('StackOfPlates', () => {
     expect(stack.pop()).toBe(3); // Pop from last stack
   });
 
-  test('popAt idx', () => {
+  test("popAt idx", () => {
     const stack = new StackOfPlates<number>(2); // Capacity: 2
 
     stack.push(1);

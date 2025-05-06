@@ -1,7 +1,7 @@
 // 9. *BST Sequences*: A binary search tree was created by traversing through an array from left to right and inserting each element.
 // Given a binary search tree with distinct elements, print all possible arrays that could have led to this tree.
 
-import { Queue } from '../ds/Queue';
+import { Queue } from "../ds/Queue";
 
 // ```
 // EXAMPLE Input:
@@ -26,7 +26,7 @@ import { Queue } from '../ds/Queue';
  * of the algorithm but should be close to:
  * O((n/2)!) where n = number of nodes in the tree
  */
-import { TreeNode } from '../utils/bst';
+import { TreeNode } from "../utils/bst";
 
 export { TreeNode };
 

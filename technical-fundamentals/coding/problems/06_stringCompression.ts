@@ -38,5 +38,5 @@ export default function stringCompression(str: string): string {
     compressedStrVector.push(value.toString());
   }
 
-  return compressedStrVector.join('');
+  return compressedStrVector.join("");
 }

@@ -2,7 +2,7 @@
 
 // Implement a function to check if a linked list is a palindrome.
 
-import { reverseList } from '../utils/reverseList';
+import { reverseList } from "../utils/reverseList";
 
 export type Node<T> = {
   value: T;

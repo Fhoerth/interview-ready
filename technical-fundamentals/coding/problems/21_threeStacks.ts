@@ -1,5 +1,5 @@
 // 1. *Three in One*: Describe how you could use a single array to implement three stacks.
-import { assert } from '../utils/assert';
+import { assert } from "../utils/assert";
 export default class ThreeStacks<T> {
   private array: (T | null)[] = [];
   private nextIndexes = new Map<number, number>();

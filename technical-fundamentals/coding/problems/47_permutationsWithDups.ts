@@ -8,11 +8,11 @@ function swap(s: string[], i: number, j: number): void {
 
 export function permutationsWithoutDups(input: string): string[] {
   const solution: string[] = [];
-  const s = input.split('');
+  const s = input.split("");
 
   function backtrack(s: string[], currentIdx: number): void {
     if (currentIdx === s.length) {
-      solution.push(s.join(''));
+      solution.push(s.join(""));
       return;
     }
 
@@ -32,11 +32,11 @@ export function permutationsWithoutDups(input: string): string[] {
 
 export function permutationsWithDups(input: string): string[] {
   const solution: string[] = [];
-  const s = input.split('').sort((a, b) => a.charCodeAt(0) - b.charCodeAt(0));
+  const s = input.split("").sort((a, b) => a.charCodeAt(0) - b.charCodeAt(0));
 
   function backtrack(s: string[], currentIdx: number): void {
     if (currentIdx === s.length) {
-      solution.push(s.join(''));
+      solution.push(s.join(""));
       return;
     }
 

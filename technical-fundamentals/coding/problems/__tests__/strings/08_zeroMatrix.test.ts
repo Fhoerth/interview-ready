@@ -1,7 +1,7 @@
-import zeroMatrix from '../../08_zeroMatrix';
+import zeroMatrix from "../../08_zeroMatrix";
 
-describe('08 - zeroMatrix', () => {
-  test('zeroes 2x2 matrix', () => {
+describe("08 - zeroMatrix", () => {
+  test("zeroes 2x2 matrix", () => {
     const matrix = [
       [0, 2],
       [3, 4],
@@ -14,7 +14,7 @@ describe('08 - zeroMatrix', () => {
     expect(matrix).toEqual(expected);
   });
 
-  test('zeroes 3x3 matrix', () => {
+  test("zeroes 3x3 matrix", () => {
     const matrix = [
       [1, 2, 3],
       [4, 5, 6],
@@ -29,7 +29,7 @@ describe('08 - zeroMatrix', () => {
     expect(matrix).toEqual(expected);
   });
 
-  test('zeroes 4x4 matrix', () => {
+  test("zeroes 4x4 matrix", () => {
     const matrix = [
       [1, 2, 3, 4],
       [5, 6, 0, 8],
@@ -46,7 +46,7 @@ describe('08 - zeroMatrix', () => {
     expect(matrix).toEqual(expected);
   });
 
-  test('2 zeroes 4x4 matrix', () => {
+  test("2 zeroes 4x4 matrix", () => {
     const matrix = [
       [0, 2, 3, 4],
       [5, 6, 0, 8],

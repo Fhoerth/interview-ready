@@ -15,7 +15,7 @@
 // Hints: #50, #69, #83, #90
 // ```
 
-import { LinkedList } from './10_LinkedList';
+import { LinkedList } from "./10_LinkedList";
 
 export type Node<T> = {
   value: T;

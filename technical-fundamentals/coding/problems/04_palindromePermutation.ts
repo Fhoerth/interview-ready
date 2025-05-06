@@ -19,10 +19,10 @@ export default function palindromePermutation(str: string): boolean {
   const freq = new Map<string, number>();
 
   let isEven: boolean = true;
-  let lowerCasedChar: string = '';
+  let lowerCasedChar: string = "";
 
   for (const char of str) {
-    if (char === ' ') continue;
+    if (char === " ") continue;
 
     lowerCasedChar = char.toLowerCase();
     isEven = !isEven;

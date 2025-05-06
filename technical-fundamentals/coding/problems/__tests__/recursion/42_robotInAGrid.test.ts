@@ -1,7 +1,7 @@
-import robotInAGrid from '../../42_robotInAGrid';
+import robotInAGrid from "../../42_robotInAGrid";
 
-describe('robotInAGrid', () => {
-  test('returns correct path for a 3x3 grid', () => {
+describe("robotInAGrid", () => {
+  test("returns correct path for a 3x3 grid", () => {
     const grid1: boolean[][] = [
       [true, true, false],
       [true, false, true],
@@ -16,7 +16,7 @@ describe('robotInAGrid', () => {
     ]);
   });
 
-  test('returns correct path for a 4x4 grid', () => {
+  test("returns correct path for a 4x4 grid", () => {
     const grid2: boolean[][] = [
       [true, true, true, false],
       [true, false, true, true],
@@ -34,7 +34,7 @@ describe('robotInAGrid', () => {
     ]);
   });
 
-  test('returns false for no path', () => {
+  test("returns false for no path", () => {
     const grid2: boolean[][] = [
       [true, false, true, false],
       [false, false, true, true],

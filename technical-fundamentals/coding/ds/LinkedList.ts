@@ -1,4 +1,4 @@
-import { assert } from '../utils/assert';
+import { assert } from "../utils/assert";
 
 export class Node<T> {
   value: T;
@@ -163,7 +163,7 @@ export class LinkedList<T> {
       }
 
       if (!previousNode || previousNode.next !== node)
-        throw new Error('Node not found in the list');
+        throw new Error("Node not found in the list");
     }
 
     previousNode.next = node.next;

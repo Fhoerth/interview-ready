@@ -1,4 +1,4 @@
-import successor, { TreeNode } from '../../36_successor';
+import successor, { TreeNode } from "../../36_successor";
 
 function link<T>(parent: TreeNode<T>, child: TreeNode<T>, isLeft: boolean) {
   child.parent = parent;
@@ -7,8 +7,8 @@ function link<T>(parent: TreeNode<T>, child: TreeNode<T>, isLeft: boolean) {
   else parent.right = child;
 }
 
-describe('successor', () => {
-  test('returns correct in-order successor', () => {
+describe("successor", () => {
+  test("returns correct in-order successor", () => {
     /*
                     5
                    / \
@@ -43,12 +43,12 @@ describe('successor', () => {
     expect(successor(node8)).toBeUndefined();
   });
 
-  test('returns undefined for node without successor', () => {
+  test("returns undefined for node without successor", () => {
     const node1: TreeNode<number> = { value: 1 };
     expect(successor(node1)).toBeUndefined();
   });
 
-  test('handles deep and asymmetric structures', () => {
+  test("handles deep and asymmetric structures", () => {
     const node3: TreeNode<number> = { value: 3 };
     const node5: TreeNode<number> = { value: 5, left: node3 };
 
@@ -86,7 +86,7 @@ describe('successor', () => {
     expect(successor(node30)).toBeUndefined();
   });
 
-  test('chaotic successor test', () => {
+  test("chaotic successor test", () => {
     const node5: TreeNode<number> = { value: 5 };
     const node3: TreeNode<number> = { value: 3 };
 
@@ -120,7 +120,7 @@ describe('successor', () => {
     expect(successor(node40)).toBeUndefined();
   });
 
-  test('increasing BST', () => {
+  test("increasing BST", () => {
     const node1: TreeNode<number> = { value: 1 };
     const node2: TreeNode<number> = { value: 2 };
     const node3: TreeNode<number> = { value: 3 };

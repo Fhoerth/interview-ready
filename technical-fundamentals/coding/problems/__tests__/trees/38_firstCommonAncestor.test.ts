@@ -1,11 +1,11 @@
-import firstCommonAncestor, { TreeNode } from '../../38_firstCommonAncestor';
+import firstCommonAncestor, { TreeNode } from "../../38_firstCommonAncestor";
 
 const createNode = <T>(value: T, left?: TreeNode<T>, right?: TreeNode<T>): TreeNode<T> => {
   return { value, left, right };
 };
 
-describe('firstCommonAncestor', () => {
-  test('returns correct common ancestor for valid input', () => {
+describe("firstCommonAncestor", () => {
+  test("returns correct common ancestor for valid input", () => {
     /*
                    1
                   / \

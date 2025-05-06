@@ -1,7 +1,7 @@
-import rotateMatrix from '../../07_rotateMatrix';
+import rotateMatrix from "../../07_rotateMatrix";
 
-describe('07 - rotateMatrix', () => {
-  test('rotates 2x2 matrix clockwise', () => {
+describe("07 - rotateMatrix", () => {
+  test("rotates 2x2 matrix clockwise", () => {
     const matrix = [
       [1, 2],
       [3, 4],
@@ -14,7 +14,7 @@ describe('07 - rotateMatrix', () => {
     expect(matrix).toEqual(expected);
   });
 
-  test('rotates 3x3 matrix clockwise', () => {
+  test("rotates 3x3 matrix clockwise", () => {
     const matrix = [
       [1, 2, 3],
       [4, 5, 6],
@@ -29,7 +29,7 @@ describe('07 - rotateMatrix', () => {
     expect(matrix).toEqual(expected);
   });
 
-  test('rotates 4x4 matrix clockwise', () => {
+  test("rotates 4x4 matrix clockwise", () => {
     const matrix = [
       [1, 2, 3, 4],
       [5, 6, 7, 8],
@@ -46,7 +46,7 @@ describe('07 - rotateMatrix', () => {
     expect(matrix).toEqual(expected);
   });
 
-  test('rotates 5x5 matrix clockwise', () => {
+  test("rotates 5x5 matrix clockwise", () => {
     const matrix = [
       [1, 2, 3, 4, 5],
       [6, 7, 8, 9, 10],
@@ -65,7 +65,7 @@ describe('07 - rotateMatrix', () => {
     expect(matrix).toEqual(expected);
   });
 
-  test('rotates 6x6 matrix clockwise', () => {
+  test("rotates 6x6 matrix clockwise", () => {
     const matrix = [
       [1, 2, 3, 4, 5, 6],
       [7, 8, 9, 10, 11, 12],

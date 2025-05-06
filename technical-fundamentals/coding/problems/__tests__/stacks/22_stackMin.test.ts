@@ -1,7 +1,7 @@
-import StackMin from '../../22_stackMin';
+import StackMin from "../../22_stackMin";
 
-describe('StackMin', () => {
-  test('push and pop elements from stack', () => {
+describe("StackMin", () => {
+  test("push and pop elements from stack", () => {
     const stack = new StackMin<number>();
 
     stack.push(5);
@@ -24,13 +24,13 @@ describe('StackMin', () => {
     expect(stack.min()).toBeUndefined(); // Stack is empty
   });
 
-  test('min method returns undefined when stack is empty', () => {
+  test("min method returns undefined when stack is empty", () => {
     const stack = new StackMin<number>();
 
     expect(stack.min()).toBeUndefined();
   });
 
-  test('push and pop mixed with min operations', () => {
+  test("push and pop mixed with min operations", () => {
     const stack = new StackMin<number>();
 
     stack.push(3);
@@ -64,7 +64,7 @@ describe('StackMin', () => {
     expect(stack.min()).toBeUndefined();
   });
 
-  test('push and pop infinity', () => {
+  test("push and pop infinity", () => {
     const stack = new StackMin<number>();
 
     expect(stack.min()).toBeUndefined();

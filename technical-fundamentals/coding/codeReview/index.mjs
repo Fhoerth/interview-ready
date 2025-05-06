@@ -25,7 +25,7 @@ function evaluateChallenge(challenge, result, candidate, difficulty) {
 // Oversplitting functions - "The rule of 3"
 
 function splitWords(str) {
-  return str.split(' ');
+  return str.split(" ");
 }
 function wordMapper(words) {
   hash = {};
@@ -94,7 +94,7 @@ function initTicTacToe() {
   const board = Array(3)
     .fill(0)
     .map(() => Array(3));
-  board[1][1] = 'X';
+  board[1][1] = "X";
   return board;
 }
 
@@ -102,7 +102,7 @@ function initConnect4() {
   const board = Array(6)
     .fill(0)
     .map(() => Array(7));
-  board[0][0] = 'O';
+  board[0][0] = "O";
   return board;
 }
 
@@ -129,7 +129,7 @@ function failInterview(candidate, interview) {
 function completeInterview(candidate, interview, result) {
   interview.finished();
 
-  if (result === 'passed') {
+  if (result === "passed") {
     passInterview(candidate, interview);
   } else {
     failInterview(candidate, interview);
@@ -143,11 +143,11 @@ function transferMoney(sender, receiver, amount) {
 
   if (sender.funds < 0) {
     sender.funds += amount;
-    throw new Error('Insufficient funds');
+    throw new Error("Insufficient funds");
   }
 
   if (receiver.disabledUser()) {
-    throw new Error('Receiver is unable to receive funds');
+    throw new Error("Receiver is unable to receive funds");
   }
 
   receiver.funds += amount;
@@ -169,7 +169,7 @@ function formatProductNames(name, series) {
 // Defensive Programming (Questionable)
 
 function validateUser(user) {
-  if (typeof user !== 'object' || user.constructor.name !== 'User') {
+  if (typeof user !== "object" || user.constructor.name !== "User") {
     return false;
   }
   const hasName = !!user.name;
@@ -179,8 +179,8 @@ function validateUser(user) {
 // Invariant Programming (Good!)
 
 function validateUser(user) {
-  const validUser = typeof user === 'object' && user.constructor.name === 'User';
-  console.assert(validUser, 'Invalid user object', user);
+  const validUser = typeof user === "object" && user.constructor.name === "User";
+  console.assert(validUser, "Invalid user object", user);
   const hasName = !!user.name;
   return hasName;
 }
@@ -237,7 +237,7 @@ async function updateUserGood(user, retries) {
 
 class StringUtils {
   stringCleaner(string) {
-    return string.trim().replaceAll('%20', ' ');
+    return string.trim().replaceAll("%20", " ");
   }
 
   formatEmail(emailService) {
@@ -262,5 +262,5 @@ class EmailService {
   }
 }
 
-const emailService = new EmailService(' test email ', { trim: true });
+const emailService = new EmailService(" test email ", { trim: true });
 emailService.sendEmail();

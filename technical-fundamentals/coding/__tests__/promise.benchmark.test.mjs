@@ -1,9 +1,9 @@
-import { describe, test } from 'vitest';
-import { SilverPromise } from '../promise.mjs';
+import { describe, test } from "vitest";
+import { SilverPromise } from "../promise.mjs";
 
-describe('Promise Benchmarks', () => {
-  test('Native Promise', async () => {
-    console.time('Native Promise');
+describe("Promise Benchmarks", () => {
+  test("Native Promise", async () => {
+    console.time("Native Promise");
 
     for (let i = 0; i < 10000; i++) {
       await Promise.resolve(1)
@@ -11,11 +11,11 @@ describe('Promise Benchmarks', () => {
         .then(() => 3);
     }
 
-    console.timeEnd('Native Promise');
+    console.timeEnd("Native Promise");
   });
 
-  test('SilverPromise', async () => {
-    console.time('SilverPromise');
+  test("SilverPromise", async () => {
+    console.time("SilverPromise");
 
     for (let i = 0; i < 10000; i++) {
       await SilverPromise.resolve(1)
@@ -23,6 +23,6 @@ describe('Promise Benchmarks', () => {
         .then(() => 3);
     }
 
-    console.timeEnd('SilverPromise');
+    console.timeEnd("SilverPromise");
   });
 });

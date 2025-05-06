@@ -1,7 +1,7 @@
-import ThreeStacks from '../../21_threeStacks';
+import ThreeStacks from "../../21_threeStacks";
 
-describe('ThreeStacks', () => {
-  test('push and pop elements from stack 1', () => {
+describe("ThreeStacks", () => {
+  test("push and pop elements from stack 1", () => {
     const threeStacks = new ThreeStacks<number>(9); // Array length: 9
 
     threeStacks.push(0, 1);
@@ -13,7 +13,7 @@ describe('ThreeStacks', () => {
     expect(threeStacks.pop(0)).toBeUndefined(); // Stack should be empty now
   });
 
-  test('push and pop elements from stack 2', () => {
+  test("push and pop elements from stack 2", () => {
     const threeStacks = new ThreeStacks<number>(9); // Array length: 9
 
     threeStacks.push(1, 4);
@@ -25,7 +25,7 @@ describe('ThreeStacks', () => {
     expect(threeStacks.pop(1)).toBeUndefined(); // Stack should be empty now
   });
 
-  test('push and pop elements from stack 3', () => {
+  test("push and pop elements from stack 3", () => {
     const threeStacks = new ThreeStacks<number>(9); // Array length: 9
 
     threeStacks.push(2, 7);
@@ -37,7 +37,7 @@ describe('ThreeStacks', () => {
     expect(threeStacks.pop(2)).toBeUndefined(); // Stack should be empty now
   });
 
-  test('pop elements from empty stack', () => {
+  test("pop elements from empty stack", () => {
     const threeStacks = new ThreeStacks<number>(3); // Array length: 3
 
     // Attempt to pop from empty stacks should return undefined
@@ -46,7 +46,7 @@ describe('ThreeStacks', () => {
     expect(threeStacks.pop(2)).toBeUndefined();
   });
 
-  test('peek elements from stacks', () => {
+  test("peek elements from stacks", () => {
     const threeStacks = new ThreeStacks<number>(3); // Array length: 9
 
     threeStacks.push(0, 1);
@@ -58,7 +58,7 @@ describe('ThreeStacks', () => {
     expect(threeStacks.peek(2)).toBe(3);
   });
 
-  test('peek elements from empty stack', () => {
+  test("peek elements from empty stack", () => {
     const threeStacks = new ThreeStacks<number>(3); // Array length: 3
 
     // Attempt to peek from empty stacks should return undefined

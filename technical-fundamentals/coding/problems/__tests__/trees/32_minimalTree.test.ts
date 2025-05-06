@@ -1,7 +1,7 @@
-import minimalTree, { TreeNode } from '../../32_minimalTree';
+import minimalTree, { TreeNode } from "../../32_minimalTree";
 
-describe('minimalTree', () => {
-  test('creates minimal height BST from sorted array', () => {
+describe("minimalTree", () => {
+  test("creates minimal height BST from sorted array", () => {
     const sortedArray = [1, 2, 3];
     const expectedTree: TreeNode<number> = {
       value: 2,
@@ -11,7 +11,7 @@ describe('minimalTree', () => {
     expect(minimalTree(sortedArray)).toEqual(expectedTree);
   });
 
-  test('creates minimal height BST from sorted array 5 length', () => {
+  test("creates minimal height BST from sorted array 5 length", () => {
     const sortedArray = [1, 2, 3, 4, 5];
     const expectedTree: TreeNode<number> = {
       value: 3,
@@ -31,7 +31,7 @@ describe('minimalTree', () => {
     expect(minimalTree(sortedArray)).toEqual(expectedTree);
   });
 
-  test('creates minimal height BST from sorted array 7 length', () => {
+  test("creates minimal height BST from sorted array 7 length", () => {
     const sortedArray = [1, 2, 3, 4, 5, 6, 7];
     const expectedTree: TreeNode<number> = {
       value: 4,
@@ -57,7 +57,7 @@ describe('minimalTree', () => {
     expect(minimalTree(sortedArray)).toEqual(expectedTree);
   });
 
-  test('returns toBeUndefined for empty array', () => {
+  test("returns toBeUndefined for empty array", () => {
     const sortedArray: number[] = [];
     expect(minimalTree(sortedArray)).toBeUndefined();
   });

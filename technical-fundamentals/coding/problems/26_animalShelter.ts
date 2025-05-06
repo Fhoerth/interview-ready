@@ -10,9 +10,9 @@
 // such as enqueue, dequeueAny, dequeueDog, and dequeueCat.
 // You may use the built-in LinkedList data structure.
 
-import { Queue } from '../ds/Queue';
+import { Queue } from "../ds/Queue";
 
-export type AnimalType = 'dog' | 'cat';
+export type AnimalType = "dog" | "cat";
 
 export class Animal {
   type: AnimalType;
@@ -38,7 +38,7 @@ export default class AnimalShelter {
     const id = this.#currentId++;
     const animalWithId = { animal, id };
 
-    if (type === 'dog') {
+    if (type === "dog") {
       this.#dogsQueue.enqueue(animalWithId);
     } else {
       this.#catsQueue.enqueue(animalWithId);

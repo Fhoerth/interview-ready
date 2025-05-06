@@ -5,7 +5,7 @@
 //
 // 1 -> 2 -> 2 -> 2 -> 4
 
-import { Node, LinkedList } from '../ds/LinkedList';
+import { Node, LinkedList } from "../ds/LinkedList";
 
 export { Node };
 
