@@ -1,0 +1,108 @@
+body {
+  font-family: 'Helvetica';
+}
+.stop-watch {
+  width: 400px;
+  display: flex;
+
+  background-color: black;
+
+  padding: 16px;
+  border-radius: 5px;
+}
+
+.stop-watch__layout {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: #242832;
+
+  border-radius: 5px;
+}
+
+.stop-watch__watch-layout {
+  height: 300px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stop-watch__watch {
+  width: 200px;
+  height: 200px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  color: #fefefe;
+  font-size: 2em;
+}
+
+.stop-watch__watch-active {
+  border: 5px solid #4b5468;
+  border-radius: 50%;
+}
+
+.stop-watch__tick {
+  width: 10px;
+  height: 10px;
+
+  display: none;
+
+  background-color: #fff;
+  border-radius: 50%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.stop-watch__tick-active {
+  display: block;
+}
+
+.stop-watch__buttons {
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 8px;
+}
+
+.stop-watch__button {
+  padding: 8px 0;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  font-size: 1.2em;
+
+  cursor: pointer;
+
+  color: #8891b0;
+  background-color: #383d4e;
+  border-radius: 15px;
+  border: 0;
+}
+
+.stop-watch__button:hover {
+  background-color: #565d75;
+}
+
+.stop-watch__button-play {
+  font-size: 0.8em;
+}
+
+.stop-watch__button-refresh {
+  font-size: 1.6em;
+}

@@ -19,13 +19,13 @@ describe('useInterval', () => {
     vi.restoreAllMocks();
   });
 
-  function getHook(fn, delay) {
+  function getHook(fn, delay, autoStart = true) {
     const spy = vi.fn();
-    const props = { fn: fn || spy, delay: delay || 5 };
+    const props = { fn: fn || spy, delay: delay || 5, autoStart };
 
     return [
       spy,
-      renderHook(({ fn, delay }) => useInterval(fn, delay), {
+      renderHook(({ fn, delay, autoStart }) => useInterval(fn, delay, autoStart), {
         initialProps: props,
       }),
     ];
@@ -60,7 +60,7 @@ describe('useInterval', () => {
 
   it('resets/stops the interval by calling `reset` and `stop`', () => {
     const [spy, hook] = getHook();
-    let [reset, stop] = hook.result.current;
+    let [start, stop] = hook.result.current;
 
     expect(spy).not.toHaveBeenCalled();
 
@@ -75,9 +75,28 @@ describe('useInterval', () => {
     vi.advanceTimersByTime(100);
     expect(spy).toHaveBeenCalledTimes(2);
 
-    reset();
+    start();
 
     vi.advanceTimersByTime(10);
     expect(spy).toHaveBeenCalledTimes(4);
+  });
+
+  it("doesn't start until `start` is executed", () => {
+    const spy = vi.fn();
+    const delay = 5;
+    const autoStart = false;
+    const [, hook] = getHook(spy, delay, autoStart);
+
+    let [start] = hook.result.current;
+
+    vi.advanceTimersByTime(100);
+    expect(spy).toHaveBeenCalledTimes(0);
+
+    start();
+    vi.advanceTimersByTime(5);
+    expect(spy).toHaveBeenCalledTimes(1);
+
+    vi.advanceTimersByTime(5);
+    expect(spy).toHaveBeenCalledTimes(2);
   });
 });

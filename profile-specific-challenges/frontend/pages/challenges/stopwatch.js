@@ -1,3 +1,5 @@
+import { StopWatch } from '../../components/StopWatch';
+
 export default function Stopwatch() {
   return (
     <>
@@ -29,6 +31,8 @@ export default function Stopwatch() {
           module in this repo.
         </p>
       </div>
+      <div style={{ height: 20 }} />
+      <StopWatch />
     </>
   );
 }
