@@ -1,17 +1,17 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useCallback } from "react";
 
 export function useInterval(fn, delay, autoStart = true) {
   const intervalRef = useRef();
 
-  function start() {
+  const start = useCallback(() => {
     if (delay !== null) {
       intervalRef.current = setInterval(fn, delay);
     }
-  }
+  }, [fn, delay]);
 
-  function stop() {
+  const stop = useCallback(() => {
     clearInterval(intervalRef.current);
-  }
+  }, [intervalRef]);
 
   useEffect(() => {
     if (autoStart) {
@@ -19,6 +19,10 @@ export function useInterval(fn, delay, autoStart = true) {
       start();
     }
   }, [start, stop]);
+
+  useEffect(() => {
+    return stop;
+  }, [stop]);
 
   return [start, stop];
 }
