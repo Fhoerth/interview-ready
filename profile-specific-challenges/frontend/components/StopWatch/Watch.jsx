@@ -9,13 +9,13 @@ const SPEED = 1/5;
 
 const Watch = forwardRef((_, ref) => {
   const [active, setActive] = useState(false);
-  const [value, setValue] = useState(0);
+  const [displayValue, setDisplayValue] = useState(0);
 
   const handleInterval = useCallback(() => {
-    setValue((prevValue) => {
+    setDisplayValue((prevValue) => {
       return prevValue + INTERVAL;
     });
-  }, [value, setValue]);
+  }, [setDisplayValue]);
 
   const [start, stop] = useInterval(handleInterval, INTERVAL, false);
 
@@ -31,16 +31,16 @@ const Watch = forwardRef((_, ref) => {
       },
       reset: () => {
         setActive(false);
-        setValue(0);
+        setDisplayValue(0);
         stop();
       },
     }),
-    [setActive, setValue, start, stop]
+    [setActive, setDisplayValue, start, stop]
   );
 
-  const fixedValue = (value / 1000).toFixed(2);
+  const fixedValue = (displayValue / 1000).toFixed(2);
 
-  const angleInDegrees = (360 / 1000) * (value * SPEED);
+  const angleInDegrees = (360 / 1000) * (displayValue * SPEED);
   const angleInRadians = (angleInDegrees * Math.PI) / 180;
 
   const center = WATCH_SIZE / 2 - TICK_SIZE / 2;
