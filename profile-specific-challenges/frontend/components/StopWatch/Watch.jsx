@@ -1,19 +1,23 @@
 import { forwardRef, useImperativeHandle, useState, useCallback, useMemo } from "react";
 import { useInterval } from "../../hooks/useInterval";
 
-const Watch = forwardRef((_, ref) => {
-  const timer = useMemo(() => 100, []);
+const INTERVAL = 20;
+const WATCH_SIZE = 200;
+const TICK_SIZE = 12;
+const BORDER_SIZE = 4;
+const SPEED = 1/5;
 
+const Watch = forwardRef((_, ref) => {
   const [active, setActive] = useState(false);
   const [value, setValue] = useState(0);
 
   const handleInterval = useCallback(() => {
     setValue((prevValue) => {
-      return prevValue + timer;
+      return prevValue + INTERVAL;
     });
-  }, [timer, value, setValue]);
+  }, [value, setValue]);
 
-  const [start, stop] = useInterval(handleInterval, timer, false);
+  const [start, stop] = useInterval(handleInterval, INTERVAL, false);
 
   useImperativeHandle(
     ref,
@@ -34,7 +38,17 @@ const Watch = forwardRef((_, ref) => {
     [setActive, setValue, start, stop]
   );
 
-  const normalizedValue = (value / 1000).toFixed(2);
+  const fixedValue = (value / 1000).toFixed(2);
+
+  const angleInDegrees = (360 / 1000) * (value * SPEED);
+  const angleInRadians = (angleInDegrees * Math.PI) / 180;
+
+  const center = WATCH_SIZE / 2 - TICK_SIZE / 2;
+  const radius = center + BORDER_SIZE / 2 + TICK_SIZE / 2;
+
+  const x = center + Math.sin(angleInRadians) * radius;
+  const y = center - Math.cos(angleInRadians) * radius;
+
   const watchClassName = ["stop-watch__watch", active ? "stop-watch__watch-active" : null]
     .filter(Boolean)
     .join(" ");
@@ -45,8 +59,8 @@ const Watch = forwardRef((_, ref) => {
   return (
     <div className="stop-watch__watch-layout">
       <div className={watchClassName}>
-        {normalizedValue}
-        <div className={tickClassName} />
+        {fixedValue}
+        <div className={tickClassName} style={{ left: x, top: y }} />
       </div>
     </div>
   );
